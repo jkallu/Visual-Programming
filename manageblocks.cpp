@@ -304,7 +304,7 @@ QGroupBox* ManageBlocks::addLocalProcedureBlock(int nIn, int nOut){
 
 void ManageBlocks::generateCode()
 {
-    QString dir = "../nodegencodes/";
+    QString dir = "../Node/nodegencodes/";
     //QString dir = "/home/jin/Downloads/nodegencodes/";
     // 1. First we generate outputcodes for constant array block
     for(int i = 0; i < countConstArrayBlock; i++){

@@ -50,7 +50,6 @@ SOURCES += \
     localprocedureblock.cpp \
     datapack.cpp \
     simulate.cpp \
-    ../nodegencodes/linkedList.c \
     simlinklist.cpp \
     ../nodegencodes/packer.c \
     mygraphicsview.cpp
@@ -88,9 +87,7 @@ HEADERS += \
     localprocedureblock.h \
     datapack.h \
     simulate.h \
-    ../nodegencodes/linkedList.h \
     simlinklist.h \
-    ../nodegencodes/packer.h \
     mygraphicsview.h
 
 RESOURCES += \
