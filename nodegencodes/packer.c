@@ -19,7 +19,6 @@ void packData(char **data, char no_in, enum Types type, size_t size_in, void *in
             new_size += size_in * sizeof (int);
             break;
         case Pack_func:
-            size_in++;
             new_size += (size_in) * sizeof (char);
             printf( "name %s %ld\n", (char*)in, size_in);
             break;
@@ -50,7 +49,6 @@ void packData(char **data, char no_in, enum Types type, size_t size_in, void *in
             new_size += size_in * sizeof (int);
             break;
         case Pack_func:
-            size_in++;
             new_size += (size_in) * sizeof (char);
             break;
         }

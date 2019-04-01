@@ -51,8 +51,9 @@ SOURCES += \
     datapack.cpp \
     simulate.cpp \
     simlinklist.cpp \
-    ../nodegencodes/packer.c \
-    mygraphicsview.cpp
+    mygraphicsview.cpp \
+    ./nodegencodes/packer.c \
+    ./nodegencodes/linkedList.c
 
 HEADERS += \
     mainwindow.h \
@@ -88,7 +89,9 @@ HEADERS += \
     datapack.h \
     simulate.h \
     simlinklist.h \
-    mygraphicsview.h
+    mygraphicsview.h \
+    ./nodegencodes/packer.h \
+    ./nodegencodes/linkedList.h
 
 RESOURCES += \
     node.qrc

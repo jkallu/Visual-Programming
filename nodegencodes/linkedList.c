@@ -144,14 +144,14 @@ void appendData(char *funcName, char noIn, char nov, char *data)
 
     printf("TOTAL SIZE FINAL %ld\n", tot_size_final);
 
-    PData_t *newC = realloc(*current, tot_size_final);
+    char *newC = realloc((*current)->in, tot_size_final);
     //*current = realloc(*current, tot_size_final);
     if(!newC)
     {
         printf("ERROR REALLOC\n");
         exit(0);
     }
-    *current = newC;
+    (*current)->in = newC;
 
     (*current)->size = tot_size_final;
 
@@ -171,8 +171,8 @@ void appendData(char *funcName, char noIn, char nov, char *data)
 
     printf("NV Totl %d\n", nv);
     memcpy((*current)->in + add_size, &nv, sizeof (nv));
-    add_size += sizeof (nv);
-    add_size += tot_size_init;
+    //add_size += sizeof (nv);
+    //add_size += tot_size_init;
 
     memcpy((*current)->in + tot_size_init, data + (sizeof (tot_size_data) + sizeof (char)), tot_size_data);
     (*current)->nInsFilled += nov;
@@ -309,7 +309,22 @@ int popFirst(char **data)
     }*/
     memcpy(*data, (*head)->in, (*head)->size);
     PData_t * next_node = (*head)->next;
-    free (*head);
+
+    if((*head)->funcName != NULL)
+    {
+        free((*head)->funcName);
+    }
+
+    if((*head)->in != NULL)
+    {
+        free((*head)->in);
+    }
+
+    if(*head != NULL)
+    {
+        free (*head);
+    }
+
     *head = next_node;
     return 1;
 }
@@ -387,6 +402,10 @@ int popFilled(char **data)
         if((*current)->funcName != NULL)
         {
             free((*current)->funcName);
+        }
+        if((*current)->in != NULL)
+        {
+            free((*current)->in);
         }
         if(*current != NULL)
         {

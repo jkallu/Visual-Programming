@@ -79,20 +79,20 @@ void DataSplitBlock::generateCode(QString dir)
 
                 "localProcedureCall(callFunc[" << i << "], " << conToTotIns[i] << ", 1, data_out[" << i << "]);\n\n";
 
-     /*   file << "if(data_out[" << i << "] != NULL)\n{\n"
+        file << "if(data_out[" << i << "] != NULL)\n{\n"
                 "free(data_out[" << i << "]);\n}\n"
                 "if(callFunc[" << i << "] != NULL)\n{\n"
                 "free(callFunc[" << i << "]);\n}\n\n"
-                ;*/
+                ;
     }
-  /*  file << "if(data_out != NULL)\n{\n"
+    file << "if(data_out != NULL)\n{\n"
             "free(data_out);\n}\n"
             "if(callFunc != NULL)\n{\n"
             "free(callFunc);\n}\n\n"
             "if(data != NULL)\n{\n"
             "free(data);\n}\n\n"
             "if(in != NULL)\n{\n"
-            "free(in);\n}\n\n";*/
+            "free(in);\n}\n\n";
     file << "printf(\""<<leName->text().toStdString()<<" END\\n\");\n";
 
     file << "}";

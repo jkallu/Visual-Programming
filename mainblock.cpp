@@ -62,7 +62,7 @@ void MainBlock::generateMakefile(QString dir)
 
     std::ofstream file(dir.toStdString() + "Makefile");
     file << "CC=gcc \n";
-    file << "CFLAGS=-I.\n";
+    file << "CFLAGS=-Wall -g -I.\n";
 
     file << "DEPS = ";
     for(int i = 0; i < list.size(); i++)
