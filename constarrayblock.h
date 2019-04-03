@@ -20,6 +20,8 @@ public:
     QLabel *lblBegin;
     QLineEdit *leEnd;
     QLabel *lblEnd;
+    QLabel *lblType;
+    QComboBox *cbType;
 };
 
 #endif // CONSTARRAYBLOCK_H

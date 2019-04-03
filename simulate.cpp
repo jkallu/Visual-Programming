@@ -34,18 +34,46 @@ void Simulate::createLib(QString dir)
 {
     cout << "CREATING LIBS\n";
     QStringList list = sourceList.split(QRegExp("\\s+"), QString::SkipEmptyParts);
-    QString path = "gcc -fPIC -c " + dir + "eventLoop.c -L. -lpthread -I " + dir;
+    QString path;
+
+    path = "rm -f libmylib.so";
+    if(system(path.toStdString().c_str()) == -1)
+    {
+        cout << "No prev libmylib.so found\n";
+    }
+
+    path = "rm -f eventLoop.o";
+    if(system(path.toStdString().c_str()) == -1)
+    {
+        cout << "No prev eventLoop.o found\n";
+    }
+
+    path = "gcc -fPIC -c " + dir + "eventLoop.c -L. -lpthread -lm -I " + dir;
     if(system(path.toStdString().c_str()) == -1)
     {
         cout << "Error\n";
         return;
     }
+
+    path = "rm -f linkedList.o";
+    if(system(path.toStdString().c_str()) == -1)
+    {
+        cout << "No prev linkedList.o found\n";
+    }
+
     path = "gcc -fPIC -c " + dir + "linkedList.c -I " + dir;
     if(system(path.toStdString().c_str()) == -1)
     {
         cout << "Error\n";
         return;
     }
+
+    path = "rm -f packer.o";
+    if(system(path.toStdString().c_str()) == -1)
+    {
+        cout << "No prev packer.o found\n";
+    }
+
     path = "gcc -fPIC -c " + dir + "packer.c -I " + dir;
     if(system(path.toStdString().c_str()) == -1)
     {
@@ -56,6 +84,12 @@ void Simulate::createLib(QString dir)
 
     for(int i = 0; i < list.size(); i++)
     {
+        path = "rm -f " + list.at(i) + ".o";
+        if(system(path.toStdString().c_str()) == -1)
+        {
+            cout << "No prev " << list.at(i).toStdString() <<".o found\n";
+        }
+
         path = "gcc -fPIC -c " + dir + list.at(i) + ".c" + " -I " + dir;
         if(system(path.toStdString().c_str()) == -1)
         {
@@ -69,7 +103,7 @@ void Simulate::createLib(QString dir)
     {
         path += list.at(i) + ".o ";
     }
-    path += "linkedList.o packer.o -L. -lpthread";
+    path += "linkedList.o packer.o -L. -lpthread -lm";
     if(system(path.toStdString().c_str()) == -1)
     {
         cout << "Error\n";

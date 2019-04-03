@@ -42,10 +42,7 @@ void ExpressionBlock::generateCode(QString dir)
     QString upper = leName->text().toUpper();
     fileHeader << "#ifndef " << upper.toStdString() << "_H \n";
     fileHeader << "#define " << upper.toStdString() << "_H \n";
-    //for(int i = 0; i < numOfOutputs; i++)
-    //{
-        //fileHeader << "#include \"" << lblOutConToBlock[i]->text().toStdString() << ".h\"\n";
-    //}
+
     fileHeader << "void * " << leName->text().toStdString() << "(void *dat);\n";
     fileHeader << "#endif\n";
 
@@ -55,27 +52,98 @@ void ExpressionBlock::generateCode(QString dir)
     file << "#include \"" << leName->text().toStdString() << ".h\"\n";
     file << "#include \"linkedList.h\"\n";
     file << "#include \"packer.h\"\n";
-    file << "#include <string.h>\n\n";
-    file << "extern pthread_mutex_t lock;\n\n";
+    file << "#include <string.h>\n"
+            "#include <math.h>\n";
+    file << "#include <stdio.h>\n\n";
+    file << "extern pthread_mutex_t lock;\n"
+            "extern PData_t *gPData;\n"
+            "char *global_data;\n\n"
+            ;
     file << "void * " << leName->text().toStdString() << "(void *dat) \n{\n";
-    file << "char callFunc[] = \"" << lblOutConToBlock[0]->text().toStdString() << "\";\n";
-    file << "size_t size = 200000;\n"
-            "int *arr = (int *) malloc(size * sizeof (int));\n"
-            "for(size_t i = 0; i < size; i++)\n"
+    file << "while(pthread_mutex_trylock(&global_lock))\n"
             "{\n"
-                "arr[i] = (int)i;\n"
+            "printf(\"\\rTRYING TO LOCK MUTEX %s\", __FUNCTION__);\n"
+            "}\n";
+    file << "char **ptr_global_data = &global_data;\n"
+            "size_t tot_size;\n"
+            "memcpy(&tot_size, *ptr_global_data, sizeof (tot_size));\n"
+            "char *data = mallocAndCheck(tot_size);\n"
+            "memcpy(data, *ptr_global_data, tot_size);\n\n"
+            "free(*ptr_global_data);\n"
+            "*ptr_global_data = NULL;\n"
+            "pthread_mutex_unlock(&global_lock);\n\n"
+            ;
+    file << "char **callFunc = mallocAndCheck(" << numOfOutputs << "* sizeof (char *));\n"
+            "char **data_out = mallocAndCheck(" << numOfOutputs << "* sizeof (char *));\n"
+            ;
+    file << "enum Types type;\n"
+            "char *in = NULL;\n"
+            "size_t size;\n"
+            "getData(0, data, &type, &size, &in);\n"
+            "size_t add = 0;\n"
+            "if(type == Pack_Int)\n"
+            "{\n"
+                "for(size_t i = 0; i < size; i++)\n"
+                "{\n"
+                    "int d;\n"
+                    "memcpy(&d, in + add, sizeof (int));\n"
+                    "d =  sin((double)d);\n"
+                    "memcpy(in + add, &d, sizeof (int));\n"
+                    "add += sizeof (int);\n"
+                "}\n"
             "}\n"
-            "char *data = NULL; // always init pointer to NULL\n"
-            "packData(&data, Pack_func, strlen (callFunc) , callFunc);\n"
-            "packData(&data, Pack_Int, size, arr);\n"
+            "else if(type == Pack_Float)\n"
+            "{\n"
+                "for(size_t i = 0; i < size; i++)\n"
+                "{\n"
+                    "float d;\n"
+                    "memcpy(&d, in + add, sizeof (float));\n"
+                    "d =  sin((double)d);\n"
+                    "memcpy(in + add, &d, sizeof (float));\n"
+                    "add += sizeof (float);\n"
+                "}\n"
+            "}\n"
+            "else if(type == Pack_Double)\n"
+            "{\n"
+                "for(size_t i = 0; i < size; i++)\n"
+                "{\n"
+                    "double d;\n"
+                    "memcpy(&d, in + add, sizeof (double));\n"
+                    "d =  sin(d);\n"
+                    "memcpy(in + add, &d, sizeof (double));\n"
+                    "add += sizeof (double);\n"
+                "}\n"
+            "}\n"
+            ;
+    for(int i = 0; i < numOfOutputs; i++)
+    {
+        file << "char nm_" << i << "[] = \"" << lblOutConToBlock[i]->text().toStdString() <<"\";\n";
+        file << "callFunc[" << i << "] = mallocAndCheck(sizeof (nm_" << i << ") + 1);\n";
+        file << "memcpy(callFunc[" << i << "], nm_" << i << ", sizeof (nm_" << i << ") + 1);\n"
+                "data_out[" << i << "] = NULL;\n"
+                "packData(&data_out[" << i << "], -1, Pack_func, strlen (callFunc[" << i << "]) + 1, callFunc[" << i << "]);\n"
+                "packData(&data_out[" << i << "], " << conToIONum[i] << ", type, size, in);\n"
 
-            "pthread_mutex_lock(&lock);\n"
-            "pushToBegin(&gPData, data);\n"
-            "pthread_mutex_unlock(&lock);\n"
-            "free(data);\n";
-    file << teScript->toPlainText().toStdString() << "\n";
+                "localProcedureCall(callFunc[" << i << "], " << conToTotIns[i] << ", 1, data_out[" << i << "]);\n\n";
+
+        file << "if(data_out[" << i << "] != NULL)\n{\n"
+                "free(data_out[" << i << "]);\n}\n"
+                "if(callFunc[" << i << "] != NULL)\n{\n"
+                "free(callFunc[" << i << "]);\n}\n\n"
+                ;
+    }
+    file << "if(data_out != NULL)\n{\n"
+            "free(data_out);\n}\n"
+            "if(callFunc != NULL)\n{\n"
+            "free(callFunc);\n}\n\n"
+            "if(data != NULL)\n{\n"
+            "free(data);\n}\n\n"
+            "if(in != NULL)\n{\n"
+            "free(in);\n}\n\n"
+            ;
+    file << "printf(\""<<leName->text().toStdString()<<" END\\n\");\n";
+
     file << "}";
-
     file.close();
 }
 

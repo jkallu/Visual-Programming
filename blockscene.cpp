@@ -347,7 +347,7 @@ void BlockScene::connectDesignToBackend(int i){
         //blockIo->conToTotIns[]
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 2){
-        varOut = manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->leName->text();
+        varOut = manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
         manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
         manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
     }
@@ -442,7 +442,7 @@ void BlockScene::connectDesignToBackend(int i){
     }
     else if(int(edge[i]->destNode()->getBlockType()) == 2){
         manageBlocks->expressionBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        manageBlocks->expressionBlock[edge[i]->destNode()->gettypeId()]->leExpression->setText(varOut);
+        //manageBlocks->expressionBlock[edge[i]->destNode()->gettypeId()]->leExpression->setText(varOut);
         varIn =  manageBlocks->expressionBlock[edge[i]->destNode()->gettypeId()]->leName->text();
     }
     else if(int(edge[i]->destNode()->getBlockType()) == 3){
@@ -522,7 +522,7 @@ void BlockScene::connectDesignToBackend(int i){
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 2){
         manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
-        manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->teScript->setText(manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->teScript->toPlainText() + "\n" + varIn + "(x, size);");
+        //manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->teScript->setText(manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->teScript->toPlainText() + "\n" + varIn + "(x, size);");
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 17){
         manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);

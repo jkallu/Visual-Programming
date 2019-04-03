@@ -1,4 +1,5 @@
 #include "constarrayblock.h"
+#include "./nodegencodes/packer.h"
 
 ConstArrayBlock::ConstArrayBlock(int i, int nIn, int nOut):
     BlockIO(i, nIn, nOut, BlockItem::BlockType::Array)
@@ -15,12 +16,38 @@ ConstArrayBlock::ConstArrayBlock(int i, int nIn, int nOut):
     lblBegin = new QLabel("Begin");
     lblEnd = new QLabel("End");
 
+    lblType = new QLabel("Type");
+    cbType = new QComboBox;
+    for(int i = Pack_Char; i <= Pack_func; i++)
+    {
+        switch (i)
+        {
+        case Pack_Char:
+            cbType->addItem("char");
+            break;
+        case Pack_Int:
+            cbType->addItem("int");
+            break;
+        case Pack_Float:
+            cbType->addItem("float");
+            break;
+        case Pack_Double:
+            cbType->addItem("double");
+            break;
+        }
+
+    }
+    cbType->setCurrentIndex(1);
+
     boxLayout->addWidget(lblCount);
     boxLayout->addWidget(leCount);
     boxLayout->addWidget(lblBegin);
     boxLayout->addWidget(leBegin);
     boxLayout->addWidget(lblEnd);
     boxLayout->addWidget(leEnd);
+
+    boxLayout->addWidget(lblType);
+    boxLayout->addWidget(cbType);
 
     boxLayout->rowStretch(1);
 
@@ -90,14 +117,37 @@ void ConstArrayBlock::generateCode(QString dir)
             "pthread_mutex_unlock(&global_lock);\n\n"
             ;
     //file << "printf(\""<<leName->text().toStdString()<<" STARTED %ld\\n\", &lock);\n";
+    Types type;
+    QString strType = cbType->currentText();
+
+    if(strType == "char")
+    {
+        type = Types::Pack_Char;
+    }
+    else if(strType == "int")
+    {
+        type = Types::Pack_Int;
+    }
+    else if(strType == "float")
+    {
+        type = Types::Pack_Float;
+    }
+    else if(strType == "double")
+    {
+        type = Types::Pack_Double;
+    }
+
+
+   qDebug() <<" CURR idx "<< cbType->currentIndex() <<" " <<Types::Pack_Int << strType;
+
     file << "size_t size = " << leCount->text().toInt() << ";\n"
-            "int *arr = (int *) mallocAndCheck(size * sizeof (int));\n";
+         << strType.toStdString() << " *arr = (" << strType.toStdString() << " *) mallocAndCheck(size * sizeof (" << strType.toStdString() << "));\n";
     file << "double i_l = " << i_l << ";\n";
     file << "double i_r = " << i_r << ";\n";
     file << "double di = " << di << ";\n";
     file << "for(size_t i = 0; i < size; i++)\n"
             "{\n"
-                "arr[i] = (int)(i_l + (double)i * di);\n"
+                "arr[i] = (i_l + (double)i * di);\n"
             "}\n\n"
             "char **callFunc = mallocAndCheck(" << numOfOutputs << " * sizeof (char *));\n"
             "char **data = mallocAndCheck(" << numOfOutputs << "* sizeof (char *));\n"
@@ -109,7 +159,7 @@ void ConstArrayBlock::generateCode(QString dir)
         file << "memcpy(callFunc[" << i << "], nm_" << i << ", sizeof (nm_" << i << ") + 1);\n"
                 "data[" << i << "] = NULL;\n"
                 "packData(&data[" << i << "], -1, Pack_func, strlen (callFunc[" << i << "]) + 1, callFunc[" << i << "]);\n"
-                "packData(&data[" << i << "], " << conToIONum[i] << ", Pack_Int, size, arr);\n"
+                "packData(&data[" << i << "], " << conToIONum[i] << ", " << type << ", size, arr);\n"
 
                 "localProcedureCall(callFunc[" << i << "], " << conToTotIns[i] << ", 1, data[" << i << "]);\n"
 

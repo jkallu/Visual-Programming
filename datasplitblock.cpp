@@ -75,7 +75,7 @@ void DataSplitBlock::generateCode(QString dir)
         file << "memcpy(callFunc[" << i << "], nm_" << i << ", sizeof (nm_" << i << ") + 1);\n"
                 "data_out[" << i << "] = NULL;\n"
                 "packData(&data_out[" << i << "], -1, Pack_func, strlen (callFunc[" << i << "]) + 1, callFunc[" << i << "]);\n"
-                "packData(&data_out[" << i << "], " << conToIONum[i] << ", Pack_Int, size, in);\n"
+                "packData(&data_out[" << i << "], " << conToIONum[i] << ", type, size, in);\n"
 
                 "localProcedureCall(callFunc[" << i << "], " << conToTotIns[i] << ", 1, data_out[" << i << "]);\n\n";
 

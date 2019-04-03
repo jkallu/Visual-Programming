@@ -18,6 +18,12 @@ void packData(char **data, char no_in, enum Types type, size_t size_in, void *in
         case Pack_Int:
             new_size += size_in * sizeof (int);
             break;
+        case Pack_Float:
+            new_size += size_in * sizeof (float);
+            break;
+        case Pack_Double:
+            new_size += size_in * sizeof (double);
+            break;
         case Pack_func:
             new_size += (size_in) * sizeof (char);
             printf( "name %s %ld\n", (char*)in, size_in);
@@ -47,6 +53,12 @@ void packData(char **data, char no_in, enum Types type, size_t size_in, void *in
         {
         case Pack_Int:
             new_size += size_in * sizeof (int);
+            break;
+        case Pack_Float:
+            new_size += size_in * sizeof (float);
+            break;
+        case Pack_Double:
+            new_size += size_in * sizeof (double);
             break;
         case Pack_func:
             new_size += (size_in) * sizeof (char);
@@ -79,6 +91,12 @@ void packData(char **data, char no_in, enum Types type, size_t size_in, void *in
     switch (type) {
     case Pack_Int:
         memcpy(*data + add_size, in, size_in * sizeof (int));
+        break;
+    case Pack_Float:
+        memcpy(*data + add_size, in, size_in * sizeof (float));
+        break;
+    case Pack_Double:
+        memcpy(*data + add_size, in, size_in * sizeof (double));
         break;
     case Pack_func:
         memcpy(*data + add_size, in, size_in * sizeof (char));
@@ -211,6 +229,22 @@ void getData(char index, char *data, enum Types *type, size_t *size_out, char **
                 memcpy(*out, data + add_size, *size_out * sizeof (int));
                 add_size += *size_out * sizeof (int);
                 break;
+            case Pack_Float:
+                if(*out == NULL)
+                {
+                    *out = (char*)malloc(*size_out * sizeof (float));
+                }
+                memcpy(*out, data + add_size, *size_out * sizeof (float));
+                add_size += *size_out * sizeof (float);
+                break;
+            case Pack_Double:
+                if(*out == NULL)
+                {
+                    *out = (char*)malloc(*size_out * sizeof (double));
+                }
+                memcpy(*out, data + add_size, *size_out * sizeof (double));
+                add_size += *size_out * sizeof (double);
+                break;
             case Pack_func:
                 if(*out == NULL)
                 {
@@ -229,6 +263,12 @@ void getData(char index, char *data, enum Types *type, size_t *size_out, char **
                 case Pack_Int:
                     add_size += *size_out * sizeof (int);
                 break;
+                case Pack_Float:
+                    add_size += *size_out * sizeof (float);
+                break;
+                case Pack_Double:
+                    add_size += *size_out * sizeof (double);
+                break;
                 case Pack_func:
                     add_size += *size_out * sizeof (char);
                     //i--;
@@ -238,4 +278,17 @@ void getData(char index, char *data, enum Types *type, size_t *size_out, char **
     printf("ADDED SIZE %ld\n", add_size);
     }
     printf("TOTAL ADDED SIZE %ld\n", add_size);
+}
+
+char *getTypeString(enum Types type)
+{
+    switch (type)
+    {
+        case Pack_Int:
+            return "int";
+        case Pack_Float:
+            return "float";
+        case Pack_Double:
+            return "double";
+    }
 }

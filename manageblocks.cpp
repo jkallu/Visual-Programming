@@ -50,18 +50,12 @@ QGroupBox* ManageBlocks::addConstantBlock(){
 
 QGroupBox* ManageBlocks::addExpressionBlock(){
     expressionBlock[countExpressionBlock] = new ExpressionBlock(countExpressionBlock);
-    //expressionBlock[countExpressionBlock]->comboBoxIn->setModel(model_all_outs);
-    expressionBlock[countExpressionBlock]->leExpression->setText(expressionBlock[countExpressionBlock]->lblInData[0]->text());
-    expressionBlock[countExpressionBlock]->lblOutData[0]->setText("Exp_" + QString::number(countExpressionBlock) + "_Out");
-    expressionBlock[countExpressionBlock]->leName->setText(expressionBlock[countExpressionBlock]->lblOutData[0]->text());
-    //strListBlockExpOut.append(expressionBlock[countExpressionBlock]->leOutName->text());
-
-    // All outs
-    //strListAllOuts.append(expressionBlock[countExpressionBlock]->leOutName->text());
-    //model_all_outs->setStringList(strListAllOuts);
-    //
-
-    //model_exp_out->setStringList(strListBlockExpOut);
+    expressionBlock[countExpressionBlock]->groupBox->setTitle(expressionBlock[countExpressionBlock]->groupBox->title() + "_"+ QString::number(countExpressionBlock));
+    expressionBlock[countExpressionBlock]->leName->setText("ExpBlock_" + QString::number(countExpressionBlock));
+    for(int i = 0; i < expressionBlock[countExpressionBlock]->numOfOutputs; i++)
+    {
+        expressionBlock[countExpressionBlock]->lblOutData[i]->setText("ExpBlock_" + QString::number(countExpressionBlock) + "_" + QString::number(i));
+    }
     countExpressionBlock++;
 
 

@@ -31,6 +31,7 @@ void packData(char **data, char no_in, enum Types type, size_t size_in, void *in
 void unPackData(char *data, enum Types *type, size_t *size_out, char **out);
 void getFuncName(char *data, char **funcName);
 void getData(char index, char *data, enum Types *type, size_t *size_out, char **out);
+char *getTypeString(enum Types type);
 #ifdef __cplusplus
     }
 #endif

@@ -70,6 +70,46 @@ void Graph::createInpuData(char *data)
             add += sizeof (int);
         }
     }
+    else if(type == Types::Pack_Float)
+    {
+        for(size_t i = 0; i < size_0; i++)
+        {
+            float d;
+            memcpy(&d, data_0 + add, sizeof (float));
+            in[0][i] = d;
+            flagIn[0] = true;
+            add += sizeof (float);
+        }
+        add = 0;
+        for(size_t i = 0; i < size_1; i++)
+        {
+            float d;
+            memcpy(&d, data_1 + add, sizeof (float));
+            in[1][i] = d;
+            flagIn[1] = true;
+            add += sizeof (float);
+        }
+    }
+    else if(type == Types::Pack_Double)
+    {
+        for(size_t i = 0; i < size_0; i++)
+        {
+            double d;
+            memcpy(&d, data_0 + add, sizeof (double));
+            in[0][i] = d;
+            flagIn[0] = true;
+            add += sizeof (double);
+        }
+        add = 0;
+        for(size_t i = 0; i < size_1; i++)
+        {
+            double d;
+            memcpy(&d, data_1 + add, sizeof (double));
+            in[1][i] = d;
+            flagIn[1] = true;
+            add += sizeof (double);
+        }
+    }
     draw();
 }
 
