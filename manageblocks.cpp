@@ -375,6 +375,21 @@ void ManageBlocks::generateCode()
         }
     }
 
+    // 18. Demux block
+    for(int i = 0; i < countDeMuxBlock; i++){
+        if(deMuxBlock[i]->isBlockEnabled()){
+            deMuxBlock[i]->generateCode(dir, generateMainBlock[0]->strSources.split(QRegExp("\\s+"), QString::SkipEmptyParts));
+            generateMainBlock[0]->addHeader(deMuxBlock[i]->leName->text());
+            simulate->addSource(deMuxBlock[i]->leName->text());
+
+            Func_t func;
+            func.funcName = deMuxBlock[i]->leName->text().toStdString();
+            func.type = deMuxBlock[i]->getType();
+            func.arrayNum = i;
+            simulate->func.push_back(func);
+        }
+    }
+
     // 4. graph block
     for(int i = 0; i < countGraphs; i++){
         if(graphs[i]->isBlockEnabled()){

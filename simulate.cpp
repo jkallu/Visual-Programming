@@ -84,6 +84,7 @@ void Simulate::createLib(QString dir)
 
     for(int i = 0; i < list.size(); i++)
     {
+        cout << list.at(i).toStdString() << endl;
         path = "rm -f " + list.at(i) + ".o";
         if(system(path.toStdString().c_str()) == -1)
         {
@@ -93,7 +94,7 @@ void Simulate::createLib(QString dir)
         path = "gcc -fPIC -c " + dir + list.at(i) + ".c" + " -I " + dir;
         if(system(path.toStdString().c_str()) == -1)
         {
-            cout << "Error\n";
+            cout << "Error " << path.toStdString() << endl;
             return;
         }
     }
@@ -106,7 +107,7 @@ void Simulate::createLib(QString dir)
     path += "linkedList.o packer.o -L. -lpthread -lm";
     if(system(path.toStdString().c_str()) == -1)
     {
-        cout << "Error\n";
+        cout << "Error " << path.toStdString() << endl;
         return;
     }
 }

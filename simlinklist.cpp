@@ -2,7 +2,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <iostream>
-#include "/home/jin/qt_pgms/nodegencodes/packer.h"
+#include "./nodegencodes/packer.h"
 
 pthread_mutex_t simLock = PTHREAD_MUTEX_INITIALIZER;
 

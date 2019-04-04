@@ -7,7 +7,7 @@ enum Types {
             Pack_Char, Pack_uChar, Pack_Int, Pack_uInt,
             Pack_Short, Pack_uShort, Pack_Long, Pack_uLong,
             Pack_Float, Pack_Double, Pack_lDouble, Pack_String,
-            Pack_func
+            Pack_func, Pack_State, PACK_COUNT_MAX
            };
 
 /*
