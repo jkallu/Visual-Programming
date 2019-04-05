@@ -3,6 +3,30 @@
 #include <stdlib.h>
 #include <string.h>
 
+size_t getSizeOfType(enum Types type)
+{
+    switch(type)
+    {
+    case Pack_Int:
+        return sizeof (int);
+
+    case Pack_Float:
+        return sizeof (float);
+
+    case Pack_Double:
+        return sizeof (double);
+
+    case Pack_func:
+        return sizeof (char);
+
+    case Pack_State:
+        return sizeof (char);
+
+    default:
+        return  0;
+    }
+}
+
 void packData(char **data, char no_in, enum Types type, size_t size_in, void *in)
 {
     size_t new_size = 0;
@@ -13,22 +37,9 @@ void packData(char **data, char no_in, enum Types type, size_t size_in, void *in
         printf("Data is not initialized*****\n");
         // total size     = place to hold toal size + number of variables + input number + var size holder + type + data
         new_size = sizeof (size_t) + sizeof (char) + sizeof (char) + sizeof(size_t) + sizeof (type);
-        switch(type)
-        {
-        case Pack_Int:
-            new_size += size_in * sizeof (int);
-            break;
-        case Pack_Float:
-            new_size += size_in * sizeof (float);
-            break;
-        case Pack_Double:
-            new_size += size_in * sizeof (double);
-            break;
-        case Pack_func:
-            new_size += (size_in) * sizeof (char);
-            printf( "name %s %ld\n", (char*)in, size_in);
-            break;
-        }
+
+        new_size += size_in * getSizeOfType(type);
+
 
         (*data) = (char *) malloc(new_size);
         if((*data) == NULL)
@@ -49,21 +60,9 @@ void packData(char **data, char no_in, enum Types type, size_t size_in, void *in
         memcpy(&old_size, (*data), sizeof (old_size));
         add_size = old_size;
         new_size = old_size + sizeof (char) + sizeof(size_t) + sizeof (type);
-        switch(type)
-        {
-        case Pack_Int:
-            new_size += size_in * sizeof (int);
-            break;
-        case Pack_Float:
-            new_size += size_in * sizeof (float);
-            break;
-        case Pack_Double:
-            new_size += size_in * sizeof (double);
-            break;
-        case Pack_func:
-            new_size += (size_in) * sizeof (char);
-            break;
-        }
+
+        new_size += size_in * getSizeOfType(type);
+
         (*data) = (char *) realloc((*data), new_size);
         if((*data) == NULL)
         {
@@ -88,23 +87,8 @@ void packData(char **data, char no_in, enum Types type, size_t size_in, void *in
     memcpy(*data + add_size, &type, sizeof (type));
     add_size += sizeof (type);
 
-    switch (type) {
-    case Pack_Int:
-        memcpy(*data + add_size, in, size_in * sizeof (int));
-        break;
-    case Pack_Float:
-        memcpy(*data + add_size, in, size_in * sizeof (float));
-        break;
-    case Pack_Double:
-        memcpy(*data + add_size, in, size_in * sizeof (double));
-        break;
-    case Pack_func:
-        memcpy(*data + add_size, in, size_in * sizeof (char));
-        //add_size += size_in * sizeof (char);
-        //char chNull = '\0';
-        //memcpy(*data + add_size - 1, &chNull, sizeof (char));
-        break;
-    }
+    memcpy(*data + add_size, in, size_in * getSizeOfType(type));
+
 }
 
 void unPackData(char *data, enum Types *type, size_t *size_out, char **out)
@@ -184,6 +168,83 @@ void removeFuncName(char *data)
 
 }
 
+void deleteData(char index, char**data)
+{
+    if(*data == NULL)
+    {
+        fprintf(stderr, "Data is empty\n");
+        return;
+    }
+
+    size_t tot_size;
+    size_t add_size = 0;
+    char no_in = -2;
+    enum Types type;
+    size_t size_out;
+
+    memcpy(&tot_size, *data + add_size, sizeof (tot_size));
+    printf("Total size %ld\n", tot_size);
+    char nv;
+    add_size += sizeof (size_t);
+    memcpy(&nv, *data + add_size, sizeof (char));
+    printf("number of var %d\n", nv);
+    add_size += sizeof (char);
+
+    for(int i = 0; i < nv; i++)
+    {
+        memcpy(&no_in, *data + add_size, sizeof (char));
+        printf("number of input %d\n", no_in);
+        add_size += sizeof (char);
+
+        memcpy(&size_out, *data + add_size, sizeof(size_out));
+        printf("size in %ld\n", size_out);
+        add_size += sizeof(size_out);
+
+        memcpy(&type, *data + add_size, sizeof (type));
+        printf("Type %d\n", type);
+        add_size += sizeof (type);
+
+        if(index == no_in)
+        {
+            size_t pos_to_copy_from = add_size + size_out * getSizeOfType(type);
+
+            add_size -= (sizeof (type) + sizeof(size_out) + sizeof (char));
+
+            size_t size_to_copy = tot_size - pos_to_copy_from;
+
+            if(size_to_copy > 0)
+            {
+                memcpy(*data + add_size, *data + pos_to_copy_from, size_to_copy);
+            }
+
+            size_t size_to_delete = pos_to_copy_from - add_size;
+
+            tot_size -= size_to_delete;
+
+            char *pNew =  (char *) realloc(*data, tot_size);
+            if(pNew == NULL)
+            {
+                printf("Could not allocate memory\n");
+                exit(0);
+            }
+
+            *data = pNew;
+
+            memcpy(*data, &tot_size, sizeof (tot_size));
+            printf("New Total size %ld\n", tot_size);
+            nv--;
+            memcpy(*data + sizeof (size_t), &nv, sizeof (char));
+
+            break;
+        }
+        else
+        {
+            add_size += size_out * getSizeOfType(type);
+        }
+    printf("SIZE After Delete %ld\n", add_size);
+    }
+}
+
 void getData(char index, char *data, enum Types *type, size_t *size_out, char **out)
 {
     if(data == NULL)
@@ -219,61 +280,18 @@ void getData(char index, char *data, enum Types *type, size_t *size_out, char **
 
         if(index == no_in)
         {
-            switch (*type)
+            if(*out == NULL)
             {
-            case Pack_Int:
-                if(*out == NULL)
-                {
-                    *out = (char*)malloc(*size_out * sizeof (int));
-                }
-                memcpy(*out, data + add_size, *size_out * sizeof (int));
-                add_size += *size_out * sizeof (int);
-                break;
-            case Pack_Float:
-                if(*out == NULL)
-                {
-                    *out = (char*)malloc(*size_out * sizeof (float));
-                }
-                memcpy(*out, data + add_size, *size_out * sizeof (float));
-                add_size += *size_out * sizeof (float);
-                break;
-            case Pack_Double:
-                if(*out == NULL)
-                {
-                    *out = (char*)malloc(*size_out * sizeof (double));
-                }
-                memcpy(*out, data + add_size, *size_out * sizeof (double));
-                add_size += *size_out * sizeof (double);
-                break;
-            case Pack_func:
-                if(*out == NULL)
-                {
-                    *out = (char*)malloc(*size_out * sizeof (char));
-                }
-                memcpy(*out, data + add_size, *size_out * sizeof (char));
-                add_size += *size_out * sizeof (char);
-                break;
+                *out = (char*)malloc(*size_out * getSizeOfType(*type));
             }
+            memcpy(*out, data + add_size, *size_out * getSizeOfType(*type));
+            add_size += *size_out * getSizeOfType(*type);
+
             break;
         }
         else
         {
-            switch (*type)
-            {
-                case Pack_Int:
-                    add_size += *size_out * sizeof (int);
-                break;
-                case Pack_Float:
-                    add_size += *size_out * sizeof (float);
-                break;
-                case Pack_Double:
-                    add_size += *size_out * sizeof (double);
-                break;
-                case Pack_func:
-                    add_size += *size_out * sizeof (char);
-                    //i--;
-                break;
-            }
+            add_size += *size_out * getSizeOfType(*type);
         }
     printf("ADDED SIZE %ld\n", add_size);
     }

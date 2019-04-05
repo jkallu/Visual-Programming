@@ -132,6 +132,8 @@ void appendData(char *funcName, char noIn, char nov, char *data)
     size_t tot_size_data;
     size_t add_size = 0;
 
+    deleteData(-1, &data);
+
     memcpy(&tot_size_data, data + add_size, sizeof (tot_size_data));
     memcpy(&tot_size_init, (*current)->in + add_size, sizeof (tot_size_init));
 

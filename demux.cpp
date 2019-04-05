@@ -23,10 +23,12 @@ void DeMux::generateCode(QString dir, QStringList list)
     fileHeader << "#ifndef " << upper.toStdString() << "_H \n";
     fileHeader << "#define " << upper.toStdString() << "_H \n";
     fileHeader << "typedef enum {\n";
-    for(int i = 0 ; i < list.size(); i++)
+    QStringList lines = teStates->toPlainText()
+                          .split('\n', QString::SkipEmptyParts);
+    for(int i = 0 ; i < lines.size(); i++)
     {
-       fileHeader << list.at(i).toStdString() << "_SUCCESS,\n"
-                  << list.at(i).toStdString() << "_FAILURE,\n"
+       QStringList states = lines.at(i).split(QRegExp("\\s+"), QString::SkipEmptyParts);
+       fileHeader << states.at(0).toStdString() << ",\n"
                      ;
     }
 
