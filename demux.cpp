@@ -1,10 +1,17 @@
 #include "demux.h"
+#include <QLineEdit>
 
 DeMux::DeMux(int i, int nIn, int nOut):
     BlockIO(i, nIn, nOut, BlockItem::BlockType::DeMux)
 {
+    lblInitState = new QLabel("Initial state");
+    leInitState = new QLineEdit;
+
     lblStates = new QLabel("States");
     teStates = new QTextEdit;
+
+    boxLayout->addWidget(lblInitState);
+    boxLayout->addWidget(leInitState);
 
     boxLayout->addWidget(lblStates);
     boxLayout->addWidget(teStates);
@@ -23,6 +30,7 @@ void DeMux::generateCode(QString dir, QStringList list)
     fileHeader << "#ifndef " << upper.toStdString() << "_H \n";
     fileHeader << "#define " << upper.toStdString() << "_H \n";
     fileHeader << "typedef enum {\n";
+    //fileHeader << "MainBlock_0_SUCCESS,\n";
     QStringList lines = teStates->toPlainText()
                           .split('\n', QString::SkipEmptyParts);
     for(int i = 0 ; i < lines.size(); i++)
@@ -33,7 +41,11 @@ void DeMux::generateCode(QString dir, QStringList list)
     }
 
     fileHeader << "NUM_STATES\n"
-                  "}" << leName->text().toStdString() << "_StateType;\n";
+                  "}" << leName->text().toStdString() << "_StateType;\n\n";
+    fileHeader << "typedef struct {\n"
+                  "" << leName->text().toStdString() << "_StateType state;\n"
+                  "char funcName[100];\n"
+                  "} StateMachineType;\n";
     fileHeader << "void * " << leName->text().toStdString() << "(void *dat);\n";
     fileHeader << "#endif\n";
 
@@ -50,6 +62,27 @@ void DeMux::generateCode(QString dir, QStringList list)
             "extern PData_t *gPData;\n"
             "char *global_data;\n\n"
             ;
+    file << "StateMachineType stateMachine[] = {\n";
+    for(int i = 0 ; i < lines.size(); i++)
+    {
+       QStringList states = lines.at(i).split(QRegExp("\\s+"), QString::SkipEmptyParts);
+       if(states.size() >= 2)
+       {
+            file << " {" << states.at(0).toStdString() << ", \"" << states.at(1).toStdString() << "\"}";
+       }
+       else if(states.size() == 1)
+       {
+            file << " {" << states.at(0).toStdString() << ", \"*\" }";
+       }
+
+       if(i != lines.size() - 1)
+       {
+           file << ",\n";
+       }
+    }
+    file << "\n};\n";
+
+
     file << "void * " << leName->text().toStdString() << "(void *dat) \n{\n";
     file << "while(pthread_mutex_trylock(&global_lock))\n"
             "{\n"
@@ -68,36 +101,16 @@ void DeMux::generateCode(QString dir, QStringList list)
     file << "enum Types type;\n"
             "char *in = NULL;\n"
             "size_t size;\n"
-            "getData(0, data, &type, &size, &in);\n"
+            "getData(-2, data, &type, &size, &in);\n"
+            "deleteData(-1, &data);\n"
             "size_t add = 0;\n"
-            "if(type == Pack_Int)\n"
+            "if(type == Pack_State)\n"
             "{\n"
-                "for(size_t i = 0; i < size; i++)\n"
-                "{\n"
-                    "int d;\n"
-                    "memcpy(&d, in + add, sizeof (int));\n"
-                    "printf(\"%d\\n\", d);\n"
-                    "add += sizeof (int);\n"
-                "}\n"
-            "}\n"
-            "else if(type == Pack_Float)\n"
-            "{\n"
-                "for(size_t i = 0; i < size; i++)\n"
-                "{\n"
-                    "float d;\n"
-                    "memcpy(&d, in + add, sizeof (float));\n"
-                    "printf(\"%f\\n\", d);\n"
-                    "add += sizeof (float);\n"
-                "}\n"
-            "}\n"
-            "else if(type == Pack_Double)\n"
-            "{\n"
-                "for(size_t i = 0; i < size; i++)\n"
-                "{\n"
-                    "double d;\n"
-                    "memcpy(&d, in + add, sizeof (double));\n"
-                    "printf(\"%f\\n\", d);\n"
-                    "add += sizeof (double);\n"
+                "DeMuxBlock_0_StateType state;\n"
+                "memcpy(&state, in, sizeof (state));\n"
+                "if(state < NUM_STATES)\n{\n"
+                "   packData(&data, -1, Pack_func, strlen (stateMachine[state].funcName) + 1, stateMachine[state].funcName);\n"
+                "   localProcedureCall(stateMachine[state].funcName, 1, 1, data);\n"
                 "}\n"
             "}\n"
             ;
@@ -110,7 +123,8 @@ void DeMux::generateCode(QString dir, QStringList list)
             ;
     file << "printf(\""<<leName->text().toStdString()<<" END\\n\");\n";
 
-    file << "}";
+    file << "pthread_exit(NULL);\n"
+            "}";
     file.close();
 }
 

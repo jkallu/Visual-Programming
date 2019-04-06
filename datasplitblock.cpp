@@ -95,6 +95,7 @@ void DataSplitBlock::generateCode(QString dir)
             "free(in);\n}\n\n";
     file << "printf(\""<<leName->text().toStdString()<<" END\\n\");\n";
 
-    file << "}";
+    file << "pthread_exit(NULL);\n"
+            "}";
     file.close();
 }

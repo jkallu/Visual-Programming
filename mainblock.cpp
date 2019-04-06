@@ -163,7 +163,8 @@ void MainBlock::createEventLoopFiles(QString dir)
             "#include <stdlib.h>\n"
             "#include <unistd.h>\n"
             "#include \"packer.h\"\n"
-            "#include <string.h>\n";
+            "#include <string.h>\n"
+            "#include \"DeMuxBlock_0.h\"\n";
     for(int i = 0; i < list.size(); i++)
     {
         file << "#include \"" << list.at(i).toStdString() << ".h\"\n";
@@ -188,6 +189,12 @@ void MainBlock::createEventLoopFiles(QString dir)
 
 
             "packData(&data, -1, Pack_func, strlen(callFunc) + 1 , callFunc);\n\n"
+
+            "char *strState;\n"
+            "DeMuxBlock_0_StateType state = " << leName->text().toStdString()<<"_SUCCESS;\n"
+            "strState = (char*)mallocAndCheck(sizeof(state));\n"
+            "memcpy(strState, &state, sizeof(state));\n"
+            "packData(&data, -2, Pack_State, sizeof(state), strState);\n"
 
             "/*if(pthread_mutex_init(&lock, NULL))\n"
             "{\n"
@@ -241,7 +248,7 @@ void MainBlock::createEventLoopFiles(QString dir)
                                                                       "{\n"
                                                                       "testData(data);\n"
                                                                       "getFuncName(data, &funcName);\n"
-
+                                                                      "deleteData(-1, &data);\n"
 
                                                                       "size_t size;\n"
                                                                       "memcpy(&size, data, sizeof (size_t));\n"
@@ -327,6 +334,7 @@ void MainBlock::createEventLoopFiles(QString dir)
             "    }\n"
             "}\n"
             "}\n"
+            "pthread_exit(NULL);\n"
             "}\n";
 
     file << "void testData(char *dat)\n"

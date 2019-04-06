@@ -37,11 +37,13 @@ void LocalProcedureBlock::generateCode(QString dir)
     file << "#include \"linkedList.h\"\n";
     file << "#include \"packer.h\"\n";
     file << "#include <string.h>\n"
-            "#include <math.h>\n";
+            "#include <math.h>\n"
+            "#include \"DeMuxBlock_0.h\"\n";
     file << "#include <stdio.h>\n\n";
     file << "extern pthread_mutex_t lock;\n"
             "extern PData_t *gPData;\n"
             "char *global_data;\n\n"
+            "static int count;\n"
             ;
     file << "void * " << leName->text().toStdString() << "(void *dat) \n{\n";
     file << "while(pthread_mutex_trylock(&global_lock))\n"
@@ -95,15 +97,32 @@ void LocalProcedureBlock::generateCode(QString dir)
             "}\n"
             ;
 
-    file <<
-            "if(data != NULL)\n{\n"
+    file << "if(data != NULL)\n{\n"
+            "deleteData(-1, &data);\n"
+            "char callFunc[] = \"DeMuxBlock_0\";\n"
+            "packData(&data, -1, Pack_func, strlen (callFunc) + 1, callFunc);\n"
+            "char *strState;\n"
+            "DeMuxBlock_0_StateType state = " << leName->text().toStdString()<<"_SUCCESS;\n"
+            "strState = (char*)mallocAndCheck(sizeof(state));\n"
+            "memcpy(strState, &state, sizeof(state));\n"
+            "packData(&data, -2, Pack_State, sizeof(state), strState);\n"
+
+            "localProcedureCall(callFunc, 1, 1, data);\n"
+            "if(strState != NULL)\n{\n"
+            "free(strState);\n}\n\n"
+
+            "}\n"
+            ;
+    file << "if(data != NULL)\n{\n"
             "free(data);\n}\n\n"
             "if(in != NULL)\n{\n"
             "free(in);\n}\n\n"
             ;
     file << "printf(\""<<leName->text().toStdString()<<" END\\n\");\n";
-
-    file << "}";
+    file << "count++;\n";
+    file << "printf(\" COUNT %d \", count);\n";
+    file << "pthread_exit(NULL);\n"
+            "}";
     file.close();
 }
 

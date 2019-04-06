@@ -143,7 +143,8 @@ void ExpressionBlock::generateCode(QString dir)
             ;
     file << "printf(\""<<leName->text().toStdString()<<" END\\n\");\n";
 
-    file << "}";
+    file << "pthread_exit(NULL);\n"
+            "}";
     file.close();
 }
 

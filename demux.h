@@ -17,6 +17,9 @@ public:
     QTextEdit *teStates;
     QLabel *lblStates;
 
+    QLabel *lblInitState;
+    QLineEdit *leInitState;
+
 };
 
 #endif // DEMUX_H
