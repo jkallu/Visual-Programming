@@ -1,5 +1,6 @@
 #ifndef MANAGEBLOCKS_H
 #define MANAGEBLOCKS_H
+
 #include <QtScript>
 #include "constantblock.h"
 #include "expressionblock.h"
@@ -21,6 +22,8 @@
 #include "mainblock.h"
 #include "demux.h"
 #include "localprocedureblock.h"
+#include "networkclientblock.h"
+#include "networkserverblock.h"
 
 #include "simulate.h"
 
@@ -51,6 +54,8 @@ class ConstantBlock;
 class ConstArrayBlock;
 class DeMux;
 class LocalProcedureBlock;
+class NetworkClientBlock;
+class NetworkServerBlock;
 
 class Simulate;
 
@@ -91,7 +96,8 @@ public:
     QGroupBox* addGenerateMainBlock();
     QGroupBox* addDeMuxBlock(int nIn = ConstArrayBlock::getNumInputs(), int nOut = ConstArrayBlock::getNumOutputs());
     QGroupBox* addLocalProcedureBlock(int nIn = LocalProcedureBlock::getNumInputs(), int nOut = LocalProcedureBlock::getNumOutputs());
-
+    QGroupBox* addNetworkClientBlock(int nIn = NetworkClientBlock::getNumInputs(), int nOut = NetworkClientBlock::getNumOutputs());
+    QGroupBox* addNetworkServerBlock(int nIn = NetworkServerBlock::getNumInputs(), int nOut = NetworkServerBlock::getNumOutputs());
 
     //QGroupBox* addSumBlock();
 
@@ -179,6 +185,12 @@ public:
 
     LocalProcedureBlock *localProcedureBlock[MAX_BLOCKS];
     int countlocalProcedureBlock;
+
+    NetworkClientBlock *networkClientBlock[MAX_BLOCKS];
+    int countNetworkClientBlock;
+
+    NetworkServerBlock *networkServerBlock[MAX_BLOCKS];
+    int countNetworkServerBlock;
 
 
 

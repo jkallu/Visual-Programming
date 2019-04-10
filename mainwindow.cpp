@@ -102,6 +102,8 @@ void MainWindow::createToolBox(){
     layout->addWidget(createCellWidget(tr("MainBlock"), BlockItem::MainBlock), 8, 1);
     layout->addWidget(createCellWidget(tr("DeMuxBlock"), BlockItem::DeMux), 9, 0);
     layout->addWidget(createCellWidget(tr("LocalProcedureBlock"), BlockItem::LocalProcedure), 9, 1);
+    layout->addWidget(createCellWidget(tr("NetworkClientBlock"), BlockItem::NetworkClient), 10, 0);
+    layout->addWidget(createCellWidget(tr("NetworkServerBlock"), BlockItem::NetworkServer), 10, 1);
 
     QWidget *itemWidget = new QWidget;
     itemWidget->setLayout(layout);
@@ -134,11 +136,19 @@ void MainWindow::buttonGroupClicked(int id){
         case BlockItem::LocalProcedure:{
             ioBox(BlockItem::LocalProcedure, 1, 0);
             break;
+        }
+        case BlockItem::NetworkClient:{
+            ioBox(BlockItem::NetworkClient, 1, 0);
+            break;
+        }
+        case BlockItem::NetworkServer:{
+            ioBox(BlockItem::NetworkServer, 1, 0);
+            break;
+        }
         case BlockItem::Graph:{
             ioBox(BlockItem::Graph, Graph::getNumInputs(), Graph::getNumOutputs());
             break;
         }
-    }
         default:
             blockScene->removeAllWidgetsFromProperties();
     }
@@ -201,6 +211,14 @@ void MainWindow::ioBox(BlockItem::BlockType type, int in, int out)
         case BlockItem::LocalProcedure:
             sbIns->setValue(LocalProcedureBlock::getNumInputs());
             sbOuts->setValue(LocalProcedureBlock::getNumOutputs());
+        break;
+        case BlockItem::NetworkClient:
+            sbIns->setValue(NetworkClientBlock::getNumInputs());
+            sbOuts->setValue(NetworkClientBlock::getNumOutputs());
+        break;
+        case BlockItem::NetworkServer:
+            sbIns->setValue(NetworkServerBlock::getNumInputs());
+            sbOuts->setValue(NetworkServerBlock::getNumOutputs());
         break;
         case BlockItem::Graph:
             sbIns->setValue(Graph::getNumInputs());

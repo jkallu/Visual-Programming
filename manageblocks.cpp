@@ -23,6 +23,8 @@ ManageBlocks::ManageBlocks()
     countgenerateMainBlock = 0;
     countDeMuxBlock = 0;
     countlocalProcedureBlock = 0;
+    countNetworkClientBlock = 0;
+    countNetworkServerBlock = 0;
 
     simulate = new Simulate(this);
 
@@ -284,6 +286,34 @@ QGroupBox* ManageBlocks::addLocalProcedureBlock(int nIn, int nOut){
     return localProcedureBlock[countlocalProcedureBlock - 1]->groupBox;
 }
 
+QGroupBox* ManageBlocks::addNetworkClientBlock(int nIn, int nOut){
+    networkClientBlock[countNetworkClientBlock] = new NetworkClientBlock(countNetworkClientBlock, nIn, nOut);
+    networkClientBlock[countNetworkClientBlock]->leName->setText("NetworkClientBlock_" + QString::number(countNetworkClientBlock));
+    for(int i = 0; i < networkClientBlock[countNetworkClientBlock]->numOfOutputs; i++)
+    {
+        networkClientBlock[countNetworkClientBlock]->lblOutData[i]->setText("NetworkClientBlock_" + QString::number(countNetworkClientBlock) + "_" + QString::number(i));
+    }
+
+    countNetworkClientBlock++;
+
+
+    return networkClientBlock[countNetworkClientBlock - 1]->groupBox;
+}
+
+QGroupBox* ManageBlocks::addNetworkServerBlock(int nIn, int nOut){
+    networkServerBlock[countNetworkServerBlock] = new NetworkServerBlock(countNetworkServerBlock, nIn, nOut);
+    networkServerBlock[countNetworkServerBlock]->leName->setText("NetworkServerBlock_" + QString::number(countNetworkServerBlock));
+    for(int i = 0; i < networkServerBlock[countNetworkServerBlock]->numOfOutputs; i++)
+    {
+        networkServerBlock[countNetworkServerBlock]->lblOutData[i]->setText("NetworkServerBlock_" + QString::number(countNetworkServerBlock) + "_" + QString::number(i));
+    }
+
+    countNetworkServerBlock++;
+
+
+    return networkServerBlock[countNetworkServerBlock - 1]->groupBox;
+}
+
 
 /*QGroupBox* ManageBlocks::addSumBlock(){
     sumBlock[countSumBlock] = new SumBlock(countSumBlock);
@@ -355,6 +385,36 @@ void ManageBlocks::generateCode()
             Func_t func;
             func.funcName = localProcedureBlock[i]->leName->text().toStdString();
             func.type = localProcedureBlock[i]->getType();
+            func.arrayNum = i;
+            simulate->func.push_back(func);
+        }
+    }
+
+    // 18. NetworkClient block
+    for(int i = 0; i < countNetworkClientBlock; i++){
+        if(networkClientBlock[i]->isBlockEnabled()){
+            networkClientBlock[i]->generateCode(dir);
+            generateMainBlock[0]->addHeader(networkClientBlock[i]->leName->text());
+            simulate->addSource(networkClientBlock[i]->leName->text());
+
+            Func_t func;
+            func.funcName = networkClientBlock[i]->leName->text().toStdString();
+            func.type = networkClientBlock[i]->getType();
+            func.arrayNum = i;
+            simulate->func.push_back(func);
+        }
+    }
+
+    // 18. NetworkServer block
+    for(int i = 0; i < countNetworkServerBlock; i++){
+        if(networkServerBlock[i]->isBlockEnabled()){
+            networkServerBlock[i]->generateCode(dir);
+            generateMainBlock[0]->addHeader(networkServerBlock[i]->leName->text());
+            simulate->addSource(networkServerBlock[i]->leName->text());
+
+            Func_t func;
+            func.funcName = networkServerBlock[i]->leName->text().toStdString();
+            func.type = networkServerBlock[i]->getType();
             func.arrayNum = i;
             simulate->func.push_back(func);
         }
@@ -633,7 +693,14 @@ void ManageBlocks::reset(){
         localProcedureBlock[i]->reset();
         //        /deMuxBlock[i]->resetHeader();
     }
-
+    for(int i = 0; i < countNetworkClientBlock; i++){
+        networkClientBlock[i]->reset();
+        //        /deMuxBlock[i]->resetHeader();
+    }
+    for(int i = 0; i < countNetworkServerBlock; i++){
+        networkServerBlock[i]->reset();
+        //        /deMuxBlock[i]->resetHeader();
+    }
 
 }
 
@@ -1384,6 +1451,12 @@ QGroupBox* ManageBlocks::getBlock(int type, int id){
     else if(type == 19){
         return localProcedureBlock[id]->groupBox;
     }
+    else if(type == BlockItem::NetworkClient){
+        return networkClientBlock[id]->groupBox;
+    }
+    else if(type == BlockItem::NetworkServer){
+        return networkServerBlock[id]->groupBox;
+    }
 }
 
 void ManageBlocks::setBlockEnable(int type, int id, bool flagEn){
@@ -1443,6 +1516,12 @@ void ManageBlocks::setBlockEnable(int type, int id, bool flagEn){
     }
     else if(type == 19){
         localProcedureBlock[id]->setBlockEnabled(flagEn);
+    }
+    else if(type == BlockItem::NetworkClient){
+        networkClientBlock[id]->setBlockEnabled(flagEn);
+    }
+    else if(type == BlockItem::NetworkServer){
+        networkServerBlock[id]->setBlockEnabled(flagEn);
     }
 }
 

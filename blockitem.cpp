@@ -36,7 +36,7 @@ BlockItem::BlockItem(BlockType blockType, int id_l, int tpId, QMenu *contextMenu
         break;
     case Array:
         myPolygon << QPointF(0, 0) << QPointF(arrayWH.rx(), 0)
-                  << QPointF(arrayWH.rx(), arrayWH.ry()) << QPointF(0, arrayWH.ry())
+                  << QPointF(arrayWH.rx(), arrayWH.ry() + nOut * arrayWH.ry() / 4) << QPointF(0, arrayWH.ry() + nOut * arrayWH.ry() / 4)
                   << QPointF(0, 0);
 
         createInputNodes(nIn);
@@ -340,6 +340,38 @@ BlockItem::BlockItem(BlockType blockType, int id_l, int tpId, QMenu *contextMenu
         name = "LocalProcedure_" + QString::number(typeId);
 
         painterpath.addText(0, 50, QFont("Times", 40), "LocalProcedure");
+
+        colorLight = QColor(Qt::red);
+        colorDark = QColor(Qt::darkRed);
+
+        break;
+
+    case NetworkClient:
+        myPolygon << QPointF(0, 0) << QPointF(arrayWH.rx(), 0)
+                  << QPointF(arrayWH.rx(), arrayWH.ry()) << QPointF(0, arrayWH.ry())
+                  << QPointF(0, 0);
+
+        createInputNodes(nIn);
+        creatOutputNodes(nOut);
+        name = "NetworkClient_" + QString::number(typeId);
+
+        painterpath.addText(0, 50, QFont("Times", 40), "NetworkClient");
+
+        colorLight = QColor(Qt::red);
+        colorDark = QColor(Qt::darkRed);
+
+        break;
+
+    case NetworkServer:
+        myPolygon << QPointF(0, 0) << QPointF(arrayWH.rx(), 0)
+                  << QPointF(arrayWH.rx(), arrayWH.ry()) << QPointF(0, arrayWH.ry())
+                  << QPointF(0, 0);
+
+        createInputNodes(nIn);
+        creatOutputNodes(nOut);
+        name = "NetworkServer_" + QString::number(typeId);
+
+        painterpath.addText(0, 50, QFont("Times", 40), "NetworkServer");
 
         colorLight = QColor(Qt::red);
         colorDark = QColor(Qt::darkRed);

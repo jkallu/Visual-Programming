@@ -53,7 +53,9 @@ SOURCES += \
     simlinklist.cpp \
     mygraphicsview.cpp \
     ./nodegencodes/packer.c \
-    ./nodegencodes/linkedList.c
+    ./nodegencodes/linkedList.c \
+    networkclientblock.cpp \
+    networkserverblock.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -91,7 +93,9 @@ HEADERS += \
     simlinklist.h \
     mygraphicsview.h \
     ./nodegencodes/packer.h \
-    ./nodegencodes/linkedList.h
+    ./nodegencodes/linkedList.h \
+    networkclientblock.h \
+    networkserverblock.h
 
 RESOURCES += \
     node.qrc

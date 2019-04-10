@@ -77,7 +77,8 @@ private:
         countReadFile, countGetMax, countLineDisplay,
         countIfBlock, countHistFromArrayBlock, countFillHist,
         countReadMultiFile, countGenerateGaus, countGenerateXY,
-        countMain, countDeMux, countLocalProcedure
+        countMain, countDeMux, countLocalProcedure,
+        countNetworkClient, countNetworkServer
     ;
 
     QGraphicsLineItem *line;
