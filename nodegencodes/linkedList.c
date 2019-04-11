@@ -365,7 +365,9 @@ int popFilled(char **data)
         }
         printf("DATA IS NOT FILLED in %s\n", (*current)->funcName);
         prev = current;
+        (*prev)->next = (*current)->next;
         current = &(*current)->next;
+
     }
 
     if(!flagFilled)
@@ -391,10 +393,16 @@ int popFilled(char **data)
     }
     else
     {
-        printf("POPING FILLED for %s\n", (*current)->funcName);
+        printf("POPING FILLED for %s SIZE %ld\n", (*current)->funcName, (*current)->size);
         //printf("ADDRESS SHOULD BE SAME %ld %ld\n", prev->next, (*current));
-        (*prev)->next = (*current)->next;
-        *data = (char *) mallocAndCheck((*current)->size);
+        if((*current)->next != NULL)
+        {
+            printf("SIZE ************ #### %ld\n", (*current)->size);
+            (*prev)->next = (*current)->next;
+        }
+
+        printf("SIZE ************ #### %ld\n", (*current)->size);
+        *data = mallocAndCheck((*current)->size);
         /*if(*data == NULL)
         {
             fprintf(stderr, "malloc error\n");

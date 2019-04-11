@@ -18,8 +18,9 @@ public:
     static int getNumInputs(){return  1;}
     static int getNumOutputs(){return 1;}
 
-    QTextEdit *teScript;
-    QLabel *lblScript;
+    //QTextEdit *teScript;
+    QLabel *lblPort;
+    QLineEdit *lePort;
 };
 
 #endif // NETWORKSERVERBLOCK_H

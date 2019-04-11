@@ -4,11 +4,19 @@
 NetworkClientBlock::NetworkClientBlock(int i, int nIn, int nOut):
     BlockIO(i, nIn, nOut, BlockItem::BlockType::NetworkClient)
 {
-    lblScript = new QLabel("Script");
-    teScript = new QTextEdit;
+    //lblScript = new QLabel("Script");
+    //teScript = new QTextEdit;
+    lblPort = new QLabel("Port");
+    lePort = new QLineEdit("5001");
 
-    boxLayout->addWidget(lblScript);
-    boxLayout->addWidget(teScript);
+    lblIp = new QLabel("IP");
+    leIp = new QLineEdit("127.0.0.1");
+
+    boxLayout->addWidget(lblPort);
+    boxLayout->addWidget(lePort);
+
+    boxLayout->addWidget(lblIp);
+    boxLayout->addWidget(leIp);
 
     boxLayout->rowStretch(1);
 
@@ -65,7 +73,7 @@ void NetworkClientBlock::generateCode(QString dir)
             "pthread_mutex_unlock(&global_lock);\n\n"
             ;
 
-    file << "int sockfd = 0, portno = 5001, n = 0;\n"
+    file << "int sockfd = 0, portno = "<<lePort->text().toStdString()<<", n = 0;\n"
             "struct sockaddr_in serv_addr;\n"
             "struct hostent *server = NULL;\n"
 
@@ -77,7 +85,7 @@ void NetworkClientBlock::generateCode(QString dir)
             "exit(1);\n"
             "}\n"
 
-            "server = gethostbyname(\"127.0.0.1\");\n"
+            "server = gethostbyname(\"" << leIp->text().toStdString() <<"\");\n"
             "if (server == NULL) \n{\n"
             "fprintf(stderr,\"ERROR, no such host\\n\");\n"
             "exit(0);\n"
@@ -193,6 +201,6 @@ void NetworkClientBlock::generateCode(QString dir)
 
 void NetworkClientBlock::preprocessScript()
 {
-    teScript->find("PACK_DATA");
+    //teScript->find("PACK_DATA");
 }
 

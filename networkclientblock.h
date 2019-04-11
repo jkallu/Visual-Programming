@@ -18,8 +18,12 @@ public:
     static int getNumInputs(){return  1;}
     static int getNumOutputs(){return 0;}
 
-    QTextEdit *teScript;
-    QLabel *lblScript;
+    //QTextEdit *teScript;
+    //QLabel *lblScript;
+    QLabel *lblPort;
+    QLineEdit *lePort;
+    QLabel *lblIp;
+    QLineEdit *leIp;
 };
 
 #endif // NETWORKCLIENTBLOCK_H

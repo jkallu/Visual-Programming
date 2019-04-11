@@ -4,11 +4,13 @@
 NetworkServerBlock::NetworkServerBlock(int i, int nIn, int nOut):
     BlockIO(i, nIn, nOut, BlockItem::BlockType::NetworkServer)
 {
-    lblScript = new QLabel("Script");
-    teScript = new QTextEdit;
+    //lblScript = new QLabel("Script");
+    //teScript = new QTextEdit;
+    lblPort = new QLabel("Port");
+    lePort = new QLineEdit("5001");
 
-    boxLayout->addWidget(lblScript);
-    boxLayout->addWidget(teScript);
+    boxLayout->addWidget(lblPort);
+    boxLayout->addWidget(lePort);
 
     boxLayout->rowStretch(1);
 
@@ -64,7 +66,7 @@ void NetworkServerBlock::generateCode(QString dir)
             "*ptr_global_data = NULL;\n"
             "pthread_mutex_unlock(&global_lock);\n\n"
             ;
-    file << "int sockfd = 0, newsockfd = 0, portno = 5001, clilen = 0;\n"
+    file << "int sockfd = 0, newsockfd = 0, portno = "<< lePort->text().toStdString()<<", clilen = 0;\n"
             "char *data = NULL;\n"
             "struct sockaddr_in serv_addr, cli_addr;\n"
             "int  n;\n"
@@ -194,6 +196,6 @@ void NetworkServerBlock::generateCode(QString dir)
 
 void NetworkServerBlock::preprocessScript()
 {
-    teScript->find("PACK_DATA");
+    //teScript->find("PACK_DATA");
 }
 
