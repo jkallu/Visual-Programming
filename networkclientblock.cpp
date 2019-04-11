@@ -1,8 +1,8 @@
-#include "localprocedureblock.h"
+#include "networkclientblock.h"
 
 
-LocalProcedureBlock::LocalProcedureBlock(int i, int nIn, int nOut):
-    BlockIO(i, nIn, nOut, BlockItem::BlockType::LocalProcedure)
+NetworkClientBlock::NetworkClientBlock(int i, int nIn, int nOut):
+    BlockIO(i, nIn, nOut, BlockItem::BlockType::NetworkClient)
 {
     lblScript = new QLabel("Script");
     teScript = new QTextEdit;
@@ -13,14 +13,14 @@ LocalProcedureBlock::LocalProcedureBlock(int i, int nIn, int nOut):
     boxLayout->rowStretch(1);
 
     groupBox->setLayout(boxLayout);
-    groupBox->setTitle("Local Procedure Block");
+    groupBox->setTitle("Network client Block");
 
     //teScript->append("unsigned int size;\n");
     //teScript->append("memcpy(&size, data, sizeof(size));\n");
     //teScript->append("printf(\" SIZE %d\\n\", size);\n");
 }
 
-void LocalProcedureBlock::generateCode(QString dir)
+void NetworkClientBlock::generateCode(QString dir)
 {
     std::ofstream fileHeader(QString(dir+leName->text()).toLatin1()+".h");
     QString upper = leName->text().toUpper();
@@ -39,13 +39,18 @@ void LocalProcedureBlock::generateCode(QString dir)
     file << "#include <string.h>\n"
             "#include <math.h>\n"
             "#include \"DeMuxBlock_0.h\"\n";
-    file << "#include <stdio.h>\n\n";
+    file << "#include <stdio.h>\n"
+            "#include <stdlib.h>\n"
+            "#include <netdb.h>\n"
+            "#include <netinet/in.h>\n"
+            "\n";
     file << "extern pthread_mutex_t lock;\n"
             "extern PData_t *gPData;\n"
             "char *global_data;\n\n"
             "static int count;\n"
             ;
     file << "void * " << leName->text().toStdString() << "(void *dat) \n{\n";
+
     file << "while(pthread_mutex_trylock(&global_lock))\n"
             "{\n"
             "printf(\"\\rTRYING TO LOCK MUTEX %s\", __FUNCTION__);\n"
@@ -60,6 +65,65 @@ void LocalProcedureBlock::generateCode(QString dir)
             "pthread_mutex_unlock(&global_lock);\n\n"
             ;
 
+    file << "int sockfd = 0, portno = 5001, n = 0;\n"
+            "struct sockaddr_in serv_addr;\n"
+            "struct hostent *server = NULL;\n"
+
+            //"char buffer[] = \"Hi how are you\";\n"
+
+            "sockfd = socket(AF_INET, SOCK_STREAM, 0);\n"
+            "if (sockfd < 0) \n{\n"
+            "perror(\"ERROR opening socket\");\n"
+            "exit(1);\n"
+            "}\n"
+
+            "server = gethostbyname(\"127.0.0.1\");\n"
+            "if (server == NULL) \n{\n"
+            "fprintf(stderr,\"ERROR, no such host\\n\");\n"
+            "exit(0);\n"
+            "}\n"
+
+            "bzero((char *) &serv_addr, sizeof(serv_addr));\n"
+            "serv_addr.sin_family = AF_INET;\n"
+            "bcopy((char *)server->h_addr, (char *)&serv_addr.sin_addr.s_addr, server->h_length);\n"
+            "serv_addr.sin_port = htons(portno);\n"
+
+            "int iCon = -1;\n"
+
+            "for(int i = 0; i < 1000000; i++)\n"
+            "{\n"
+                "if(iCon >= 0)\n"
+                "{\n"
+                    "break;\n"
+                "}\n"
+                "iCon = connect(sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr));\n"
+            "}\n"
+            "if (iCon < 0) \n{\n"
+               "perror(\"ERROR connecting\");\n"
+               "exit(1);\n"
+            "}\n"
+
+           // "unsigned long size = strlen(buffer) + 1;\n"
+            "deleteData(-1, &data);\n"
+            "memcpy(&tot_size, data, sizeof (tot_size));\n"
+            "char *msg = malloc(tot_size);\n"
+            "memcpy(msg, &tot_size, sizeof(tot_size));\n"
+            "n = write(sockfd, msg, sizeof(tot_size));\n"
+
+            "if (n < 0) \n{\n"
+               "perror(\"ERROR writing to socket\");\n"
+               "exit(1);\n"
+            "}\n"
+
+            "n = write(sockfd, data, tot_size);\n"
+            "if (n < 0) \n{\n"
+               "perror(\"ERROR writing to socket\");\n"
+               "exit(1);\n"
+            "}\n"
+            ;
+
+
+/*
     file << "enum Types type;\n"
             "char *in = NULL;\n"
             "size_t size;\n"
@@ -95,8 +159,10 @@ void LocalProcedureBlock::generateCode(QString dir)
                     "add += sizeof (double);\n"
                 "}\n"
             "}\n"
+            "if(in != NULL)\n{\n"
+            "free(in);\n}\n\n"
             ;
-
+*/
     /*file << "if(data != NULL)\n{\n"
             "deleteData(-1, &data);\n"
             "char callFunc[] = \"DeMuxBlock_0\";\n"
@@ -115,8 +181,7 @@ void LocalProcedureBlock::generateCode(QString dir)
             ;*/
     file << "if(data != NULL)\n{\n"
             "free(data);\n}\n\n"
-            "if(in != NULL)\n{\n"
-            "free(in);\n}\n\n"
+
             ;
     file << "printf(\""<<leName->text().toStdString()<<" END\\n\");\n";
     file << "count++;\n";
@@ -126,7 +191,7 @@ void LocalProcedureBlock::generateCode(QString dir)
     file.close();
 }
 
-void LocalProcedureBlock::preprocessScript()
+void NetworkClientBlock::preprocessScript()
 {
     teScript->find("PACK_DATA");
 }
