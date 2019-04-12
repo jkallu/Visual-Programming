@@ -44,6 +44,7 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
 
 
     QLineF line(sourcePoint, destPoint);
+
     if (qFuzzyCompare(line.length(), qreal(0.)))
         return;
 
@@ -62,7 +63,12 @@ void Edge::paint(QPainter *painter, const QStyleOptionGraphicsItem *, QWidget *)
         painter->setPen(QPen(myColor, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
 
 
-    painter->drawLine(line);
+    //painter->drawLine(line);
+
+    QPainterPath painterPath;
+    painterPath.moveTo(sourcePoint);
+    painterPath.cubicTo(sourcePoint.rx() + (destPoint.rx() - sourcePoint.rx()) / 4, sourcePoint.ry() + (sourcePoint.ry() - destPoint.ry()) / 2, destPoint.rx() - (destPoint.rx() - sourcePoint.rx()) / 4, destPoint.ry() + (destPoint.ry() - sourcePoint.ry()) / 2, destPoint.rx(), destPoint.ry());
+    painter->drawPath(painterPath);
 
     // Draw the arrows
     double angle = std::atan2(-line.dy(), line.dx());
