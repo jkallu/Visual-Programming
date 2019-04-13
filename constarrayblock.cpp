@@ -7,7 +7,7 @@ ConstArrayBlock::ConstArrayBlock(int i, int nIn, int nOut):
     //setId(i);
     //initBlock();
 
-    leCount = new QLineEdit("10");
+    leCount = new QLineEdit("100");
     leBegin = new QLineEdit("0");
     leEnd = new QLineEdit("10");
 
@@ -37,7 +37,7 @@ ConstArrayBlock::ConstArrayBlock(int i, int nIn, int nOut):
         }
 
     }
-    cbType->setCurrentIndex(1);
+    cbType->setCurrentIndex(2);
 
     boxLayout->addWidget(lblCount);
     boxLayout->addWidget(leCount);

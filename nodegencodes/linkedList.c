@@ -351,7 +351,77 @@ int popFilled(char **data)
         printf("Head has data %s\n\n\n\n", (*current)->funcName);
     }
 
-    PData_t **prev = NULL;
+    PData_t *prev = NULL;
+
+    if(*current != NULL && (*current)->nInsFilled == (*current)->nIns)
+    {
+        *data = mallocAndCheck((*current)->size);
+        memcpy(*data, (*current)->in, (*current)->size);
+
+        PData_t *tmp = *current;
+
+        *current = (*current)->next;
+        if(tmp->funcName != NULL)
+        {
+            free(tmp->funcName);
+        }
+        if(tmp->in != NULL)
+        {
+            free(tmp->in);
+        }
+        if(tmp!= NULL)
+        {
+            free(tmp);
+        }
+
+        pthread_mutex_unlock(&lock);
+        return  1;
+    }
+
+    while(*current != NULL && (*current)->nInsFilled != (*current)->nIns)
+    {
+        prev = *current;
+        current = &(*current)->next;
+    }
+
+    if(*current == NULL)
+    {
+        *data = NULL;
+
+        pthread_mutex_unlock(&lock);
+        return  1;
+    }
+
+
+
+    *data = mallocAndCheck((*current)->size);
+    memcpy(*data, (*current)->in, (*current)->size);
+
+    PData_t *tmp = *current;
+
+    //*current = prev;
+    //(*current) = tmp->next;
+    prev->next = (*current)->next;
+
+
+    if(tmp->funcName != NULL)
+    {
+        free(tmp->funcName);
+    }
+    if(tmp->in != NULL)
+    {
+        free(tmp->in);
+    }
+    if(tmp!= NULL)
+    {
+        free(tmp);
+    }
+
+    pthread_mutex_unlock(&lock);
+    return  1;
+
+    /*
+    //PData_t **prev = NULL;
     int flagFilled = 0;
 
     while((*current) != NULL)
@@ -365,7 +435,7 @@ int popFilled(char **data)
         }
         printf("DATA IS NOT FILLED in %s\n", (*current)->funcName);
         prev = current;
-        (*prev)->next = (*current)->next;
+        //(*prev)->next = (*current)->next;
         current = &(*current)->next;
 
     }
@@ -400,14 +470,14 @@ int popFilled(char **data)
             printf("SIZE ************ #### %ld\n", (*current)->size);
             (*prev)->next = (*current)->next;
         }
+        else
+        {
+            //(*prev)->next = NULL;
+        }
 
         printf("SIZE ************ #### %ld\n", (*current)->size);
         *data = mallocAndCheck((*current)->size);
-        /*if(*data == NULL)
-        {
-            fprintf(stderr, "malloc error\n");
-            return -1;
-        }*/
+
         memcpy(*data, (*current)->in, (*current)->size);
         if((*current)->funcName != NULL)
         {
@@ -425,5 +495,5 @@ int popFilled(char **data)
     }
 
     pthread_mutex_unlock(&lock);
-    return 0;
+    return 0;*/
 }

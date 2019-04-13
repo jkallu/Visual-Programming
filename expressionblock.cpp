@@ -5,7 +5,7 @@ ExpressionBlock::ExpressionBlock(int i):
 {
     lblExp = new QLabel("Expression");
 
-    leExpression = new QLineEdit;
+    leExpression = new QLineEdit("sin");
 
     lblScript = new QLabel("Script");
     teScript = new QTextEdit;

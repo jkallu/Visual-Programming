@@ -12,6 +12,7 @@ int popFirstSim(PData_t **head, char **data)
     //PData_t **head = &gPData;
     if ((*head) == nullptr) {
         *data = nullptr;
+        pthread_mutex_unlock(&simLock);
         return -1;
     }
     *data = (char*) malloc((*head)->size);
@@ -19,14 +20,15 @@ int popFirstSim(PData_t **head, char **data)
     if(*data == nullptr)
     {
         fprintf(stderr, "malloc error\n");
+
+        pthread_mutex_unlock(&simLock);
         return -1;
     }
     printf("HHHHHH sss\n");
     memcpy(*data, (*head)->in, (*head)->size);
-    PData_t * next_node = (*head)->next;
-    free (*head);
-    *head = nullptr;
-    *head = next_node;
+    PData_t * tmp = *head;
+    *head = (*head)->next;
+    free (tmp);
 
   /*
     printf("HHHHHH dd\n");
