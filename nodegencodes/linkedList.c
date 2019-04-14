@@ -132,7 +132,7 @@ void appendData(char *funcName, char noIn, char nov, char *data)
     size_t tot_size_data;
     size_t add_size = 0;
 
-    deleteData(-1, &data);
+    //deleteData(-1, &data);
 
     memcpy(&tot_size_data, data + add_size, sizeof (tot_size_data));
     memcpy(&tot_size_init, (*current)->in + add_size, sizeof (tot_size_init));
@@ -148,7 +148,7 @@ void appendData(char *funcName, char noIn, char nov, char *data)
 
     char *newC = realloc((*current)->in, tot_size_final);
     //*current = realloc(*current, tot_size_final);
-    if(!newC)
+    if(newC == NULL)
     {
         printf("ERROR REALLOC\n");
         exit(0);
@@ -178,6 +178,8 @@ void appendData(char *funcName, char noIn, char nov, char *data)
 
     memcpy((*current)->in + tot_size_init, data + (sizeof (tot_size_data) + sizeof (char)), tot_size_data);
     (*current)->nInsFilled += nov;
+
+    printf("\n\n**************** APPENDED DATA %s %ld %d %d **************\n\n", (*current)->funcName, (*current)->size, (*current)->nIns, (*current)->nInsFilled);
 
 }
 
@@ -217,6 +219,8 @@ void localProcedureCall(char *funcName, char noIn, char nov, char *data)
         printf ("COULD NOT FIND THE FUNC ENTRY %s IN LINK LIST\n", funcName);
         pushToEnd(funcName, noIn, nov, data);
     }
+
+    //testLinkedListData();
 
     pthread_mutex_unlock(&lock);
 }
@@ -353,7 +357,7 @@ int popFilled(char **data)
 
     PData_t *prev = NULL;
 
-    if(*current != NULL && (*current)->nInsFilled == (*current)->nIns)
+    if(*current != NULL && (*current)->nInsFilled == (*current)->nIns && (*current)->nInsFilled > 0)
     {
         *data = mallocAndCheck((*current)->size);
         memcpy(*data, (*current)->in, (*current)->size);
@@ -378,7 +382,7 @@ int popFilled(char **data)
         return  1;
     }
 
-    while(*current != NULL && (*current)->nInsFilled != (*current)->nIns)
+    while(*current != NULL && (*current)->nInsFilled != (*current)->nIns && (*current)->nInsFilled > 0)
     {
         prev = *current;
         current = &(*current)->next;
@@ -497,3 +501,46 @@ int popFilled(char **data)
     pthread_mutex_unlock(&lock);
     return 0;*/
 }
+
+void testLinkedListData(void)
+{
+    printf("\n\n *********************** TESTING LINKED LIST DATA ************************* \n");
+    PData_t *current = gPData;
+
+    while(current != NULL)
+    {
+        char *dat =NULL;
+        dat = mallocAndCheck(current->size);
+        memcpy(dat, current->in, current->size);
+
+
+        printf("\nTESTING DATA STARTED\n");
+        enum Types type = Pack_func;
+        size_t size_0 = 0, size_1 = 0, size_func = 0;
+        char *data_0 = NULL, *data_1 = NULL, *data_func = NULL;
+        getData(-1, dat, &type, &size_func, &data_func);
+        printf("FUNC NAME %s\n", data_func);
+        getData(0, dat, &type, &size_0, &data_0);
+        getData(1, dat, &type, &size_1, &data_1);
+        if(data_func != NULL)
+        {
+            free(data_func);
+            data_func = NULL;
+        }
+        if(data_0 != NULL)
+        {
+            free(data_0);
+            data_0 = NULL;
+        }
+        if(data_1 != NULL)
+        {
+            free(data_1);
+            data_1 = NULL;
+        }
+        printf("\nTESTING DATA END\n");
+
+        current = current->next;
+    }
+    printf("****************************************************\n\n");
+}
+

@@ -246,9 +246,9 @@ void MainBlock::createEventLoopFiles(QString dir)
                                                                       "}\n"
                                                                       "if(data != NULL)\n"
                                                                       "{\n"
-                                                                      "testData(data);\n"
+                                                                      //"testData(data);\n"
                                                                       "getFuncName(data, &funcName);\n"
-                                                                      "deleteData(-1, &data);\n"
+                                                                      //"deleteData(-1, &data);\n"
 
                                                                       "size_t size;\n"
                                                                       "memcpy(&size, data, sizeof (size_t));\n"
@@ -342,12 +342,18 @@ void MainBlock::createEventLoopFiles(QString dir)
             "printf(\"\\nTESTING DATA STARTED\\n\");\n"
 
             "enum Types type = Pack_func;\n"
-            "size_t size_0 = 0, size_1 = 0;\n"
-            "char *data_0 = NULL, *data_1 = NULL;\n"
-
+            "size_t size_0 = 0, size_1 = 0, size_func = 0;\n"
+            "char *data_0 = NULL, *data_1 = NULL, *data_func = NULL;\n"
+            "getData(-1, dat, &type, &size_func, &data_func);\n"
+            "printf(\"FUNC NAME %s\\n\", data_func);\n"
             "getData(0, dat, &type, &size_0, &data_0);\n"
             "getData(1, dat, &type, &size_1, &data_1);\n"
 
+            "if(data_func != NULL)\n"
+            "{\n"
+                "free(data_func);\n"
+                "data_func = NULL;\n"
+            "}\n"
             "if(data_0 != NULL)\n"
             "{\n"
             "    free(data_0);\n"

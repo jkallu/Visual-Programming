@@ -41,6 +41,6 @@ int isFirstListFilled(PData_t *head);
 size_t sizeOfFirstList(void);
 int popFirst(char **data);
 int popFilled(char **data);
-
+void testLinkedListData(void);
 
 #endif // LINKEDLIST_H
