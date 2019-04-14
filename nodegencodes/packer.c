@@ -214,7 +214,19 @@ void deleteData(char index, char**data)
 
             if(size_to_copy > 0)
             {
-                memcpy(*data + add_size, *data + pos_to_copy_from, size_to_copy);
+                char *tmp = malloc(size_to_copy);
+                if(tmp == NULL)
+                {
+                    printf("malloc error \n");
+                    exit(0);
+                }
+                memcpy(tmp, *data + pos_to_copy_from, size_to_copy);
+                memcpy(*data + add_size, tmp, size_to_copy);
+
+                if(tmp != NULL)
+                {
+                    free(tmp);
+                }
             }
 
             size_t size_to_delete = pos_to_copy_from - add_size;

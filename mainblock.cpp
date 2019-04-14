@@ -248,7 +248,7 @@ void MainBlock::createEventLoopFiles(QString dir)
                                                                       "{\n"
                                                                       //"testData(data);\n"
                                                                       "getFuncName(data, &funcName);\n"
-                                                                      //"deleteData(-1, &data);\n"
+                                                                      "deleteData(-1, &data);\n"
 
                                                                       "size_t size;\n"
                                                                       "memcpy(&size, data, sizeof (size_t));\n"
