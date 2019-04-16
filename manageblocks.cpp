@@ -27,15 +27,6 @@ ManageBlocks::ManageBlocks()
     countNetworkServerBlock = 0;
 
     simulate = new Simulate(this);
-
-
-    /*model = new QStringListModel();
-    model->setStringList(strListBlockNames);
-
-    model_exp_out = new QStringListModel();
-
-    model_all_outs = new QStringListModel();*/
-
 }
 
 QGroupBox* ManageBlocks::addConstantBlock(){
@@ -75,7 +66,7 @@ QGroupBox* ManageBlocks::addGraphBlock(){
 }
 
 QGroupBox* ManageBlocks::addContArrayBlock(int nIn, int nOut){
-    constArrayBlock[countConstArrayBlock] = new ConstArrayBlock(countConstArrayBlock, nIn, nOut);
+    /*constArrayBlock[countConstArrayBlock] = new ConstArrayBlock(countConstArrayBlock, nIn, nOut);
     constArrayBlock[countConstArrayBlock]->groupBox->setTitle(constArrayBlock[countConstArrayBlock]->groupBox->title() + "_" + QString::number(countConstArrayBlock));
     constArrayBlock[countConstArrayBlock]->leName->setText("const_array_block_" + QString::number(countConstArrayBlock));
     for(int i = 0; i < constArrayBlock[countConstArrayBlock]->numOfOutputs; i++)
@@ -83,22 +74,37 @@ QGroupBox* ManageBlocks::addContArrayBlock(int nIn, int nOut){
         constArrayBlock[countConstArrayBlock]->lblOutData[i]->setText("const_array_block_" + QString::number(countConstArrayBlock) + "_" + QString::number(i));
     }
     strListBlockNames.append(constArrayBlock[countConstArrayBlock]->leName->text());
-    //model->setStringList(strListBlockNames);
 
     strListBlockExpOut.append(constArrayBlock[countConstArrayBlock]->leName->text());
-    //model_exp_out->setStringList(strListBlockExpOut);
 
-    //
     strListAllOuts.append(constArrayBlock[countConstArrayBlock]->leName->text());
-    //model_all_outs->setStringList(strListAllOuts);
-    //
     countConstArrayBlock++;
 
     return constArrayBlock[countConstArrayBlock - 1]->groupBox;
+    */
+
+    ConstArrayBlock *ab = new ConstArrayBlock(countConstArrayBlock, nIn, nOut);
+    ab->groupBox->setTitle(ab->groupBox->title() + "_" + QString::number(countConstArrayBlock));
+    ab->leName->setText("const_array_block_" + QString::number(countConstArrayBlock));
+    for(int i = 0; i < ab->numOfOutputs; i++)
+    {
+        ab->lblOutData[i]->setText("const_array_block_" + QString::number(countConstArrayBlock) + "_" + QString::number(i));
+    }
+    strListBlockNames.append(ab->leName->text());
+
+    strListBlockExpOut.append(ab->leName->text());
+
+    strListAllOuts.append(ab->leName->text());
+    countConstArrayBlock++;
+
+    blockIO.push_back(ab);
+
+    return ab->groupBox;
+
 }
 
 QGroupBox* ManageBlocks::addDataSplitBlock(){
-    dataSplitBlock[countDataSplitBlock] = new DataSplitBlock(countDataSplitBlock);
+    /*dataSplitBlock[countDataSplitBlock] = new DataSplitBlock(countDataSplitBlock);
     dataSplitBlock[countDataSplitBlock]->groupBox->setTitle(dataSplitBlock[countDataSplitBlock]->groupBox->title() + "_"+ QString::number(countDataSplitBlock));
     dataSplitBlock[countDataSplitBlock]->leName->setText("DataSplitBlock_" + QString::number(countDataSplitBlock));
     dataSplitBlock[countDataSplitBlock]->lblOutData[0]->setText("DataSplitBlock_" + QString::number(countDataSplitBlock) + "_0");
@@ -106,7 +112,19 @@ QGroupBox* ManageBlocks::addDataSplitBlock(){
 
     countDataSplitBlock++;
 
-    return dataSplitBlock[countDataSplitBlock - 1]->groupBox;
+    return dataSplitBlock[countDataSplitBlock - 1]->groupBox;*/
+    DataSplitBlock *ab = new DataSplitBlock(countConstArrayBlock);
+    ab->groupBox->setTitle(ab->groupBox->title() + "_"+ QString::number(countDataSplitBlock));
+    ab->leName->setText("DataSplitBlock_" + QString::number(countDataSplitBlock));
+    ab->lblOutData[0]->setText("DataSplitBlock_" + QString::number(countDataSplitBlock) + "_0");
+    ab->lblOutData[1]->setText("DataSplitBlock_" + QString::number(countDataSplitBlock) + "_1");
+
+    countDataSplitBlock++;
+
+
+    blockIO.push_back(ab);
+
+    return ab->groupBox;
 }
 
 QGroupBox* ManageBlocks::addAdderBlock(){
@@ -257,6 +275,7 @@ QGroupBox* ManageBlocks::addGenerateMainBlock(){
 
 
     return generateMainBlock[countgenerateMainBlock - 1]->groupBox;
+
 }
 
 QGroupBox* ManageBlocks::addDeMuxBlock(int nIn, int nOut){
@@ -331,7 +350,7 @@ void ManageBlocks::generateCode()
     QString dir = "../Node/nodegencodes/";
     //QString dir = "/home/jin/Downloads/nodegencodes/";
     // 1. First we generate outputcodes for constant array block
-    for(int i = 0; i < countConstArrayBlock; i++){
+    /*for(int i = 0; i < countConstArrayBlock; i++){
         if(constArrayBlock[i]->isBlockEnabled()){
             constArrayBlock[i]->generateCode(dir);
             generateMainBlock[0]->addHeader(constArrayBlock[i]->leName->text());
@@ -343,6 +362,19 @@ void ManageBlocks::generateCode()
             func.arrayNum = i;
             simulate->func.push_back(func);
          }
+    }*/
+    for(size_t i = 0; i < blockIO.size(); i++){
+        if(blockIO.at(i)->isBlockEnabled()){
+            blockIO.at(i)->generateCode(dir);
+            generateMainBlock[0]->addHeader(blockIO.at(i)->leName->text());
+            simulate->addSource(blockIO.at(i)->leName->text());
+
+            Func_t func;
+            func.funcName = blockIO.at(i)->leName->text().toStdString();
+            func.type = blockIO.at(i)->getType();
+            func.arrayNum = blockIO.at(i)->getId();
+            simulate->func.push_back(func);
+        }
     }
 
     // 2. Expression blocks
@@ -421,7 +453,7 @@ void ManageBlocks::generateCode()
     }
 
     // 18. DataSplit block
-    for(int i = 0; i < countDataSplitBlock; i++){
+   /* for(int i = 0; i < countDataSplitBlock; i++){
         if(dataSplitBlock[i]->isBlockEnabled()){
             dataSplitBlock[i]->generateCode(dir);
             generateMainBlock[0]->addHeader(dataSplitBlock[i]->leName->text());
@@ -433,12 +465,12 @@ void ManageBlocks::generateCode()
             func.arrayNum = i;
             simulate->func.push_back(func);
         }
-    }
+    }*/
 
     // 18. Demux block
     for(int i = 0; i < countDeMuxBlock; i++){
         if(deMuxBlock[i]->isBlockEnabled()){
-            deMuxBlock[i]->generateCode(dir, generateMainBlock[0]->strSources.split(QRegExp("\\s+"), QString::SkipEmptyParts));
+            deMuxBlock[i]->generateCode(dir);
             generateMainBlock[0]->addHeader(deMuxBlock[i]->leName->text());
             simulate->addSource(deMuxBlock[i]->leName->text());
 
@@ -490,7 +522,7 @@ void ManageBlocks::runDesign(){
     if(generateMainBlock[0] != nullptr)
         generateCode();
 
-   /* int maxIter = 100;
+    /* int maxIter = 100;
     int readMultiFileLoop = 0;
 
     if(countReadMultiFilesBlock > 0){
@@ -521,17 +553,23 @@ void ManageBlocks::runDesign(){
 }
 
 bool ManageBlocks::isExecutedGood(){
-    for(int i = 0; i < countConstArrayBlock; i++){
+    /*for(int i = 0; i < countConstArrayBlock; i++){
         if(!constArrayBlock[i]->isExecutedFull() && constArrayBlock[i]->isBlockEnabled()){
+            return false;
+        }
+    }*/
+
+    for(size_t i = 0; i < blockIO.size(); i++){
+        if(!blockIO.at(i)->isExecutedFull() && blockIO.at(i)->isBlockEnabled()){
             return false;
         }
     }
 
-    for(int i = 0; i < countDataSplitBlock; i++){
+    /*for(int i = 0; i < countDataSplitBlock; i++){
         if(!dataSplitBlock[i]->isExecutedFull() && dataSplitBlock[i]->isBlockEnabled()){
             return false;
         }
-    }
+    }*/
 
     for(int i = 0; i < countExpressionBlock; i++){
         if(!expressionBlock[i]->isExecutedFull() && expressionBlock[i]->isBlockEnabled()){
@@ -619,13 +657,16 @@ bool ManageBlocks::isExecutedGood(){
 }
 
 void ManageBlocks::reset(){
-    for(int i = 0; i < countConstArrayBlock; i++){
+    /*for(int i = 0; i < countConstArrayBlock; i++){
         constArrayBlock[i]->reset();
+    }*/
+    for(size_t i = 0; i < blockIO.size(); i++){
+        blockIO.at(i)->reset();
     }
 
-    for(int i = 0; i < countDataSplitBlock; i++){
+    /*for(int i = 0; i < countDataSplitBlock; i++){
         dataSplitBlock[i]->reset();
-    }
+    }*/
 
     for(int i = 0; i < countExpressionBlock; i++){
         expressionBlock[i]->reset();
@@ -1394,8 +1435,16 @@ void ManageBlocks::resetOutputs(){
 
 
 QGroupBox* ManageBlocks::getBlock(int type, int id){
+    for(size_t i = 0; i < blockIO.size(); i++)
+    {
+        if(blockIO.at(i)->getType() == type && blockIO.at(i)->getId() == id)
+        {
+            return blockIO.at(i)->groupBox;
+        }
+    }
     if(type == 1){
-        return constArrayBlock[id]->groupBox;
+        //return constArrayBlock[id]->groupBox;
+        //return  blockIO.at(id)->groupBox;
     }
     else if(type == 2){
         return expressionBlock[id]->groupBox;
@@ -1404,7 +1453,7 @@ QGroupBox* ManageBlocks::getBlock(int type, int id){
         return graphs[id]->groupBox;
     }
     else if(type == 4){
-        return dataSplitBlock[id]->groupBox;
+       // return dataSplitBlock[id]->groupBox;
     }
     else if(type == 5){
         return adderBlock[id]->groupBox;
@@ -1460,8 +1509,17 @@ QGroupBox* ManageBlocks::getBlock(int type, int id){
 }
 
 void ManageBlocks::setBlockEnable(int type, int id, bool flagEn){
+    for(size_t i = 0; i < blockIO.size(); i++)
+    {
+        if(blockIO.at(i)->getType() == type && blockIO.at(i)->getId() == id)
+        {
+            blockIO.at(i)->setEnabled(flagEn);
+            break;
+        }
+    }
     if(type == 1){
-        constArrayBlock[id]->setBlockEnabled(flagEn);
+        //constArrayBlock[id]->setBlockEnabled(flagEn);
+        //blockIO.at(id)->setEnabled(flagEn);
     }
     else if(type == 2){
         expressionBlock[id]->setBlockEnabled(flagEn);
@@ -1470,7 +1528,7 @@ void ManageBlocks::setBlockEnable(int type, int id, bool flagEn){
         graphs[id]->setBlockEnabled(flagEn);
     }
     else if(type == 4){
-        dataSplitBlock[id]->setBlockEnabled(flagEn);
+        //dataSplitBlock[id]->setBlockEnabled(flagEn);
     }
     else if(type == 5){
         adderBlock[id]->setBlockEnabled(flagEn);
@@ -1525,4 +1583,7 @@ void ManageBlocks::setBlockEnable(int type, int id, bool flagEn){
     }
 }
 
-
+void ManageBlocks::stop()
+{
+    simulate->stop();
+}

@@ -280,6 +280,7 @@ void MainWindow::itemInserted(BlockItem *item){
 void MainWindow::createFileMenu(){
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(runAction);
+    fileMenu->addAction(stopAction);
 
     itemMenu = menuBar()->addMenu(tr("&Item"));
     itemMenu->addAction(deleteAction);
@@ -292,6 +293,11 @@ void MainWindow::createActions(){
     runAction->setStatusTip(tr("Run"));
     connect(runAction, SIGNAL(triggered()), this, SLOT(run()));
 
+    stopAction = new QAction(QIcon(":/icons/stop.png"), tr("S&un"), this);
+    //runAction->setShortcuts(QKeySequence::Quit);
+    stopAction->setStatusTip(tr("Stop"));
+    connect(stopAction, SIGNAL(triggered()), this, SLOT(stop()));
+
     deleteAction = new QAction(QIcon(":/icons/delete.png"), tr("&Delete"), this);
     deleteAction->setShortcut(tr("Delete"));
     deleteAction->setStatusTip(tr("Delete item from diagram"));
@@ -300,6 +306,15 @@ void MainWindow::createActions(){
 
 void MainWindow::run(){
     blockScene->runDesign();
+    runToolBar->setDisabled(true);
+    stopToolBar->setEnabled(true);
+}
+
+void MainWindow::stop()
+{
+    blockScene->stop();
+    runToolBar->setEnabled(true);
+    stopToolBar->setDisabled(true);
 }
 
 void MainWindow::deleteItem(){
@@ -333,6 +348,10 @@ void MainWindow::createToolbars(){
     runToolBar = addToolBar(tr("Run"));
     runToolBar->addAction(runAction);
 
+    stopToolBar = addToolBar(tr("Stop"));
+    stopToolBar->addAction(stopAction);
+    stopToolBar->setDisabled(true);
+
     editToolBar = addToolBar(tr("Edit"));
     editToolBar->addAction(deleteAction);
 
@@ -344,5 +363,7 @@ void MainWindow::createToolbars(){
 void MainWindow::updateTEOuts(QString strOut){
     teOuts->append(strOut);
 }
+
+
 
 

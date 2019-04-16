@@ -8,6 +8,10 @@ class AccumulatorBlock : public BlockIO
 {
 public:
     AccumulatorBlock(int i);
+
+    void init() override;
+    void generateCode(QString dir) override;
+
     void generateOutputs();
 };
 

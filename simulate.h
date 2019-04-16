@@ -8,6 +8,7 @@
 #include <QString>
 #include <QStringList>
 #include <pthread.h>
+#include <signal.h>
 #include <unistd.h>
 #include "simlinklist.h"
 #include "constarrayblock.h"
@@ -45,6 +46,7 @@ public:
     Simulate(ManageBlocks *mBlk);
     void createLib(QString dir);
     void start(char *callFunc, QString dir);
+    void stop();
     void addSource(QString src);
     Func_t getFunc(string funcName);
 
@@ -53,6 +55,9 @@ public:
 
     ManageBlocks *mBlocks;
     vector <Func_t> func;
+    void *handle;
+    pthread_t thread_id_sim;
+
 };
 
 typedef struct simLoopData{

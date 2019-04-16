@@ -9,6 +9,10 @@ class AdderBlock : public BlockIO
 {
 public:
     AdderBlock(int i);
+
+    void init() override;
+    void generateCode(QString dir) override;
+
     void generateOutputs();
 };
 

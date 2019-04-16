@@ -13,7 +13,10 @@ class NetworkClientBlock : virtual public BlockIO
 {
 public:
     NetworkClientBlock(int i, int nIn, int nOut);
-    void generateCode(QString dir);
+
+    void generateCode(QString dir) override;
+    void init() override;
+
     void preprocessScript();
     static int getNumInputs(){return  1;}
     static int getNumOutputs(){return 0;}

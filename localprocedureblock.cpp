@@ -4,6 +4,15 @@
 LocalProcedureBlock::LocalProcedureBlock(int i, int nIn, int nOut):
     BlockIO(i, nIn, nOut, BlockItem::BlockType::LocalProcedure)
 {
+    init();
+
+    //teScript->append("unsigned int size;\n");
+    //teScript->append("memcpy(&size, data, sizeof(size));\n");
+    //teScript->append("printf(\" SIZE %d\\n\", size);\n");
+}
+
+void LocalProcedureBlock::init()
+{
     lblScript = new QLabel("Script");
     teScript = new QTextEdit;
 
@@ -14,10 +23,6 @@ LocalProcedureBlock::LocalProcedureBlock(int i, int nIn, int nOut):
 
     groupBox->setLayout(boxLayout);
     groupBox->setTitle("Local Procedure Block");
-
-    //teScript->append("unsigned int size;\n");
-    //teScript->append("memcpy(&size, data, sizeof(size));\n");
-    //teScript->append("printf(\" SIZE %d\\n\", size);\n");
 }
 
 void LocalProcedureBlock::generateCode(QString dir)

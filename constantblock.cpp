@@ -3,6 +3,11 @@
 ConstantBlock::ConstantBlock(int i):
     BlockIO(i, 0, 1, BlockItem::BlockType::Constant)
 {
+    init();
+}
+
+void ConstantBlock::init()
+{
     leConstantVal = new QLineEdit;
 
     lblConstVal = new QLabel("Val");
@@ -13,4 +18,9 @@ ConstantBlock::ConstantBlock(int i):
 
     groupBox->setLayout(boxLayout);
     groupBox->setTitle("Constant Block");
+}
+
+void ConstantBlock::generateCode(QString dir)
+{
+
 }

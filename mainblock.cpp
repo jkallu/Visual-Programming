@@ -3,6 +3,11 @@
 MainBlock::MainBlock(int i):
     BlockIO (i, 0, 1, BlockItem::BlockType::MainBlock)
 {
+    init();
+}
+
+void MainBlock::init()
+{
     lblScript = new QLabel("Script");
     teScript = new QTextEdit;
 
@@ -14,21 +19,6 @@ MainBlock::MainBlock(int i):
     groupBox->setLayout(boxLayout);
 
     groupBox->setTitle("Main Block");
-
-    /*teScript->append("char *data;\n");
-
-    teScript->append("unsigned int size = sizeof(unsigned int) + sizeof (unsigned char);\n");
-    teScript->append("data = (char *)mallocAndCheck(size);\n");
-    teScript->append("if(data == NULL)\n");
-    teScript->append("{\n");
-    teScript->append("printf (\"Error\\n\" );\n");
-    teScript->append("}\n");
-    teScript->append("else\n");
-    teScript->append("{\n");
-    teScript->append("  memcpy(data, &size, sizeof(unsigned int));\n");
-    teScript->append("  unsigned char  no_var = 0;\n");
-    teScript->append("  memcpy(data + sizeof(unsigned int), &no_var, sizeof(unsigned char));\n");
-    teScript->append("}\n");*/
 
     dataPack = new DataPack;
 }
@@ -112,7 +102,7 @@ void MainBlock::generateQtProjFile(QString dir)
         }
         else
         {
-           file << "\\ \n";
+            file << "\\ \n";
         }
     }
 
@@ -129,7 +119,7 @@ void MainBlock::generateQtProjFile(QString dir)
         }
         else
         {
-           file << "\\ \n";
+            file << "\\ \n";
         }
     }
 
@@ -178,6 +168,8 @@ void MainBlock::createEventLoopFiles(QString dir)
             "pthread_mutex_t *simLock;\n"
             "char flagSim;\n"
             "pthread_mutex_t global_lock;\n"
+            "int flagRun = 1;"
+            "pthread_t thread_id_glob;\n"
 
             "void exec(char callFunc[], pthread_mutex_t *sLock, char flagS, PData_t **simPD)\n"
             "{\n"
@@ -191,7 +183,9 @@ void MainBlock::createEventLoopFiles(QString dir)
             "packData(&data, -1, Pack_func, strlen(callFunc) + 1 , callFunc);\n\n"
 
             "char *strState;\n"
-            "DeMuxBlock_0_StateType state = " << leName->text().toStdString()<<"_SUCCESS;\n"
+            "DeMuxBlock_0_StateType state = " <<
+            leName->text().toStdString()<<
+            "_SUCCESS;\n"
             "strState = (char*)mallocAndCheck(sizeof(state));\n"
             "memcpy(strState, &state, sizeof(state));\n"
             "packData(&data, -2, Pack_State, sizeof(state), strState);\n"
@@ -203,57 +197,62 @@ void MainBlock::createEventLoopFiles(QString dir)
             "}\n\n*/"
             //"printf(\"%ld\", &lock);\n"
             "//pthread_mutex_lock(&lock);\n"
-            "char noIn = " << conToTotIns[0] << ";\n"
-                                                "char nov = " << 1 << ";\n"
-                                                                      "localProcedureCall(callFunc, noIn, nov, data);\n"
-                                                                      "//pthread_mutex_unlock(&lock);\n\n"
+            "char noIn = " <<
+            conToTotIns[0] <<
+            ";\n"
+            "char nov = " <<
+            1 <<
+            ";\n"
+            "localProcedureCall(callFunc, noIn, nov, data);\n"
+            "//pthread_mutex_unlock(&lock);\n\n"
 
-                                                                      "pthread_t thread_id;\n"
-                                                                      "if(pthread_create(&thread_id, NULL, eventLoop, NULL))\n"
-                                                                      "{\n"
-                                                                      "fprintf(stderr, \"Error creating thread\\n\");\n"
-                                                                      "return;\n"
-                                                                      "}\n"
-                                                                      "if(!flagSim)\n{\n"
-                                                                      "if(pthread_join(thread_id, NULL))\n"
-                                                                      "{\n"
-                                                                      "fprintf(stderr, \"Error joining thread\\n\");\n"
-                                                                      "return;\n"
-                                                                      "}\n"
-                                                                      "pthread_mutex_destroy(&lock);\n"
-                                                                      "}\n\n}\n"
+            "pthread_t thread_id;\n"
+            "if(pthread_create(&thread_id, NULL, eventLoop, NULL))\n"
+            "{\n"
+            "fprintf(stderr, \"Error creating thread\\n\");\n"
+            "return;\n"
+            "}\n"
+            "thread_id_glob = thread_id;\n"
+            "if(!flagSim)\n{\n"
+            "if(pthread_join(thread_id, NULL))\n"
+            "{\n"
+            "fprintf(stderr, \"Error joining thread\\n\");\n"
+            "return;\n"
+            "}\n"
+            "pthread_mutex_destroy(&lock);\n"
+            "}\n\n}\n"
 
-                                                                      "void *eventLoop(void *dummy)\n"
-                                                                      "{\n"
-                                                                      "pthread_t thread_id[100];\n"
-                                                                      "int countThreadId = 0;\n"
-                                                                      "char *data = NULL;\n"
-                                                                      "char *funcName = NULL;\n"
-                                                                      "char **ptr_global_data = &global_data;\n"
-                                                                      "*ptr_global_data = NULL;\n"
-                                                                      "while(1)\n"
-                                                                      "{\n"
-                                                                      "popFilled(&data);\n"
+            "void *eventLoop(void *dummy)\n"
+            "{\n"
+            "pthread_t thread_id[100];\n"
+            "int countThreadId = 0;\n"
+            "char *data = NULL;\n"
+            "char *funcName = NULL;\n"
+            "char **ptr_global_data = &global_data;\n"
+            "*ptr_global_data = NULL;\n"
+            "while(flagRun)\n"
+            "{\n"
+            "popFilled(&data);\n"
 
-                                                                      "if(flagSim && data != NULL)\n"
-                                                                      "{\n"
+            "if(flagSim && data != NULL)\n"
+            "{\n"
 
 
-                                                                      "pthread_mutex_lock(simLock);\n"
-                                                                      "pushSim(simPData, data);\n"
-                                                                      "printf(\"SIZE   FROM TH %ld\\n\", (*simPData)->size);\n"
-                                                                      "pthread_mutex_unlock(simLock);\n"
-                                                                      "}\n"
-                                                                      "if(data != NULL)\n"
-                                                                      "{\n"
-                                                                      //"testData(data);\n"
-                                                                      "getFuncName(data, &funcName);\n"
-                                                                      "deleteData(-1, &data);\n"
+            "pthread_mutex_lock(simLock);\n"
+            "pushSim(simPData, data);\n"
+            "printf(\"SIZE   FROM TH %ld\\n\", (*simPData)->size);\n"
+            "pthread_mutex_unlock(simLock);\n"
+            "}\n"
+            "if(data != NULL)\n"
+            "{\n"
+            //"testData(data);\n"
+            "getFuncName(data, &funcName);\n"
+            "deleteData(-1, &data);\n"
 
-                                                                      "size_t size;\n"
-                                                                      "memcpy(&size, data, sizeof (size_t));\n"
-                                                                      "*ptr_global_data = (char*)mallocAndCheck(size);\n"
-                                                                      "memcpy(*ptr_global_data, data, size);\n"
+            "size_t size;\n"
+            "memcpy(&size, data, sizeof (size_t));\n"
+            "*ptr_global_data = (char*)mallocAndCheck(size);\n"
+            "memcpy(*ptr_global_data, data, size);\n"
 
             ;
 
@@ -271,13 +270,15 @@ void MainBlock::createEventLoopFiles(QString dir)
         file << "(strcmp(funcName, \"" << list.at(i).toStdString() << "\") == 0)\n";
 
         file << "{\n";
-        file << "if(pthread_create(&thread_id[countThreadId], NULL, " << list.at(i).toStdString() << ", NULL))\n"
-                                                                                                     "{\n"
-                                                                                                     "fprintf(stderr, \"Error creating thread\\n\");\n"
-                                                                                                     "}\n"
-                                                                                                     "else\n{\n"
-                                                                                                     "countThreadId++;\n}\n"
-                                                                                                     "}\n";
+        file << "if(pthread_create(&thread_id[countThreadId], NULL, " <<
+                list.at(i).toStdString() <<
+                ", NULL))\n"
+                "{\n"
+                "fprintf(stderr, \"Error creating thread\\n\");\n"
+                "}\n"
+                "else\n{\n"
+                "countThreadId++;\n}\n"
+                "}\n";
     }
     file << "else\n"
             "{\n"
@@ -314,7 +315,7 @@ void MainBlock::createEventLoopFiles(QString dir)
             "{\n"
             "    pthread_mutex_unlock(&global_lock);\n"
             "    usleep(10);\n"
-            "    while(1)\n"
+            "    while(flagRun)\n"
             "    {\n"
             "        while(pthread_mutex_trylock(&global_lock))\n"
             "        {\n"
@@ -351,8 +352,8 @@ void MainBlock::createEventLoopFiles(QString dir)
 
             "if(data_func != NULL)\n"
             "{\n"
-                "free(data_func);\n"
-                "data_func = NULL;\n"
+            "free(data_func);\n"
+            "data_func = NULL;\n"
             "}\n"
             "if(data_0 != NULL)\n"
             "{\n"
@@ -368,6 +369,14 @@ void MainBlock::createEventLoopFiles(QString dir)
 
             "printf(\"\\nTESTING DATA END\\n\");\n"
             "}\n";
+
+    file << "pthread_t getEventLoopTId(void)\n{\n"
+            "return thread_id_glob;\n"
+            "\n}";
+
+    file << "void setFlagRun(int flag)\n{\n"
+            "flagRun = flag;\n"
+            "}";
 
 
     std::ofstream fileHeader(dir.toStdString() + "eventLoop.h");
@@ -388,7 +397,10 @@ void MainBlock::createEventLoopFiles(QString dir)
 
                   "void exec(char *callFunc, pthread_mutex_t *simLock, char flagSim, PData_t **simPD);\n"
                   "void * eventLoop(void *dummy);\n"
-                  "void testData(char *dat);\n\n"
+                  "void testData(char *dat);\n"
+                  "pthread_t getEventLoopTId(void);\n"
+                  "void setFlagRun(int flag);\n"
+                  "\n"
                   "#endif // EVENTLOOP_H\n";
 }
 

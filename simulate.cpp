@@ -5,13 +5,13 @@
 char flagSim = 1;
 //pthread_mutex_t simLock;
 PData_t *simPData;
-char flagRun = 0;
+char flagRun = 1;
 
 
 Simulate::Simulate(ManageBlocks *mBlk)
 {
     mBlocks = mBlk;
-/*    //simPData = NULL;
+    /*    //simPData = NULL;
 #ifdef __cplusplus
     if(pthread_mutex_init(&simLock, nullptr))
 #else
@@ -22,6 +22,7 @@ Simulate::Simulate(ManageBlocks *mBlk)
         exit(1);
     }*/
     flagSim = 1;
+
     //*simPData = NULL;
 }
 
@@ -118,13 +119,14 @@ void Simulate::start(char *callFunc, QString dir)
 
     printf("Main thread start\n");
     char *error;
-    void *handle;
+
     void (*exec)(char *, pthread_mutex_t *, char, PData_t **);
 
     handle = dlopen ("./libmylib.so", RTLD_LAZY);
     if (!handle) {
         fprintf(stderr, "dlopen failed: %s\n", dlerror());
-        exit(EXIT_FAILURE);
+        return;
+        //exit(EXIT_FAILURE);
     }
     /*void **sPData = (void **)dlsym(handle, "simPData");
 #ifdef __cplusplus
@@ -148,14 +150,15 @@ void Simulate::start(char *callFunc, QString dir)
     if ((error = dlerror()) != nullptr)
     {
         fprintf(stderr, "%s\n", error);
-        exit(EXIT_FAILURE);
+        return;
+        //exit(EXIT_FAILURE);
     }
     simLoopData_t *simLoopD = (simLoopData_t *)malloc(sizeof (simLoopData_t));
     simLoopD->handle = handle;
     simLoopD->sim = this;
 
-    pthread_t thread_id;
-    if(pthread_create(&thread_id, nullptr, simLoop, (void*)simLoopD))
+
+    if(pthread_create(&thread_id_sim, nullptr, simLoop, (void*)simLoopD))
     {
         fprintf(stderr, "Error creating thread\n");
         return;
@@ -194,19 +197,19 @@ Func_t Simulate::getFunc(string funcName)
 void *simLoop(void *simLoopD)
 {
     simLoopData_t *loopData = (simLoopData_t *)simLoopD;
-    void *handle = loopData->handle;
+    //void *handle = loopData->handle;
     Simulate *sim = loopData->sim;
     char *error;
-    int (*isFirstListFilled)(PData_t *, int*);
+    /*int (*isFirstListFilled)(PData_t *, int*);
     isFirstListFilled = (int (*)(PData_t*, int*))dlsym(handle, "isFirstListFilled");
     if ((error = dlerror()) != nullptr)
     {
         fprintf(stderr, "%s\n", error);
         exit(EXIT_FAILURE);
-    }
+    }*/
     char *data = nullptr;
     char *funcName = nullptr;
-    while(1)
+    while(flagRun)
     {
         //pthread_mutex_lock(&simLock);
         if(simPData != nullptr)
@@ -265,3 +268,53 @@ void * simLoop(void *)
     }
 }
 */
+
+void Simulate::stop()
+{
+    char *error;
+    pthread_t (*getEventLoopTId)(void);
+    *(void **) (&getEventLoopTId) = dlsym(handle, "getEventLoopTId");
+    if ((error = dlerror()) != nullptr)
+    {
+        fprintf(stderr, "%s\n", error);
+        return;
+        //exit(EXIT_FAILURE);
+    }
+
+    void (*setFlagRun)(int);
+    *(void **) (&setFlagRun) = dlsym(handle, "setFlagRun");
+    if ((error = dlerror()) != nullptr)
+    {
+        fprintf(stderr, "%s\n", error);
+        return;
+        //exit(EXIT_FAILURE);
+    }
+
+    if(pthread_kill(thread_id_sim, 0))
+    {
+        printf("SimLoop thread is not running\n");
+    }
+    else
+    {
+        //pthread_kill(thread_id_sim, SIGTERM);
+        flagRun = 0;
+    }
+
+
+    pthread_t id =(*getEventLoopTId)();
+    // check if the thrad is running
+    if(pthread_kill(id, 0))
+    {
+        printf("EvntLoop thread is not running\n");
+    }
+    else
+    {
+        (*setFlagRun)(0);
+    }
+    dlclose(handle);
+
+    //pthread_kill(id, SIGKILL);
+
+    //dlclose(handle);
+    return;
+}

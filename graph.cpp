@@ -3,6 +3,11 @@
 Graph::Graph(int i):
     BlockIO(i, 2, 0, BlockItem::BlockType::Graph)
 {
+    init();
+}
+
+void Graph::init()
+{
     glWidget = new GLWidget();
 
     boxLayout->addWidget(glWidget, 3, 0, 1, 2);
@@ -11,6 +16,11 @@ Graph::Graph(int i):
 
     groupBox->setLayout(boxLayout);
     groupBox->setTitle("Graph Block");
+}
+
+void Graph::generateCode(QString dir)
+{
+
 }
 
 

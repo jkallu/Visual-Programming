@@ -3,6 +3,11 @@
 ExpressionBlock::ExpressionBlock(int i):
     BlockIO(i, 1, 1, BlockItem::BlockType::Expression)
 {
+    init();
+}
+
+void ExpressionBlock::init()
+{
     lblExp = new QLabel("Expression");
 
     leExpression = new QLineEdit("sin");

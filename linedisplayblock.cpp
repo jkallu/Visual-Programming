@@ -3,6 +3,11 @@
 LineDisplayBlock::LineDisplayBlock(int i):
     BlockIO(i, 1, 0, BlockItem::BlockType::LineDisplay)
 {
+   init();
+}
+
+void LineDisplayBlock::init()
+{
     lblOutDisplayName = new QLabel("Data Out");
     lblOutDisplayData = new QLabel();
 
@@ -14,6 +19,7 @@ LineDisplayBlock::LineDisplayBlock(int i):
     groupBox->setLayout(boxLayout);
     groupBox->setTitle("Line Display Block");
 }
+
 
 
 void LineDisplayBlock::generateOutputs(){

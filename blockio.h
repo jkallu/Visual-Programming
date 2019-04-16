@@ -17,6 +17,8 @@ public:
     BlockIO(int id_l, int numOfIn, int numOfOut, BlockItem::BlockType typ);
     ~BlockIO();
 
+    virtual void generateCode(QString dir);
+    virtual void init();
 
     double **in, **out;
     void createIOArray(int io, int num, size_t size); // io  =  0 for input, 1 for output, num is the the index of io

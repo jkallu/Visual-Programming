@@ -13,6 +13,7 @@ public:
     Block(int id_l);
     void initBlock();
     void setId(int id_l);
+    int getId() {return id;}
     void setBlockEnabled(bool flagEn){flagEnabled = flagEn;}
     bool isBlockEnabled(){return flagEnabled;}
 

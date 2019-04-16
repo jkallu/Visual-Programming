@@ -38,7 +38,7 @@ public:
     void setBlockEnable(BlockItem *blockIt, bool flagEn);
     void setEdgeEnable(int idEdge, bool flagEn);
     void removeAssociatedEdges(BlockItem *blockIt);
-
+    void stop();
     QVBoxLayout *vbLayOutProp;
     QSpinBox *sbIns, *sbOuts;
 

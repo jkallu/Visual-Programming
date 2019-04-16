@@ -6,7 +6,12 @@ ConstArrayBlock::ConstArrayBlock(int i, int nIn, int nOut):
 {
     //setId(i);
     //initBlock();
+    init();
+}
 
+void ConstArrayBlock::init()
+{
+    qDebug() << "Hello from ConstArrayBlock";
     leCount = new QLineEdit("100");
     leBegin = new QLineEdit("0");
     leEnd = new QLineEdit("10");

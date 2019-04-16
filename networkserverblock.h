@@ -13,7 +13,10 @@ class NetworkServerBlock : virtual public BlockIO
 {
 public:
     NetworkServerBlock(int i, int nIn, int nOut);
-    void generateCode(QString dir);
+
+    void generateCode(QString dir) override;
+    void init() override;
+
     void preprocessScript();
     static int getNumInputs(){return  1;}
     static int getNumOutputs(){return 1;}

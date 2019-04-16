@@ -4,8 +4,11 @@
 NetworkClientBlock::NetworkClientBlock(int i, int nIn, int nOut):
     BlockIO(i, nIn, nOut, BlockItem::BlockType::NetworkClient)
 {
-    //lblScript = new QLabel("Script");
-    //teScript = new QTextEdit;
+    init();
+}
+
+void NetworkClientBlock::init()
+{
     lblPort = new QLabel("Port");
     lePort = new QLineEdit("5001");
 
@@ -22,10 +25,6 @@ NetworkClientBlock::NetworkClientBlock(int i, int nIn, int nOut):
 
     groupBox->setLayout(boxLayout);
     groupBox->setTitle("Network client Block");
-
-    //teScript->append("unsigned int size;\n");
-    //teScript->append("memcpy(&size, data, sizeof(size));\n");
-    //teScript->append("printf(\" SIZE %d\\n\", size);\n");
 }
 
 void NetworkClientBlock::generateCode(QString dir)

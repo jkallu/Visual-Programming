@@ -24,8 +24,10 @@
 #include "localprocedureblock.h"
 #include "networkclientblock.h"
 #include "networkserverblock.h"
+#include "blockio.h"
 
 #include "simulate.h"
+#include <vector>
 
 //#include "sumblock.h"
 #include <QString>
@@ -58,6 +60,8 @@ class NetworkClientBlock;
 class NetworkServerBlock;
 
 class Simulate;
+
+class BlockIO;
 
 
 class BlockInfo
@@ -104,6 +108,7 @@ public:
     void normalize_x_y();
     void runDesign();
     void generateCode();
+    void stop();
 
     //
     void generateAllOutOnlyBlocks(int num);
@@ -205,6 +210,7 @@ public:
 
     Simulate *simulate;
 
+    std::vector <BlockIO *> blockIO;
 
 };
 

@@ -4,8 +4,11 @@
 NetworkServerBlock::NetworkServerBlock(int i, int nIn, int nOut):
     BlockIO(i, nIn, nOut, BlockItem::BlockType::NetworkServer)
 {
-    //lblScript = new QLabel("Script");
-    //teScript = new QTextEdit;
+    init();
+}
+
+void NetworkServerBlock::init()
+{
     lblPort = new QLabel("Port");
     lePort = new QLineEdit("5001");
 
@@ -16,10 +19,6 @@ NetworkServerBlock::NetworkServerBlock(int i, int nIn, int nOut):
 
     groupBox->setLayout(boxLayout);
     groupBox->setTitle("Network server Block");
-
-    //teScript->append("unsigned int size;\n");
-    //teScript->append("memcpy(&size, data, sizeof(size));\n");
-    //teScript->append("printf(\" SIZE %d\\n\", size);\n");
 }
 
 void NetworkServerBlock::generateCode(QString dir)

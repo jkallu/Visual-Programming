@@ -9,6 +9,11 @@ class DelayBlock : public BlockIO
 {
 public:
     DelayBlock(int i);
+
+    void init() override;
+    void generateCode(QString dir) override;
+
+
     void generateOutputs();
 
     QLineEdit *leDelay;

@@ -3,10 +3,20 @@
 AdderBlock::AdderBlock(int i):
     BlockIO(i, 2, 1, BlockItem::BlockType::Adder)
 {
+    init();
+}
+
+void AdderBlock::init()
+{
     boxLayout->rowStretch(1);
     groupBox->setLayout(boxLayout);
 
     groupBox->setTitle("Adder Block");
+}
+
+void AdderBlock::generateCode(QString dir)
+{
+
 }
 
 void AdderBlock::generateOutputs(){

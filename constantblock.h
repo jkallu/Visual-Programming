@@ -10,6 +10,9 @@ class ConstantBlock : virtual public BlockIO
 public:
     ConstantBlock(int i);
 
+    void init() override;
+    void generateCode(QString dir) override;
+
     QLineEdit *leConstantVal;
     QLabel *lblConstVal;
 };

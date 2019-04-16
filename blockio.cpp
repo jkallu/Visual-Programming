@@ -68,6 +68,17 @@ BlockIO::BlockIO(int id_l, int numOfIn, int numOfOut, BlockItem::BlockType typ):
         flagOut[i] = false;
     }
 
+
+}
+
+void BlockIO::init()
+{
+
+}
+
+void BlockIO::generateCode(QString dir)
+{
+
 }
 
 

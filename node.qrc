@@ -3,5 +3,6 @@
     <qresource prefix="/">
         <file>icons/delete.png</file>
         <file>icons/run.png</file>
+        <file>icons/stop.png</file>
     </qresource>
 </RCC>

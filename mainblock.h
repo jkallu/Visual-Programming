@@ -13,7 +13,10 @@ class MainBlock : virtual public BlockIO
 {
 public:
     MainBlock(int i);
-    void generateCode(QString dir);
+
+    void generateCode(QString dir) override;
+    void init() override;
+
     void addHeader(QString header);
     void resetHeader();
     void generateMakefile(QString dir);

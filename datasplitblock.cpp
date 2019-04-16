@@ -3,13 +3,16 @@
 DataSplitBlock::DataSplitBlock(int i):
     BlockIO(i, 1, 2, BlockItem::BlockType::Split)
 {
+    init();
+}
+
+void DataSplitBlock::init()
+{
     boxLayout->rowStretch(1);
 
     groupBox->setLayout(boxLayout);
     groupBox->setTitle("Split Block");
-
 }
-
 
 void DataSplitBlock::generateOutputs(){
     if(flagIn[0]){

@@ -11,6 +11,10 @@ class Graph : virtual public BlockIO
 {
 public:
     Graph(int i);
+
+    void generateCode(QString dir) override;
+    void init() override;
+
     GLWidget *glWidget;
 
     void draw();

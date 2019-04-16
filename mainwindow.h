@@ -48,10 +48,12 @@ private:
 
 
     QAction *runAction;
+    QAction *stopAction;
     QAction *deleteAction;
 
     QToolBar *editToolBar;
     QToolBar *runToolBar;
+    QToolBar *stopToolBar;
 
     QTextEdit *teOuts;
 
@@ -70,6 +72,7 @@ public slots:
     void buttonGroupClicked(int id);
     void itemInserted(BlockItem *item);
     void run();
+    void stop();
     void deleteItem();
     void updateTEOuts(QString strOut);
 };

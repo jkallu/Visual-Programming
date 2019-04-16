@@ -3,6 +3,11 @@
 DelayBlock::DelayBlock(int i):
     BlockIO(i, 1, 1, BlockItem::BlockType::Delay)
 {
+    init();
+}
+
+void DelayBlock::init()
+{
     lblDelay = new QLabel("Delay");
     leDelay = new QLineEdit;
 
@@ -13,6 +18,11 @@ DelayBlock::DelayBlock(int i):
     groupBox->setLayout(boxLayout);
 
     groupBox->setTitle("Delay Block");
+}
+
+void DelayBlock::generateCode(QString dir)
+{
+
 }
 
 void DelayBlock::generateOutputs(){

@@ -3,10 +3,20 @@
 AccumulatorBlock::AccumulatorBlock(int i):
     BlockIO(i, 1, 1, BlockItem::BlockType::Accumulator)
 {
+    init();
+}
+
+void AccumulatorBlock::init()
+{
     boxLayout->rowStretch(1);
     groupBox->setLayout(boxLayout);
 
     groupBox->setTitle("Accumulator Block");
+}
+
+void AccumulatorBlock::generateCode(QString dir)
+{
+
 }
 
 void AccumulatorBlock::generateOutputs(){

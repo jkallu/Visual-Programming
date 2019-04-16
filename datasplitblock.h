@@ -8,8 +8,12 @@ class DataSplitBlock : virtual public BlockIO
 {
 public:
     DataSplitBlock(int i);
+
+    void init() override;
+    void generateCode(QString dir) override;
+
     void generateOutputs();
-    void generateCode(QString dir);
+
     static int getNumInputs(){return  1;}
     static int getNumOutputs(){return 2;}
 };

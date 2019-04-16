@@ -12,8 +12,12 @@ class ExpressionBlock : virtual public BlockIO
 {
 public:
     ExpressionBlock(int i);
+
+    void generateCode(QString dir) override;
+    void init() override;
+
     void generateOutputs();
-    void generateCode(QString dir);
+
 
     QLineEdit *leExpression;
     QLabel *lblExp;

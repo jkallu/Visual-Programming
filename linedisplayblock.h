@@ -9,8 +9,11 @@ class LineDisplayBlock : virtual public BlockIO
 {
 public:
     LineDisplayBlock(int i);
+
+    void generateCode(QString dir) override;
+    void init() override;
+
     void generateOutputs();
-    void generateCode(QString dir);
 
     QLabel *lblOutDisplayName, *lblOutDisplayData;
 

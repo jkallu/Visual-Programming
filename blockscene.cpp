@@ -359,11 +359,28 @@ void BlockScene::connectDesignToBackend(int i){
     cout << "IO Nums " << edge[i]->sourceNode()->getNumber() << " " << edge[i]->destNode()->getNumber() << endl;
     //BlockIO *blockIo;
     //get outputs name
+    for(size_t j = 0; j < manageBlocks->blockIO.size(); j++)
+    {
+        if(int(edge[i]->sourceNode()->getBlockType()) == manageBlocks->blockIO.at(j)->type &&
+                edge[i]->sourceNode()->gettypeId() == manageBlocks->blockIO.at(j)->getId())
+        {
+            varOut = manageBlocks->blockIO.at(j)->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
+            manageBlocks->blockIO.at(j)->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
+            manageBlocks->blockIO.at(j)->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
+
+            break;
+        }
+    }
     if(int(edge[i]->sourceNode()->getBlockType()) == 1){
-        varOut = manageBlocks->constArrayBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
+        /*varOut = manageBlocks->constArrayBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
         manageBlocks->constArrayBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
         manageBlocks->constArrayBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
-        //blockIo->conToTotIns[]
+        */
+
+        /*varOut = manageBlocks->blockIO.at(edge[i]->sourceNode()->gettypeId())->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
+        manageBlocks->blockIO.at(edge[i]->sourceNode()->gettypeId())->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
+        manageBlocks->blockIO.at(edge[i]->sourceNode()->gettypeId())->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
+    */
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 2){
         varOut = manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
@@ -371,10 +388,11 @@ void BlockScene::connectDesignToBackend(int i){
         manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 4){
-        varOut = manageBlocks->dataSplitBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
+        /*varOut = manageBlocks->dataSplitBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
         manageBlocks->dataSplitBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
         manageBlocks->dataSplitBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
-    }
+    */
+}
     else if(int(edge[i]->sourceNode()->getBlockType()) == 5){
         varOut = manageBlocks->adderBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
         manageBlocks->adderBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
@@ -467,9 +485,24 @@ void BlockScene::connectDesignToBackend(int i){
 
     // set output name to inputs and copy inputs name
     QString varIn;
+    for(size_t j = 0; j < manageBlocks->blockIO.size(); j++)
+    {
+        if(int(edge[i]->destNode()->getBlockType()) == manageBlocks->blockIO.at(j)->type &&
+                edge[i]->destNode()->gettypeId() == manageBlocks->blockIO.at(j)->getId())
+        {
+            manageBlocks->blockIO.at(j)->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
+            varIn = manageBlocks->blockIO.at(j)->leName->text();
+
+            break;
+        }
+    }
+
     if(int(edge[i]->destNode()->getBlockType()) == 1){
-        manageBlocks->constArrayBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        varIn = manageBlocks->constArrayBlock[edge[i]->destNode()->gettypeId()]->leName->text();
+        //manageBlocks->constArrayBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
+        //varIn = manageBlocks->constArrayBlock[edge[i]->destNode()->gettypeId()]->leName->text();
+
+        //manageBlocks->blockIO.at(edge[i]->destNode()->gettypeId())->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
+        //varIn = manageBlocks->blockIO.at(edge[i]->destNode()->gettypeId())->leName->text();
     }
     else if(int(edge[i]->destNode()->getBlockType()) == 2){
         manageBlocks->expressionBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
@@ -481,8 +514,8 @@ void BlockScene::connectDesignToBackend(int i){
         varIn = manageBlocks->graphs[edge[i]->destNode()->gettypeId()]->leName->text();
     }
     else if(int(edge[i]->destNode()->getBlockType()) == 4){
-        manageBlocks->dataSplitBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        varIn = manageBlocks->dataSplitBlock[edge[i]->destNode()->gettypeId()]->leName->text();
+        //manageBlocks->dataSplitBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
+        //varIn = manageBlocks->dataSplitBlock[edge[i]->destNode()->gettypeId()]->leName->text();
     }
     else if(int(edge[i]->destNode()->getBlockType()) == 5){
         manageBlocks->adderBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
@@ -559,8 +592,19 @@ void BlockScene::connectDesignToBackend(int i){
     }
 
     // set input name to output (right node name to left)
+    for(size_t j = 0; j < manageBlocks->blockIO.size(); j++)
+    {
+        if(int(edge[i]->sourceNode()->getBlockType()) == manageBlocks->blockIO.at(j)->type &&
+                edge[i]->sourceNode()->gettypeId() == manageBlocks->blockIO.at(j)->getId())
+        {
+            manageBlocks->blockIO.at(j)->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
+
+            break;
+        }
+    }
     if(int(edge[i]->sourceNode()->getBlockType()) == 1){
-        manageBlocks->constArrayBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
+        //manageBlocks->constArrayBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
+        //manageBlocks->blockIO.at(edge[i]->sourceNode()->gettypeId())->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 2){
         manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
@@ -577,7 +621,7 @@ void BlockScene::connectDesignToBackend(int i){
         manageBlocks->networkServerBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 4){
-        manageBlocks->dataSplitBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
+        //manageBlocks->dataSplitBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
     }
 }
 
@@ -688,5 +732,10 @@ void BlockScene::removeAssociatedEdges(BlockItem *blockIt){
         }
     }
 
+}
+
+void BlockScene::stop()
+{
+    manageBlocks->stop();
 }
 

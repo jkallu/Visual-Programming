@@ -4,6 +4,11 @@
 DeMux::DeMux(int i, int nIn, int nOut):
     BlockIO(i, nIn, nOut, BlockItem::BlockType::DeMux)
 {
+    init();
+}
+
+void DeMux::init()
+{
     lblInitState = new QLabel("Initial state");
     leInitState = new QLineEdit;
 
@@ -20,10 +25,9 @@ DeMux::DeMux(int i, int nIn, int nOut):
 
     groupBox->setLayout(boxLayout);
     groupBox->setTitle("DeMux Block");
-
 }
 
-void DeMux::generateCode(QString dir, QStringList list)
+void DeMux::generateCode(QString dir)
 {
     std::ofstream fileHeader(QString(dir+leName->text()).toLatin1()+".h");
     QString upper = leName->text().toUpper();
