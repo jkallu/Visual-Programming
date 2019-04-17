@@ -2,11 +2,12 @@
 #define BLOCKIO_H
 
 #include <QComboBox>
+#include <QTextEdit>
 #include "block.h"
 #include "condition.h"
 #include <vector>
 #include "blockitem.h"
-#include "/home/jin/qt_pgms/nodegencodes/packer.h"
+#include "./nodegencodes/packer.h"
 
 class Condition;
 
@@ -19,6 +20,7 @@ public:
 
     virtual void generateCode(QString dir);
     virtual void init();
+    virtual void setData(char *data);
 
     double **in, **out;
     void createIOArray(int io, int num, size_t size); // io  =  0 for input, 1 for output, num is the the index of io
@@ -38,8 +40,10 @@ public:
     int *conToIONum;
     int *conToTotIns;
 
-    QLabel **lblIn, **lblOut, **lblOutConTo;
+    QLabel **lblIn, **lblOut, **lblOutConTo, *lblData;
     QLabel **lblInData, **lblOutData, **lblOutConToBlock;
+
+    QTextEdit *teData;
 
     Condition condition;
 

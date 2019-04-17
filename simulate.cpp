@@ -226,8 +226,19 @@ void *simLoop(void *simLoopD)
                 switch (func.type)
                 {
                 case BlockItem::BlockType::Graph:
-                    sim->mBlocks->graphs[func.arrayNum]->createInpuData(data);
+                    sim->mBlocks->graphs[func.arrayNum]->setData(data);
                     break;
+                default:
+                    for(size_t i = 0; i < sim->mBlocks->blockIO.size(); i++)
+                    {
+                        if(func.type == sim->mBlocks->blockIO.at(i)->getType() &&
+                           func.arrayNum == sim->mBlocks->blockIO.at(i)->getId())
+                        {
+                            sim->mBlocks->blockIO.at(i)->setData(data);
+                            break;
+                        }
+                    }
+
                 }
 
                 cout << "FUNC NAME FROM SIM " << func.funcName << " " << func.type << " " << func.arrayNum << endl;

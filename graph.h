@@ -19,7 +19,7 @@ public:
 
     void draw();
     void resetGL();
-    void createInpuData(char *data);
+    void setData(char *data) override;
     static int getNumInputs(){return  2;}
     static int getNumOutputs(){return 0;}
 };

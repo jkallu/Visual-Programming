@@ -42,47 +42,31 @@ QGroupBox* ManageBlocks::addConstantBlock(){
 }
 
 QGroupBox* ManageBlocks::addExpressionBlock(){
-    expressionBlock[countExpressionBlock] = new ExpressionBlock(countExpressionBlock);
-    expressionBlock[countExpressionBlock]->groupBox->setTitle(expressionBlock[countExpressionBlock]->groupBox->title() + "_"+ QString::number(countExpressionBlock));
-    expressionBlock[countExpressionBlock]->leName->setText("ExpBlock_" + QString::number(countExpressionBlock));
-    for(int i = 0; i < expressionBlock[countExpressionBlock]->numOfOutputs; i++)
+    ExpressionBlock *ab = new ExpressionBlock(countExpressionBlock);
+    ab->groupBox->setTitle(ab->groupBox->title() + "_"+ QString::number(countExpressionBlock));
+    ab->leName->setText("ExpBlock_" + QString::number(countExpressionBlock));
+    for(int i = 0; i < ab->numOfOutputs; i++)
     {
-        expressionBlock[countExpressionBlock]->lblOutData[i]->setText("ExpBlock_" + QString::number(countExpressionBlock) + "_" + QString::number(i));
+        ab->lblOutData[i]->setText("ExpBlock_" + QString::number(countExpressionBlock) + "_" + QString::number(i));
     }
     countExpressionBlock++;
 
+    blockIO.push_back(ab);
 
-    return expressionBlock[countExpressionBlock - 1]->groupBox;
+
+    return ab->groupBox;
 }
 
 QGroupBox* ManageBlocks::addGraphBlock(){
     graphs[countGraphs] = new Graph(countGraphs);
     graphs[countGraphs]->leName->setText("Graph_" + QString::number(countGraphs));
-    //graphs[countGraphs]->cbIn1->setModel(model_exp_out);
-    //graphs[countGraphs]->cbIn2->setModel(model_exp_out);
+
     countGraphs++;
 
     return graphs[countGraphs - 1]->groupBox;
 }
 
 QGroupBox* ManageBlocks::addContArrayBlock(int nIn, int nOut){
-    /*constArrayBlock[countConstArrayBlock] = new ConstArrayBlock(countConstArrayBlock, nIn, nOut);
-    constArrayBlock[countConstArrayBlock]->groupBox->setTitle(constArrayBlock[countConstArrayBlock]->groupBox->title() + "_" + QString::number(countConstArrayBlock));
-    constArrayBlock[countConstArrayBlock]->leName->setText("const_array_block_" + QString::number(countConstArrayBlock));
-    for(int i = 0; i < constArrayBlock[countConstArrayBlock]->numOfOutputs; i++)
-    {
-        constArrayBlock[countConstArrayBlock]->lblOutData[i]->setText("const_array_block_" + QString::number(countConstArrayBlock) + "_" + QString::number(i));
-    }
-    strListBlockNames.append(constArrayBlock[countConstArrayBlock]->leName->text());
-
-    strListBlockExpOut.append(constArrayBlock[countConstArrayBlock]->leName->text());
-
-    strListAllOuts.append(constArrayBlock[countConstArrayBlock]->leName->text());
-    countConstArrayBlock++;
-
-    return constArrayBlock[countConstArrayBlock - 1]->groupBox;
-    */
-
     ConstArrayBlock *ab = new ConstArrayBlock(countConstArrayBlock, nIn, nOut);
     ab->groupBox->setTitle(ab->groupBox->title() + "_" + QString::number(countConstArrayBlock));
     ab->leName->setText("const_array_block_" + QString::number(countConstArrayBlock));
@@ -104,16 +88,7 @@ QGroupBox* ManageBlocks::addContArrayBlock(int nIn, int nOut){
 }
 
 QGroupBox* ManageBlocks::addDataSplitBlock(){
-    /*dataSplitBlock[countDataSplitBlock] = new DataSplitBlock(countDataSplitBlock);
-    dataSplitBlock[countDataSplitBlock]->groupBox->setTitle(dataSplitBlock[countDataSplitBlock]->groupBox->title() + "_"+ QString::number(countDataSplitBlock));
-    dataSplitBlock[countDataSplitBlock]->leName->setText("DataSplitBlock_" + QString::number(countDataSplitBlock));
-    dataSplitBlock[countDataSplitBlock]->lblOutData[0]->setText("DataSplitBlock_" + QString::number(countDataSplitBlock) + "_0");
-    dataSplitBlock[countDataSplitBlock]->lblOutData[1]->setText("DataSplitBlock_" + QString::number(countDataSplitBlock) + "_1");
-
-    countDataSplitBlock++;
-
-    return dataSplitBlock[countDataSplitBlock - 1]->groupBox;*/
-    DataSplitBlock *ab = new DataSplitBlock(countConstArrayBlock);
+    DataSplitBlock *ab = new DataSplitBlock(countDataSplitBlock);
     ab->groupBox->setTitle(ab->groupBox->title() + "_"+ QString::number(countDataSplitBlock));
     ab->leName->setText("DataSplitBlock_" + QString::number(countDataSplitBlock));
     ab->lblOutData[0]->setText("DataSplitBlock_" + QString::number(countDataSplitBlock) + "_0");
@@ -306,63 +281,39 @@ QGroupBox* ManageBlocks::addLocalProcedureBlock(int nIn, int nOut){
 }
 
 QGroupBox* ManageBlocks::addNetworkClientBlock(int nIn, int nOut){
-    networkClientBlock[countNetworkClientBlock] = new NetworkClientBlock(countNetworkClientBlock, nIn, nOut);
-    networkClientBlock[countNetworkClientBlock]->leName->setText("NetworkClientBlock_" + QString::number(countNetworkClientBlock));
-    for(int i = 0; i < networkClientBlock[countNetworkClientBlock]->numOfOutputs; i++)
+    NetworkClientBlock *ab = new NetworkClientBlock(countNetworkClientBlock, nIn, nOut);
+    ab->leName->setText("NetworkClientBlock_" + QString::number(countNetworkClientBlock));
+    for(int i = 0; i < ab->numOfOutputs; i++)
     {
-        networkClientBlock[countNetworkClientBlock]->lblOutData[i]->setText("NetworkClientBlock_" + QString::number(countNetworkClientBlock) + "_" + QString::number(i));
+        ab->lblOutData[i]->setText("NetworkClientBlock_" + QString::number(countNetworkClientBlock) + "_" + QString::number(i));
     }
 
     countNetworkClientBlock++;
 
+    blockIO.push_back(ab);
 
-    return networkClientBlock[countNetworkClientBlock - 1]->groupBox;
+    return ab->groupBox;
 }
 
 QGroupBox* ManageBlocks::addNetworkServerBlock(int nIn, int nOut){
-    networkServerBlock[countNetworkServerBlock] = new NetworkServerBlock(countNetworkServerBlock, nIn, nOut);
-    networkServerBlock[countNetworkServerBlock]->leName->setText("NetworkServerBlock_" + QString::number(countNetworkServerBlock));
-    for(int i = 0; i < networkServerBlock[countNetworkServerBlock]->numOfOutputs; i++)
+    NetworkServerBlock *ab = new NetworkServerBlock(countNetworkServerBlock, nIn, nOut);
+    ab->leName->setText("NetworkServerBlock_" + QString::number(countNetworkServerBlock));
+    for(int i = 0; i < ab->numOfOutputs; i++)
     {
-        networkServerBlock[countNetworkServerBlock]->lblOutData[i]->setText("NetworkServerBlock_" + QString::number(countNetworkServerBlock) + "_" + QString::number(i));
+        ab->lblOutData[i]->setText("NetworkServerBlock_" + QString::number(countNetworkServerBlock) + "_" + QString::number(i));
     }
 
     countNetworkServerBlock++;
 
+    blockIO.push_back(ab);
 
-    return networkServerBlock[countNetworkServerBlock - 1]->groupBox;
+    return ab->groupBox;
 }
-
-
-/*QGroupBox* ManageBlocks::addSumBlock(){
-    sumBlock[countSumBlock] = new SumBlock(countSumBlock);
-    sumBlock[countSumBlock]->groupBox->setTitle(sumBlock[countSumBlock]->groupBox->title() + "_"+ QString::number(countSumBlock));
-    sumBlock[countSumBlock]->leName->setText("SumBlock_" + QString::number(countSumBlock));
-    sumBlock[countSumBlock]->leOut->setText("SumBlock_" + QString::number(countSumBlock));
-
-    countSumBlock++;
-
-    return sumBlock[countSumBlock - 1]->groupBox;
-}*/
 
 void ManageBlocks::generateCode()
 {
     QString dir = "../Node/nodegencodes/";
-    //QString dir = "/home/jin/Downloads/nodegencodes/";
-    // 1. First we generate outputcodes for constant array block
-    /*for(int i = 0; i < countConstArrayBlock; i++){
-        if(constArrayBlock[i]->isBlockEnabled()){
-            constArrayBlock[i]->generateCode(dir);
-            generateMainBlock[0]->addHeader(constArrayBlock[i]->leName->text());
-            simulate->addSource(constArrayBlock[i]->leName->text());
 
-            Func_t func;
-            func.funcName = constArrayBlock[i]->leName->text().toStdString();
-            func.type = constArrayBlock[i]->getType();
-            func.arrayNum = i;
-            simulate->func.push_back(func);
-         }
-    }*/
     for(size_t i = 0; i < blockIO.size(); i++){
         if(blockIO.at(i)->isBlockEnabled()){
             blockIO.at(i)->generateCode(dir);
@@ -373,21 +324,6 @@ void ManageBlocks::generateCode()
             func.funcName = blockIO.at(i)->leName->text().toStdString();
             func.type = blockIO.at(i)->getType();
             func.arrayNum = blockIO.at(i)->getId();
-            simulate->func.push_back(func);
-        }
-    }
-
-    // 2. Expression blocks
-    for(int i = 0; i < countExpressionBlock; i++){
-        if(expressionBlock[i]->isBlockEnabled()){
-            expressionBlock[i]->generateCode(dir);
-            generateMainBlock[0]->addHeader(expressionBlock[i]->leName->text());
-            simulate->addSource(expressionBlock[i]->leName->text());
-
-            Func_t func;
-            func.funcName = expressionBlock[i]->leName->text().toStdString();
-            func.type = expressionBlock[i]->getType();
-            func.arrayNum = i;
             simulate->func.push_back(func);
         }
     }
@@ -421,51 +357,6 @@ void ManageBlocks::generateCode()
             simulate->func.push_back(func);
         }
     }
-
-    // 18. NetworkClient block
-    for(int i = 0; i < countNetworkClientBlock; i++){
-        if(networkClientBlock[i]->isBlockEnabled()){
-            networkClientBlock[i]->generateCode(dir);
-            generateMainBlock[0]->addHeader(networkClientBlock[i]->leName->text());
-            simulate->addSource(networkClientBlock[i]->leName->text());
-
-            Func_t func;
-            func.funcName = networkClientBlock[i]->leName->text().toStdString();
-            func.type = networkClientBlock[i]->getType();
-            func.arrayNum = i;
-            simulate->func.push_back(func);
-        }
-    }
-
-    // 18. NetworkServer block
-    for(int i = 0; i < countNetworkServerBlock; i++){
-        if(networkServerBlock[i]->isBlockEnabled()){
-            networkServerBlock[i]->generateCode(dir);
-            generateMainBlock[0]->addHeader(networkServerBlock[i]->leName->text());
-            simulate->addSource(networkServerBlock[i]->leName->text());
-
-            Func_t func;
-            func.funcName = networkServerBlock[i]->leName->text().toStdString();
-            func.type = networkServerBlock[i]->getType();
-            func.arrayNum = i;
-            simulate->func.push_back(func);
-        }
-    }
-
-    // 18. DataSplit block
-   /* for(int i = 0; i < countDataSplitBlock; i++){
-        if(dataSplitBlock[i]->isBlockEnabled()){
-            dataSplitBlock[i]->generateCode(dir);
-            generateMainBlock[0]->addHeader(dataSplitBlock[i]->leName->text());
-            simulate->addSource(dataSplitBlock[i]->leName->text());
-
-            Func_t func;
-            func.funcName = dataSplitBlock[i]->leName->text().toStdString();
-            func.type = dataSplitBlock[i]->getType();
-            func.arrayNum = i;
-            simulate->func.push_back(func);
-        }
-    }*/
 
     // 18. Demux block
     for(int i = 0; i < countDeMuxBlock; i++){
@@ -553,26 +444,8 @@ void ManageBlocks::runDesign(){
 }
 
 bool ManageBlocks::isExecutedGood(){
-    /*for(int i = 0; i < countConstArrayBlock; i++){
-        if(!constArrayBlock[i]->isExecutedFull() && constArrayBlock[i]->isBlockEnabled()){
-            return false;
-        }
-    }*/
-
     for(size_t i = 0; i < blockIO.size(); i++){
         if(!blockIO.at(i)->isExecutedFull() && blockIO.at(i)->isBlockEnabled()){
-            return false;
-        }
-    }
-
-    /*for(int i = 0; i < countDataSplitBlock; i++){
-        if(!dataSplitBlock[i]->isExecutedFull() && dataSplitBlock[i]->isBlockEnabled()){
-            return false;
-        }
-    }*/
-
-    for(int i = 0; i < countExpressionBlock; i++){
-        if(!expressionBlock[i]->isExecutedFull() && expressionBlock[i]->isBlockEnabled()){
             return false;
         }
     }
@@ -657,19 +530,8 @@ bool ManageBlocks::isExecutedGood(){
 }
 
 void ManageBlocks::reset(){
-    /*for(int i = 0; i < countConstArrayBlock; i++){
-        constArrayBlock[i]->reset();
-    }*/
     for(size_t i = 0; i < blockIO.size(); i++){
         blockIO.at(i)->reset();
-    }
-
-    /*for(int i = 0; i < countDataSplitBlock; i++){
-        dataSplitBlock[i]->reset();
-    }*/
-
-    for(int i = 0; i < countExpressionBlock; i++){
-        expressionBlock[i]->reset();
     }
 
     for(int i = 0; i < countGraphs; i++){
@@ -727,22 +589,11 @@ void ManageBlocks::reset(){
 
     for(int i = 0; i < countDeMuxBlock; i++){
         deMuxBlock[i]->reset();
-        //        /deMuxBlock[i]->resetHeader();
     }
 
     for(int i = 0; i < countlocalProcedureBlock; i++){
         localProcedureBlock[i]->reset();
-        //        /deMuxBlock[i]->resetHeader();
     }
-    for(int i = 0; i < countNetworkClientBlock; i++){
-        networkClientBlock[i]->reset();
-        //        /deMuxBlock[i]->resetHeader();
-    }
-    for(int i = 0; i < countNetworkServerBlock; i++){
-        networkServerBlock[i]->reset();
-        //        /deMuxBlock[i]->resetHeader();
-    }
-
 }
 
 void ManageBlocks::resetLoops(){
@@ -1442,18 +1293,8 @@ QGroupBox* ManageBlocks::getBlock(int type, int id){
             return blockIO.at(i)->groupBox;
         }
     }
-    if(type == 1){
-        //return constArrayBlock[id]->groupBox;
-        //return  blockIO.at(id)->groupBox;
-    }
-    else if(type == 2){
-        return expressionBlock[id]->groupBox;
-    }
-    else if(type == 3){
+    if(type == 3){
         return graphs[id]->groupBox;
-    }
-    else if(type == 4){
-       // return dataSplitBlock[id]->groupBox;
     }
     else if(type == 5){
         return adderBlock[id]->groupBox;
@@ -1500,12 +1341,6 @@ QGroupBox* ManageBlocks::getBlock(int type, int id){
     else if(type == 19){
         return localProcedureBlock[id]->groupBox;
     }
-    else if(type == BlockItem::NetworkClient){
-        return networkClientBlock[id]->groupBox;
-    }
-    else if(type == BlockItem::NetworkServer){
-        return networkServerBlock[id]->groupBox;
-    }
 }
 
 void ManageBlocks::setBlockEnable(int type, int id, bool flagEn){
@@ -1517,18 +1352,8 @@ void ManageBlocks::setBlockEnable(int type, int id, bool flagEn){
             break;
         }
     }
-    if(type == 1){
-        //constArrayBlock[id]->setBlockEnabled(flagEn);
-        //blockIO.at(id)->setEnabled(flagEn);
-    }
-    else if(type == 2){
-        expressionBlock[id]->setBlockEnabled(flagEn);
-    }
-    else if(type == 3){
+    if(type == 3){
         graphs[id]->setBlockEnabled(flagEn);
-    }
-    else if(type == 4){
-        //dataSplitBlock[id]->setBlockEnabled(flagEn);
     }
     else if(type == 5){
         adderBlock[id]->setBlockEnabled(flagEn);
@@ -1574,12 +1399,6 @@ void ManageBlocks::setBlockEnable(int type, int id, bool flagEn){
     }
     else if(type == 19){
         localProcedureBlock[id]->setBlockEnabled(flagEn);
-    }
-    else if(type == BlockItem::NetworkClient){
-        networkClientBlock[id]->setBlockEnabled(flagEn);
-    }
-    else if(type == BlockItem::NetworkServer){
-        networkServerBlock[id]->setBlockEnabled(flagEn);
     }
 }
 

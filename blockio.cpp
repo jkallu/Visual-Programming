@@ -60,6 +60,14 @@ BlockIO::BlockIO(int id_l, int numOfIn, int numOfOut, BlockItem::BlockType typ):
         boxLayout->addWidget(lblOutConToBlock[i]);
     }
 
+    lblData = new QLabel("Data");
+    teData = new QTextEdit;
+    teData->setReadOnly(true);
+    teData->setText("Recieved data\n");
+
+    boxLayout->addWidget(lblData);
+    boxLayout->addWidget(teData);
+
     for(int i = 0; i < numOfInputs; i++){
         flagIn[i] = false;
     }
@@ -78,6 +86,36 @@ void BlockIO::init()
 
 void BlockIO::generateCode(QString dir)
 {
+
+}
+
+void BlockIO::setData(char *data)
+{
+    /*
+     * char *strTypes[Types::PACK_COUNT_MAX];
+    strTypes[Types::Pack_Int] = "int";
+    strTypes[Types::Pack_Float] = "float";
+    strTypes[Types::Pack_Double] = "double";
+    strTypes[Types::Pack_Char] = "char";
+    */
+
+    Types type = Types::Pack_func;
+    size_t size = 0;
+    char **data_out;
+
+
+    data_out = new char*[numOfInputs];
+
+
+    for(int i = 0; i < numOfInputs; i++)
+    {
+        getData(i, data, &type, &size, &data_out[i]);
+
+        //teData->append("Type " + QString::fromStdString(strTypes[type]) + "\n");
+        //teData->append("Size " + QString::number(size) + "\n");
+        //teData->append("Size " + QString::number(size) + "\n");
+    }
+
 
 }
 
@@ -183,7 +221,7 @@ bool BlockIO::isExecutedFull(){
 }
 
 
- BlockItem::BlockType BlockIO::getType()
- {
-     return  type;
- }
+BlockItem::BlockType BlockIO::getType()
+{
+    return  type;
+}

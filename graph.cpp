@@ -40,7 +40,7 @@ void Graph::resetGL(){
 
 }
 
-void Graph::createInpuData(char *data)
+void Graph::setData(char *data)
 {
     if(data == nullptr)
     {

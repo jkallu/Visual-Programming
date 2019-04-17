@@ -371,29 +371,8 @@ void BlockScene::connectDesignToBackend(int i){
             break;
         }
     }
-    if(int(edge[i]->sourceNode()->getBlockType()) == 1){
-        /*varOut = manageBlocks->constArrayBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
-        manageBlocks->constArrayBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
-        manageBlocks->constArrayBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
-        */
 
-        /*varOut = manageBlocks->blockIO.at(edge[i]->sourceNode()->gettypeId())->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
-        manageBlocks->blockIO.at(edge[i]->sourceNode()->gettypeId())->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
-        manageBlocks->blockIO.at(edge[i]->sourceNode()->gettypeId())->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
-    */
-    }
-    else if(int(edge[i]->sourceNode()->getBlockType()) == 2){
-        varOut = manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
-        manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
-        manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
-    }
-    else if(int(edge[i]->sourceNode()->getBlockType()) == 4){
-        /*varOut = manageBlocks->dataSplitBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
-        manageBlocks->dataSplitBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
-        manageBlocks->dataSplitBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
-    */
-}
-    else if(int(edge[i]->sourceNode()->getBlockType()) == 5){
+    if(int(edge[i]->sourceNode()->getBlockType()) == 5){
         varOut = manageBlocks->adderBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
         manageBlocks->adderBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
         manageBlocks->adderBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
@@ -468,20 +447,6 @@ void BlockScene::connectDesignToBackend(int i){
         manageBlocks->localProcedureBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
         manageBlocks->localProcedureBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
     }
-    else if(int(edge[i]->sourceNode()->getBlockType()) == BlockItem::NetworkClient)
-    {
-        varOut = manageBlocks->networkClientBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
-        manageBlocks->networkClientBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
-        manageBlocks->networkClientBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
-    }
-    else if(int(edge[i]->sourceNode()->getBlockType()) == BlockItem::NetworkServer)
-    {
-        varOut = manageBlocks->networkServerBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
-        manageBlocks->networkServerBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
-        manageBlocks->networkServerBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
-    }
-
-
 
     // set output name to inputs and copy inputs name
     QString varIn;
@@ -497,25 +462,9 @@ void BlockScene::connectDesignToBackend(int i){
         }
     }
 
-    if(int(edge[i]->destNode()->getBlockType()) == 1){
-        //manageBlocks->constArrayBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        //varIn = manageBlocks->constArrayBlock[edge[i]->destNode()->gettypeId()]->leName->text();
-
-        //manageBlocks->blockIO.at(edge[i]->destNode()->gettypeId())->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        //varIn = manageBlocks->blockIO.at(edge[i]->destNode()->gettypeId())->leName->text();
-    }
-    else if(int(edge[i]->destNode()->getBlockType()) == 2){
-        manageBlocks->expressionBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        //manageBlocks->expressionBlock[edge[i]->destNode()->gettypeId()]->leExpression->setText(varOut);
-        varIn =  manageBlocks->expressionBlock[edge[i]->destNode()->gettypeId()]->leName->text();
-    }
-    else if(int(edge[i]->destNode()->getBlockType()) == 3){
+    if(int(edge[i]->destNode()->getBlockType()) == 3){
         manageBlocks->graphs[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
         varIn = manageBlocks->graphs[edge[i]->destNode()->gettypeId()]->leName->text();
-    }
-    else if(int(edge[i]->destNode()->getBlockType()) == 4){
-        //manageBlocks->dataSplitBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        //varIn = manageBlocks->dataSplitBlock[edge[i]->destNode()->gettypeId()]->leName->text();
     }
     else if(int(edge[i]->destNode()->getBlockType()) == 5){
         manageBlocks->adderBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
@@ -580,17 +529,6 @@ void BlockScene::connectDesignToBackend(int i){
         varIn = manageBlocks->localProcedureBlock[edge[i]->destNode()->gettypeId()]->leName->text();
     }
 
-    else if(int(edge[i]->destNode()->getBlockType()) == BlockItem::NetworkClient)
-    {
-        manageBlocks->networkClientBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        varIn = manageBlocks->networkClientBlock[edge[i]->destNode()->gettypeId()]->leName->text();
-    }
-    else if(int(edge[i]->destNode()->getBlockType()) == BlockItem::NetworkServer)
-    {
-        manageBlocks->networkServerBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        varIn = manageBlocks->networkServerBlock[edge[i]->destNode()->gettypeId()]->leName->text();
-    }
-
     // set input name to output (right node name to left)
     for(size_t j = 0; j < manageBlocks->blockIO.size(); j++)
     {
@@ -602,26 +540,13 @@ void BlockScene::connectDesignToBackend(int i){
             break;
         }
     }
-    if(int(edge[i]->sourceNode()->getBlockType()) == 1){
-        //manageBlocks->constArrayBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
-        //manageBlocks->blockIO.at(edge[i]->sourceNode()->gettypeId())->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
-    }
-    else if(int(edge[i]->sourceNode()->getBlockType()) == 2){
-        manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
-        //manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->teScript->setText(manageBlocks->expressionBlock[edge[i]->sourceNode()->gettypeId()]->teScript->toPlainText() + "\n" + varIn + "(x, size);");
-    }
-    else if(int(edge[i]->sourceNode()->getBlockType()) == 17){
+
+    if(int(edge[i]->sourceNode()->getBlockType()) == 17){
         manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
         manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->teScript->append(varIn /*+ "(data);"*/);
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 18){
         manageBlocks->deMuxBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
-    }
-    else if(int(edge[i]->sourceNode()->getBlockType()) == BlockItem::NetworkServer){
-        manageBlocks->networkServerBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
-    }
-    else if(int(edge[i]->sourceNode()->getBlockType()) == 4){
-        //manageBlocks->dataSplitBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
     }
 }
 
