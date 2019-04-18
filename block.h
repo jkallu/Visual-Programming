@@ -6,6 +6,7 @@
 #include <QGridLayout>
 #include <QGroupBox>
 #include <fstream>
+#include <QObject>
 
 class Block : public QWidget
 {

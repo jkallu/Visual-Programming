@@ -49,6 +49,7 @@ public:
     void stop();
     void addSource(QString src);
     Func_t getFunc(string funcName);
+    static void * simLoop(void *simLoopD);
 
     QString sourceList;
 
@@ -64,6 +65,5 @@ typedef struct simLoopData{
     void *handle;
     Simulate *sim;
 } simLoopData_t;
-void * simLoop(void *simLoopD);
 
 #endif // SIMULATE_H

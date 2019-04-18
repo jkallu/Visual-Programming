@@ -76,7 +76,7 @@ BlockIO::BlockIO(int id_l, int numOfIn, int numOfOut, BlockItem::BlockType typ):
         flagOut[i] = false;
     }
 
-
+    //connect(this, SIGNAL(dataChanged(char *)), this, SLOT(setData(char *)));
 }
 
 void BlockIO::init()
@@ -112,7 +112,7 @@ void BlockIO::setData(char *data)
         getData(i, data, &type, &size, &data_out[i]);
 
         //teData->append("Type " + QString::fromStdString(strTypes[type]) + "\n");
-        //teData->append("Size " + QString::number(size) + "\n");
+        teData->append("Size " + QString::number(size) + "\n");
         //teData->append("Size " + QString::number(size) + "\n");
     }
 

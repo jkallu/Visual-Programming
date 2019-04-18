@@ -9,18 +9,19 @@
 #include "blockitem.h"
 #include "./nodegencodes/packer.h"
 
+
 class Condition;
 
 
 class BlockIO : public Block
 {
+
 public:
     BlockIO(int id_l, int numOfIn, int numOfOut, BlockItem::BlockType typ);
     ~BlockIO();
 
     virtual void generateCode(QString dir);
     virtual void init();
-    virtual void setData(char *data);
 
     double **in, **out;
     void createIOArray(int io, int num, size_t size); // io  =  0 for input, 1 for output, num is the the index of io
@@ -49,6 +50,10 @@ public:
 
     BlockItem::BlockType type;
 
+//public slots:
+    virtual void setData(char *data);
+//signals:
+  //  void dataChanged(char *data);
 };
 
 #endif // BLOCKIO_H
