@@ -39,6 +39,10 @@ public:
     void setEdgeEnable(int idEdge, bool flagEn);
     void removeAssociatedEdges(BlockItem *blockIt);
     void stop();
+    void createConnectionTree();
+    void createConnTreeIter(CTree_t *cTree);
+    void iterateConnTree(CTree_t *cTree);
+
     QVBoxLayout *vbLayOutProp;
     QSpinBox *sbIns, *sbOuts;
 

@@ -258,12 +258,22 @@ void * Simulate::simLoop(void *simLoopD)
                                                                   Q_ARG(QString, "FUNCTION NAME " + QString::fromStdString(data_out)));
                                             break;
                                         case Types::Pack_Float:
-                                            float d;
+                                            float d_f;
                                             for(int k = 0; k < size; k++)
                                             {
-                                                memcpy(&d, data + k * sizeof (float), sizeof (float));
+                                                memcpy(&d_f, data + k * sizeof (d_f), sizeof (d_f));
                                                 QMetaObject::invokeMethod(sim->mBlocks->blockIO.at(i)->teData, "append",
-                                                                      Q_ARG(QString, "DATA_ " + QString::number(k) + " " + QString::number(d)));
+                                                                      Q_ARG(QString, "DATA_ " + QString::number(k) + " " + QString::number(d_f)));
+
+                                            }
+                                        break;
+                                        case Types::Pack_Int:
+                                            int d_i;
+                                            for(int k = 0; k < size; k++)
+                                            {
+                                                memcpy(&d_i, data + k * sizeof (d_i), sizeof (d_i));
+                                                QMetaObject::invokeMethod(sim->mBlocks->blockIO.at(i)->teData, "append",
+                                                                      Q_ARG(QString, "DATA_ " + QString::number(k) + " " + QString::number(d_i)));
 
                                             }
                                         break;
@@ -271,7 +281,7 @@ void * Simulate::simLoop(void *simLoopD)
 
                                 }
 
-                                if(data_out != nullptr)
+                                if(data_out != nullptr || data_out != NULL)
                                 {
                                     free(data_out);
                                     data_out = nullptr;
@@ -287,20 +297,21 @@ void * Simulate::simLoop(void *simLoopD)
 
                 cout << "FUNC NAME FROM SIM " << func.funcName << " " << func.type << " " << func.arrayNum << endl;
             }
+            if(data != nullptr)
+            {
+                free(data);
+                data = nullptr;
+            }
+            if(funcName != nullptr)
+            {
+                free(funcName);
+                funcName = nullptr;
+            }
         }
         //pthread_mutex_unlock(&simLock);
 
         usleep(10);
-        if(data != nullptr)
-        {
-            free(data);
-            data = nullptr;
-        }
-        if(funcName != nullptr)
-        {
-            free(funcName);
-            funcName = nullptr;
-        }
+
     }
 }
 /*

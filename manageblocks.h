@@ -63,6 +63,13 @@ class Simulate;
 
 class BlockIO;
 
+typedef struct CTree {
+    BlockIO *blockIO;
+    std::vector <struct CTree *> child;
+    struct CTree *parent;
+} CTree_t;
+
+
 
 class BlockInfo
 {
@@ -128,6 +135,9 @@ public:
     void setBlockEnable(int type, int id, bool flagEn);
 
     QGroupBox* getBlock(int type, int id);
+
+    //void createConnectionTree();
+    void generateCodeIter(CTree_t *cTree);
 
 
 
@@ -212,6 +222,7 @@ public:
 
     std::vector <BlockIO *> blockIO;
 
+    CTree_t *connTree;
 };
 
 #endif // MANAGEBLOCKS_H

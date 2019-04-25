@@ -433,9 +433,9 @@ void BlockScene::connectDesignToBackend(int i){
         manageBlocks->generateXYBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 17){
-        varOut = manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
-        manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
-        manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
+        //varOut = manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
+        //manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
+        //manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 18){
         varOut = manageBlocks->deMuxBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
@@ -516,8 +516,8 @@ void BlockScene::connectDesignToBackend(int i){
         varIn = manageBlocks->generateXYBlock[edge[i]->destNode()->gettypeId()]->leName->text();
     }
     else if(int(edge[i]->destNode()->getBlockType()) == 17){
-        manageBlocks->generateMainBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        varIn = manageBlocks->generateMainBlock[edge[i]->destNode()->gettypeId()]->leName->text();
+        //manageBlocks->generateMainBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
+        //varIn = manageBlocks->generateMainBlock[edge[i]->destNode()->gettypeId()]->leName->text();
     }
     else if(int(edge[i]->destNode()->getBlockType()) == 18){
         manageBlocks->deMuxBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
@@ -542,8 +542,8 @@ void BlockScene::connectDesignToBackend(int i){
     }
 
     if(int(edge[i]->sourceNode()->getBlockType()) == 17){
-        manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
-        manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->teScript->append(varIn /*+ "(data);"*/);
+        //manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
+        //manageBlocks->generateMainBlock[edge[i]->sourceNode()->gettypeId()]->teScript->append(varIn /*+ "(data);"*/);
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 18){
         manageBlocks->deMuxBlock[edge[i]->sourceNode()->gettypeId()]->lblOutConToBlock[edge[i]->sourceNode()->getNumber()]->setText(varIn);
@@ -573,12 +573,99 @@ void BlockScene::runDesign(){
     }
 
     if(1/*flagRun*/){
+        createConnectionTree();
+        iterateConnTree(manageBlocks->connTree);
         manageBlocks->runDesign();
         emit outputTextReady("<font color='green'>Program compiled successfully </font>");
     }
     else{
         emit outputTextReady("<font color='red'> Error! " + QString::number(unconnectedNodes) +  " unconnected nodes </font>");
         manageBlocks->resetOutputs();
+    }
+}
+
+void BlockScene::createConnTreeIter(CTree_t *cTree)
+{
+    if(cTree->blockIO->numOfOutputs <= 0)
+    {
+        return;
+    }
+
+    for(int i = 0; i < countEdge; i++)
+    {
+        if(!edge[i]->isEnabledOnScreen() ||
+                edge[i]->sourceNode()->getBlockType() != cTree->blockIO->getType() ||
+                edge[i]->sourceNode()->gettypeId() !=  cTree->blockIO->getId()
+                )
+        {
+            continue;
+        }
+
+        for(size_t j = 0; j < manageBlocks->blockIO.size(); j++)
+        {
+            if(int(edge[i]->destNode()->getBlockType()) != manageBlocks->blockIO.at(j)->type ||
+                    edge[i]->destNode()->gettypeId() != manageBlocks->blockIO.at(j)->getId())
+            {
+                continue;
+            }
+
+            CTree_t *tmpTree = new CTree_t[1];
+            tmpTree->parent = cTree;
+            tmpTree->blockIO = manageBlocks->blockIO.at(j);
+
+            cTree->child.push_back(tmpTree);
+
+            createConnTreeIter(cTree->child.at(cTree->child.size() - 1));
+        }
+    }
+}
+
+void BlockScene::createConnectionTree()
+{
+    for (size_t i = 0; i < manageBlocks->blockIO.size(); i++)
+    {
+        if(manageBlocks->blockIO.at(i)->getType() != BlockItem::MainBlock ||
+                !manageBlocks->blockIO.at(i)->isBlockEnabled())
+        {
+            continue;
+        }
+
+        if(manageBlocks->connTree == nullptr)
+        {
+            manageBlocks->connTree = new CTree_t[1];
+            manageBlocks->connTree->parent = nullptr;
+            manageBlocks->connTree->blockIO = nullptr;
+        }
+
+        CTree_t *tmpTree = new CTree_t[1];
+        tmpTree->parent = nullptr;
+        tmpTree->blockIO = manageBlocks->blockIO.at(i);
+
+        manageBlocks->connTree->child.push_back(tmpTree);
+
+        createConnTreeIter(manageBlocks->connTree->child.at(manageBlocks->connTree->child.size() - 1));
+    }
+}
+
+void BlockScene::iterateConnTree(CTree_t *cTree)
+{
+    if(cTree->blockIO != nullptr)
+    {
+        cout << " Block " << cTree->blockIO->leName->text().toStdString() << endl;
+    }
+    if(cTree->parent != nullptr && cTree->parent->blockIO != nullptr)
+    {
+        cout << " Parent " << cTree->parent->blockIO->leName->text().toStdString() << endl << endl;
+    }
+
+    if(cTree->child.size() == 0)
+    {
+        return;
+    }
+
+    for(size_t i = 0; i < cTree->child.size(); i++)
+    {
+        iterateConnTree(cTree->child.at(i));
     }
 }
 

@@ -26,6 +26,8 @@ ManageBlocks::ManageBlocks()
     countNetworkClientBlock = 0;
     countNetworkServerBlock = 0;
 
+    connTree = nullptr;
+
     simulate = new Simulate(this);
 }
 
@@ -239,17 +241,19 @@ QGroupBox* ManageBlocks::addGenerateXYBlock(){
 }
 
 QGroupBox* ManageBlocks::addGenerateMainBlock(){
-    generateMainBlock[countgenerateMainBlock] = new MainBlock(countgenerateMainBlock);
-    generateMainBlock[countgenerateMainBlock]->leName->setText("MainBlock_" + QString::number(countgenerateMainBlock));
-    for(int i = 0; i < generateMainBlock[countgenerateMainBlock]->numOfOutputs; i++)
+    MainBlock *ab = new MainBlock(countgenerateMainBlock);
+    //generateMainBlock[countgenerateMainBlock] = new MainBlock(countgenerateMainBlock);
+    ab->leName->setText("MainBlock_" + QString::number(countgenerateMainBlock));
+    for(int i = 0; i < ab->numOfOutputs; i++)
     {
-        generateMainBlock[countgenerateMainBlock]->lblOutData[0]->setText("MainBlock_" + QString::number(countgenerateMainBlock) + "_" + QString::number(i));
+        ab->lblOutData[0]->setText("MainBlock_" + QString::number(countgenerateMainBlock) + "_" + QString::number(i));
     }
 
     countgenerateMainBlock++;
 
+    blockIO.push_back(ab);
 
-    return generateMainBlock[countgenerateMainBlock - 1]->groupBox;
+    return ab->groupBox;
 
 }
 
@@ -308,6 +312,11 @@ QGroupBox* ManageBlocks::addNetworkServerBlock(int nIn, int nOut){
     blockIO.push_back(ab);
 
     return ab->groupBox;
+}
+
+void ManageBlocks::generateCodeIter(CTree_t *cTree)
+{
+
 }
 
 void ManageBlocks::generateCode()
@@ -409,9 +418,13 @@ void ManageBlocks::generateCode()
 }
 
 void ManageBlocks::runDesign(){
-
-    if(generateMainBlock[0] != nullptr)
-        generateCode();
+    if(connTree->child.size() > 0)
+    {
+        generateCodeIter(connTree);
+    }
+    //if(generateMainBlock[0] != nullptr)
+        //generateCode();
+    //createConnectionTree();
 
     /* int maxIter = 100;
     int readMultiFileLoop = 0;
@@ -583,8 +596,8 @@ void ManageBlocks::reset(){
     }
 
     for(int i = 0; i < countgenerateMainBlock; i++){
-        generateMainBlock[i]->reset();
-        generateMainBlock[i]->resetHeader();
+        //generateMainBlock[i]->reset();
+        //generateMainBlock[i]->resetHeader();
     }
 
     for(int i = 0; i < countDeMuxBlock; i++){
@@ -1333,7 +1346,7 @@ QGroupBox* ManageBlocks::getBlock(int type, int id){
         return generateXYBlock[id]->groupBox;
     }
     else if(type == 17){
-        return generateMainBlock[id]->groupBox;
+        //return generateMainBlock[id]->groupBox;
     }
     else if(type == 18){
         return deMuxBlock[id]->groupBox;
@@ -1392,7 +1405,7 @@ void ManageBlocks::setBlockEnable(int type, int id, bool flagEn){
         generateXYBlock[id]->setBlockEnabled(flagEn);
     }
     else if(type == 17){
-        generateMainBlock[id]->setBlockEnabled(flagEn);
+        //generateMainBlock[id]->setBlockEnabled(flagEn);
     }
     else if(type == 18){
         deMuxBlock[id]->setBlockEnabled(flagEn);
@@ -1406,3 +1419,5 @@ void ManageBlocks::stop()
 {
     simulate->stop();
 }
+
+
