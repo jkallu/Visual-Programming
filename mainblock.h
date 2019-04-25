@@ -16,8 +16,8 @@ public:
 
     void generateCode(QString dir) override;
     void init() override;
+    void addHeader(QString header) override;
 
-    void addHeader(QString header);
     void resetHeader();
     void generateMakefile(QString dir);
     void preprocessScript();

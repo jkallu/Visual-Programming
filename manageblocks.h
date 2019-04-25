@@ -137,7 +137,7 @@ public:
     QGroupBox* getBlock(int type, int id);
 
     //void createConnectionTree();
-    void generateCodeIter(CTree_t *cTree);
+    void generateCodeIter(CTree_t *cTree, CTree_t *main);
 
 
 

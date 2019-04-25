@@ -314,9 +314,46 @@ QGroupBox* ManageBlocks::addNetworkServerBlock(int nIn, int nOut){
     return ab->groupBox;
 }
 
-void ManageBlocks::generateCodeIter(CTree_t *cTree)
+void ManageBlocks::generateCodeIter(CTree_t *cTree, CTree_t *main)
 {
+    QString dir = "../Node/nodegencodes/"; /// must rewrite
 
+    if(cTree->blockIO->getType() != BlockItem::MainBlock)
+    {
+        cTree->blockIO->generateCode(dir);
+        main->blockIO->addHeader(cTree->blockIO->leName->text());
+        simulate->addSource(cTree->blockIO->leName->text());
+
+        Func_t func;
+        func.funcName = cTree->blockIO->leName->text().toStdString();
+        func.type = cTree->blockIO->getType();
+        func.arrayNum = cTree->blockIO->getId();
+        simulate->func.push_back(func);
+    }
+
+    if(cTree->child.size() <= 0 )
+    {
+        return;
+    }
+
+    for(size_t i = 0; i < cTree->child.size(); i++)
+    {
+        generateCodeIter(cTree->child.at(i), main);
+    }
+
+    if(cTree->blockIO->getType() == BlockItem::MainBlock)
+    {
+        cTree->blockIO->generateCode(dir);
+
+        Func_t func;
+        func.funcName = cTree->blockIO->leName->text().toStdString();
+        func.type = cTree->blockIO->getType();
+        func.arrayNum = cTree->blockIO->getId();
+        simulate->func.push_back(func);
+
+
+        simulate->start((char*)cTree->blockIO->lblOutConToBlock[0]->text().toStdString().c_str(), dir);
+    }
 }
 
 void ManageBlocks::generateCode()
@@ -418,12 +455,12 @@ void ManageBlocks::generateCode()
 }
 
 void ManageBlocks::runDesign(){
-    if(connTree->child.size() > 0)
+    for(size_t i = 0; i < connTree->child.size(); i++)
     {
-        generateCodeIter(connTree);
+        generateCodeIter(connTree->child.at(i), connTree->child.at(i));
     }
     //if(generateMainBlock[0] != nullptr)
-        //generateCode();
+    //generateCode();
     //createConnectionTree();
 
     /* int maxIter = 100;

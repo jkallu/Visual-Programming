@@ -89,6 +89,11 @@ void BlockIO::generateCode(QString dir)
 
 }
 
+void BlockIO::addHeader(QString header)
+{
+
+}
+
 void BlockIO::setData(char *data)
 {
     /*
