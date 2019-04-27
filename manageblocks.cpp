@@ -249,7 +249,7 @@ QGroupBox* ManageBlocks::addGenerateMainBlock(){
     {
         ab->lblOutData[0]->setText("MainBlock_" + QString::number(countgenerateMainBlock) + "_" + QString::number(i));
     }
-
+    ab->leDir->setText("../Node/nodegencodes/");
     countgenerateMainBlock++;
 
     blockIO.push_back(ab);
@@ -317,14 +317,14 @@ QGroupBox* ManageBlocks::addNetworkServerBlock(int nIn, int nOut){
 
 void ManageBlocks::generateCodeIter(CTree_t *cTree, CTree_t *main)
 {
-    QString dir = "../Node/nodegencodes/"; /// must rewrite
+    //QString dir = "../Node/nodegencodes/"; /// must rewrite
 
     if(cTree->blockIO->getType() != BlockItem::MainBlock
             && !listBlock.contains(cTree->blockIO->leName->text()))
     {
         if(cTree->blockIO->getType() != BlockItem::Graph)
         {
-            cTree->blockIO->generateCode(dir);
+            cTree->blockIO->generateCode(main->blockIO->getDir());
             main->blockIO->addHeader(cTree->blockIO->leName->text());
             simulate->addSource(cTree->blockIO->leName->text());
         }
@@ -350,7 +350,7 @@ void ManageBlocks::generateCodeIter(CTree_t *cTree, CTree_t *main)
 
     if(cTree->blockIO->getType() == BlockItem::MainBlock)
     {
-        cTree->blockIO->generateCode(dir);
+        cTree->blockIO->generateCode(main->blockIO->getDir());
 
         Func_t func;
         func.funcName = cTree->blockIO->leName->text().toStdString();
@@ -359,7 +359,8 @@ void ManageBlocks::generateCodeIter(CTree_t *cTree, CTree_t *main)
         simulate->func.push_back(func);
 
 
-        simulate->start((char*)cTree->blockIO->lblOutConToBlock[0]->text().toStdString().c_str(), dir);
+        simulate->start((char*)cTree->blockIO->lblOutConToBlock[0]->text().toStdString().c_str(),
+                main->blockIO->getDir(), main->blockIO->leName->text() + ".so");
     }
 }
 
@@ -454,7 +455,7 @@ void ManageBlocks::generateCode()
             simulate->func.push_back(func);
 
 
-            simulate->start((char*)generateMainBlock[i]->lblOutConToBlock[0]->text().toStdString().c_str(), dir);
+            simulate->start((char*)generateMainBlock[i]->lblOutConToBlock[0]->text().toStdString().c_str(), dir, generateMainBlock[i]->leName->text());
         }
     }
 

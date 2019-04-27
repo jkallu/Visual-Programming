@@ -44,8 +44,8 @@ class Simulate
 {
 public:
     Simulate(ManageBlocks *mBlk);
-    void createLib(QString dir);
-    void start(char *callFunc, QString dir);
+    void createLib(QString dir, QString libName);
+    void start(char *callFunc, QString dir, QString libName);
     void stop();
     void addSource(QString src);
     Func_t getFunc(string funcName);

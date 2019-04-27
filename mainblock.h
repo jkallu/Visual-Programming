@@ -17,6 +17,7 @@ public:
     void generateCode(QString dir) override;
     void init() override;
     void addHeader(QString header) override;
+    QString getDir() override;
 
     void resetHeader();
     void generateMakefile(QString dir);
@@ -26,6 +27,9 @@ public:
 
     QTextEdit *teScript;
     QLabel *lblScript;
+
+    QLabel *lblDir;
+    QLineEdit *leDir;
 
     QString strHeader, strSources;
 

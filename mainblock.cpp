@@ -8,8 +8,14 @@ MainBlock::MainBlock(int i):
 
 void MainBlock::init()
 {
+    lblDir = new QLabel("Directory");
+    leDir = new QLineEdit;
+
     lblScript = new QLabel("Script");
     teScript = new QTextEdit;
+
+    boxLayout->addWidget(lblDir);
+    boxLayout->addWidget(leDir);
 
     boxLayout->addWidget(lblScript);
     boxLayout->addWidget(teScript);
@@ -39,6 +45,11 @@ void MainBlock::generateCode(QString dir)
     generateMakefile(dir);
     generateQtProjFile(dir);
     createEventLoopFiles(dir);
+}
+
+QString MainBlock::getDir()
+{
+    return leDir->text();
 }
 
 void MainBlock::preprocessScript()

@@ -31,16 +31,16 @@ void Simulate::addSource(QString src)
     sourceList.append(src + " ");
 }
 
-void Simulate::createLib(QString dir)
+void Simulate::createLib(QString dir, QString libName)
 {
     cout << "CREATING LIBS\n";
     QStringList list = sourceList.split(QRegExp("\\s+"), QString::SkipEmptyParts);
     QString path;
 
-    path = "rm -f libmylib.so";
+    path = "rm -f " + libName;
     if(system(path.toStdString().c_str()) == -1)
     {
-        cout << "No prev libmylib.so found\n";
+        cout << "No prev " + libName.toStdString() + " found\n";
     }
 
     path = "rm -f eventLoop.o";
@@ -100,7 +100,7 @@ void Simulate::createLib(QString dir)
         }
     }
 
-    path = "gcc -shared -o libmylib.so eventLoop.o ";
+    path = "gcc -shared -o " + libName + " eventLoop.o ";
     for(int i = 0; i < list.size(); i++)
     {
         path += list.at(i) + ".o ";
@@ -113,16 +113,16 @@ void Simulate::createLib(QString dir)
     }
 }
 
-void Simulate::start(char *callFunc, QString dir)
+void Simulate::start(char *callFunc, QString dir, QString libName)
 {
-    createLib(dir);
+    createLib(dir, libName);
 
     printf("Main thread start\n");
     char *error;
 
     void (*exec)(char *, pthread_mutex_t *, char, PData_t **);
 
-    handle = dlopen ("./libmylib.so", RTLD_LAZY);
+    handle = dlopen (QString("./" + libName ).toStdString().c_str(), RTLD_LAZY);
     if (!handle) {
         fprintf(stderr, "dlopen failed: %s\n", dlerror());
         return;

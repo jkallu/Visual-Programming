@@ -23,6 +23,7 @@ public:
     virtual void generateCode(QString dir);
     virtual void init();
     virtual void addHeader(QString header);
+    virtual QString getDir();
 
     double **in, **out;
     void createIOArray(int io, int num, size_t size); // io  =  0 for input, 1 for output, num is the the index of io

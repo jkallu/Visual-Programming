@@ -94,6 +94,11 @@ void BlockIO::addHeader(QString header)
 
 }
 
+QString BlockIO::getDir()
+{
+    return "";
+}
+
 void BlockIO::setData(char *data)
 {
     /*
