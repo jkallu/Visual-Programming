@@ -443,9 +443,9 @@ void BlockScene::connectDesignToBackend(int i){
         manageBlocks->deMuxBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
     }
     else if(int(edge[i]->sourceNode()->getBlockType()) == 19){
-        varOut = manageBlocks->localProcedureBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
-        manageBlocks->localProcedureBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
-        manageBlocks->localProcedureBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
+        //varOut = manageBlocks->localProcedureBlock[edge[i]->sourceNode()->gettypeId()]->lblOutData[edge[i]->sourceNode()->getNumber()]->text();
+        //manageBlocks->localProcedureBlock[edge[i]->sourceNode()->gettypeId()]->conToIONum[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getNumber();
+        //manageBlocks->localProcedureBlock[edge[i]->sourceNode()->gettypeId()]->conToTotIns[edge[i]->sourceNode()->getNumber()] = edge[i]->destNode()->getTotIns();
     }
 
     // set output name to inputs and copy inputs name
@@ -463,8 +463,8 @@ void BlockScene::connectDesignToBackend(int i){
     }
 
     if(int(edge[i]->destNode()->getBlockType()) == 3){
-        manageBlocks->graphs[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        varIn = manageBlocks->graphs[edge[i]->destNode()->gettypeId()]->leName->text();
+        //manageBlocks->graphs[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
+        //varIn = manageBlocks->graphs[edge[i]->destNode()->gettypeId()]->leName->text();
     }
     else if(int(edge[i]->destNode()->getBlockType()) == 5){
         manageBlocks->adderBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
@@ -525,8 +525,8 @@ void BlockScene::connectDesignToBackend(int i){
     }
 
     else if(int(edge[i]->destNode()->getBlockType()) == 19){
-        manageBlocks->localProcedureBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
-        varIn = manageBlocks->localProcedureBlock[edge[i]->destNode()->gettypeId()]->leName->text();
+        //manageBlocks->localProcedureBlock[edge[i]->destNode()->gettypeId()]->lblInData[edge[i]->destNode()->getNumber()]->setText(varOut);
+        //varIn = manageBlocks->localProcedureBlock[edge[i]->destNode()->gettypeId()]->leName->text();
     }
 
     // set input name to output (right node name to left)

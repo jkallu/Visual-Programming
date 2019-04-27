@@ -225,9 +225,9 @@ void * Simulate::simLoop(void *simLoopD)
                 Func_t func = sim->getFunc(funcName);
                 switch (func.type)
                 {
-                case BlockItem::BlockType::Graph:
-                    sim->mBlocks->graphs[func.arrayNum]->setData(data);
-                    break;
+                //case BlockItem::BlockType::Graph:
+                //    sim->mBlocks->graphs[func.arrayNum]->setData(data);
+                //    break;
                 default:
                     for(size_t i = 0; i < sim->mBlocks->blockIO.size(); i++)
                     {
@@ -236,26 +236,30 @@ void * Simulate::simLoop(void *simLoopD)
                         {
 
 
-
-                            //data_out = new char*[sim->mBlocks->blockIO.at(i)->numOfInputs];
-                            for(int j = -1; j < sim->mBlocks->blockIO.at(i)->numOfInputs; j++)
-                            {
-                                Types type = Types::PACK_COUNT_MAX;
-                                size_t size = 0;
-                                char *data_out = nullptr;
-
-                                getData(j, data, &type, &size, &data_out);
-
-                                if(size > 0)
+                            //if(func.type == BlockItem::Graph || func.type == BlockItem::Split)
+                            //{
+                                sim->mBlocks->blockIO.at(i)->setData(data);
+                            //}
+                            //else
+                            /*{
+                                for(int j = -1; j < sim->mBlocks->blockIO.at(i)->numOfInputs; j++)
                                 {
+                                    Types type = Types::PACK_COUNT_MAX;
+                                    size_t size = 0;
+                                    char *data_out = nullptr;
 
-                                    QMetaObject::invokeMethod(sim->mBlocks->blockIO.at(i)->teData, "append",
-                                                              Q_ARG(QString, "SIZE " + QString::number(size)));
-                                    switch(type)
+                                    getData(j, data, &type, &size, &data_out);
+
+                                    if(size > 0)
                                     {
+
+                                        QMetaObject::invokeMethod(sim->mBlocks->blockIO.at(i)->teData, "append",
+                                                                  Q_ARG(QString, "SIZE " + QString::number(size)));
+                                        switch(type)
+                                        {
                                         case Types::Pack_func:
                                             QMetaObject::invokeMethod(sim->mBlocks->blockIO.at(i)->teData, "append",
-                                                                  Q_ARG(QString, "FUNCTION NAME " + QString::fromStdString(data_out)));
+                                                                      Q_ARG(QString, "FUNCTION NAME " + QString::fromStdString(data_out)));
                                             break;
                                         case Types::Pack_Float:
                                             float d_f;
@@ -263,30 +267,31 @@ void * Simulate::simLoop(void *simLoopD)
                                             {
                                                 memcpy(&d_f, data + k * sizeof (d_f), sizeof (d_f));
                                                 QMetaObject::invokeMethod(sim->mBlocks->blockIO.at(i)->teData, "append",
-                                                                      Q_ARG(QString, "DATA_ " + QString::number(k) + " " + QString::number(d_f)));
+                                                                          Q_ARG(QString, "DATA_ " + QString::number(k) + " " + QString::number(d_f)));
 
                                             }
-                                        break;
+                                            break;
                                         case Types::Pack_Int:
                                             int d_i;
                                             for(int k = 0; k < size; k++)
                                             {
                                                 memcpy(&d_i, data + k * sizeof (d_i), sizeof (d_i));
                                                 QMetaObject::invokeMethod(sim->mBlocks->blockIO.at(i)->teData, "append",
-                                                                      Q_ARG(QString, "DATA_ " + QString::number(k) + " " + QString::number(d_i)));
+                                                                          Q_ARG(QString, "DATA_ " + QString::number(k) + " " + QString::number(d_i)));
 
                                             }
-                                        break;
+                                            break;
+                                        }
+
                                     }
 
+                                    if(data_out != nullptr || data_out != NULL)
+                                    {
+                                        free(data_out);
+                                        data_out = nullptr;
+                                    }
                                 }
-
-                                if(data_out != nullptr || data_out != NULL)
-                                {
-                                    free(data_out);
-                                    data_out = nullptr;
-                                }
-                            }
+                            }*/
 
 
                             break;

@@ -223,6 +223,7 @@ public:
     std::vector <BlockIO *> blockIO;
 
     CTree_t *connTree;
+    QStringList listBlock;
 };
 
 #endif // MANAGEBLOCKS_H

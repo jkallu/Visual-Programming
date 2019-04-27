@@ -11,6 +11,7 @@ public:
 
     void init() override;
     void generateCode(QString dir) override;
+    //void setData(char *data) override;
 
     void generateOutputs();
 

@@ -102,7 +102,7 @@ void BlockIO::setData(char *data)
     strTypes[Types::Pack_Float] = "float";
     strTypes[Types::Pack_Double] = "double";
     strTypes[Types::Pack_Char] = "char";
-    */
+
 
     Types type = Types::Pack_func;
     size_t size = 0;
@@ -120,7 +120,51 @@ void BlockIO::setData(char *data)
         teData->append("Size " + QString::number(size) + "\n");
         //teData->append("Size " + QString::number(size) + "\n");
     }
+*/
+    for(int j = -1; j < numOfInputs; j++)
+    {
+        Types type = Types::PACK_COUNT_MAX;
+        size_t size = 0;
+        char *data_out = nullptr;
 
+        getData(j, data, &type, &size, &data_out);
+
+        if(size > 0)
+        {
+            QString strData;
+            teData->append("SIZE " + QString::number(size));
+            switch(type)
+            {
+            case Types::Pack_func:
+                teData->append("FUNCTION NAME " + QString::fromStdString(data_out));
+                break;
+            case Types::Pack_Float:
+                float d_f;
+                for(int k = 0; k < size; k++)
+                {
+                    memcpy(&d_f, data + k * sizeof (d_f), sizeof (d_f));
+                    strData.append("DATA_ " + QString::number(k) + " " + QString::number(d_f) + "\n");
+                }
+                teData->append(strData);
+                break;
+            case Types::Pack_Int:
+                int d_i;
+                for(int k = 0; k < size; k++)
+                {
+                    memcpy(&d_i, data + k * sizeof (d_i), sizeof (d_i));
+                    strData.append("DATA_ " + QString::number(k) + " " + QString::number(d_i) + "\n");
+                }
+                teData->append(strData);
+                break;
+            }
+        }
+
+        if(data_out != nullptr || data_out != NULL)
+        {
+            free(data_out);
+            data_out = nullptr;
+        }
+    }
 
 }
 

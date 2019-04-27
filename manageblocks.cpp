@@ -60,12 +60,13 @@ QGroupBox* ManageBlocks::addExpressionBlock(){
 }
 
 QGroupBox* ManageBlocks::addGraphBlock(){
-    graphs[countGraphs] = new Graph(countGraphs);
-    graphs[countGraphs]->leName->setText("Graph_" + QString::number(countGraphs));
+    Graph *ab = new Graph(countGraphs);
+    ab->leName->setText("Graph_" + QString::number(countGraphs));
 
     countGraphs++;
 
-    return graphs[countGraphs - 1]->groupBox;
+    blockIO.push_back(ab);
+    return ab->groupBox;
 }
 
 QGroupBox* ManageBlocks::addContArrayBlock(int nIn, int nOut){
@@ -271,17 +272,17 @@ QGroupBox* ManageBlocks::addDeMuxBlock(int nIn, int nOut){
     return deMuxBlock[countDeMuxBlock - 1]->groupBox;
 }
 QGroupBox* ManageBlocks::addLocalProcedureBlock(int nIn, int nOut){
-    localProcedureBlock[countlocalProcedureBlock] = new LocalProcedureBlock(countlocalProcedureBlock, nIn, nOut);
-    localProcedureBlock[countlocalProcedureBlock]->leName->setText("LocalProcedureBlock_" + QString::number(countlocalProcedureBlock));
-    for(int i = 0; i < localProcedureBlock[countlocalProcedureBlock]->numOfOutputs; i++)
+    LocalProcedureBlock *ab = new LocalProcedureBlock(countlocalProcedureBlock, nIn, nOut);
+    ab->leName->setText("LocalProcedureBlock_" + QString::number(countlocalProcedureBlock));
+    for(int i = 0; i < ab->numOfOutputs; i++)
     {
-        localProcedureBlock[countlocalProcedureBlock]->lblOutData[i]->setText("LocalProcedureBlock_" + QString::number(countlocalProcedureBlock) + "_" + QString::number(i));
+        ab->lblOutData[i]->setText("LocalProcedureBlock_" + QString::number(countlocalProcedureBlock) + "_" + QString::number(i));
     }
 
     countlocalProcedureBlock++;
+    blockIO.push_back(ab);
 
-
-    return localProcedureBlock[countlocalProcedureBlock - 1]->groupBox;
+    return ab->groupBox;
 }
 
 QGroupBox* ManageBlocks::addNetworkClientBlock(int nIn, int nOut){
@@ -318,17 +319,23 @@ void ManageBlocks::generateCodeIter(CTree_t *cTree, CTree_t *main)
 {
     QString dir = "../Node/nodegencodes/"; /// must rewrite
 
-    if(cTree->blockIO->getType() != BlockItem::MainBlock)
+    if(cTree->blockIO->getType() != BlockItem::MainBlock
+            && !listBlock.contains(cTree->blockIO->leName->text()))
     {
-        cTree->blockIO->generateCode(dir);
-        main->blockIO->addHeader(cTree->blockIO->leName->text());
-        simulate->addSource(cTree->blockIO->leName->text());
+        if(cTree->blockIO->getType() != BlockItem::Graph)
+        {
+            cTree->blockIO->generateCode(dir);
+            main->blockIO->addHeader(cTree->blockIO->leName->text());
+            simulate->addSource(cTree->blockIO->leName->text());
+        }
 
         Func_t func;
         func.funcName = cTree->blockIO->leName->text().toStdString();
         func.type = cTree->blockIO->getType();
         func.arrayNum = cTree->blockIO->getId();
         simulate->func.push_back(func);
+
+        listBlock.append(cTree->blockIO->leName->text());
     }
 
     if(cTree->child.size() <= 0 )
@@ -457,7 +464,10 @@ void ManageBlocks::generateCode()
 void ManageBlocks::runDesign(){
     for(size_t i = 0; i < connTree->child.size(); i++)
     {
-        generateCodeIter(connTree->child.at(i), connTree->child.at(i));
+        if(connTree->child.at(i)->blockIO->getType() == BlockItem::MainBlock)
+        {
+            generateCodeIter(connTree->child.at(i), connTree->child.at(i));
+        }
     }
     //if(generateMainBlock[0] != nullptr)
     //generateCode();
