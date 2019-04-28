@@ -20,7 +20,7 @@ GLWidget::~GLWidget(){
 }
 
 QSize GLWidget::sizeHint() const{
-    return QSize(640, 480);
+    return QSize(200, 200);
 }
 
 void GLWidget::initializeGL(){

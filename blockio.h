@@ -24,6 +24,7 @@ public:
     virtual void init();
     virtual void addHeader(QString header);
     virtual QString getDir();
+    virtual void setData(char *data);
 
     double **in, **out;
     void createIOArray(int io, int num, size_t size); // io  =  0 for input, 1 for output, num is the the index of io
@@ -51,9 +52,10 @@ public:
     Condition condition;
 
     BlockItem::BlockType type;
+    QStringList listType;
 
 //public slots:
-    virtual void setData(char *data);
+
 //signals:
   //  void dataChanged(char *data);
 };

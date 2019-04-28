@@ -87,7 +87,7 @@ void Graph::setData(char *data)
             float d = 0;
             memcpy(&d, data_0 + i * sizeof (d), sizeof (d));
             in[0][i] = d;
-            qDebug() << i << " " << d << endl;
+            //qDebug() << i << " " << d << endl;
             flagIn[0] = true;
             add += sizeof (d);
         }

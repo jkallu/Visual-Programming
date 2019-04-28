@@ -76,6 +76,11 @@ BlockIO::BlockIO(int id_l, int numOfIn, int numOfOut, BlockItem::BlockType typ):
         flagOut[i] = false;
     }
 
+    for(int i = 0; i < PACK_COUNT_MAX; i++)
+    {
+        listType.append(QString::fromStdString(getTypeString((enum Types)i)));
+    }
+
     //connect(this, SIGNAL(dataChanged(char *)), this, SLOT(setData(char *)));
 }
 
@@ -118,7 +123,8 @@ void BlockIO::setData(char *data)
 
         if(size > 0)
         {
-            strData.append("SIZE " + QString::number(size) + "\n");
+            strData.append("Type " + listType.at((int)type) + "\n");
+            strData.append("Size " + QString::number(size) + "\n");
 
             switch(type)
             {
@@ -129,9 +135,9 @@ void BlockIO::setData(char *data)
             }
             case Types::Pack_Int:
             {
+                int d = 0;
                 for(size_t i = 0; i < size; i++)
                 {
-                    int d = 0;
                     memcpy(&d, data_out + i * sizeof (d), sizeof (d));
                     strData.append("DATA_ " + QString::number(i) + " " + QString::number(d) + "\n");
                 }
@@ -140,9 +146,20 @@ void BlockIO::setData(char *data)
             }
             case Types::Pack_Float:
             {
+                float d = 0;
                 for(size_t i = 0; i < size; i++)
                 {
-                    float d = 0;
+                    memcpy(&d, data_out + i * sizeof (d), sizeof (d));
+                    strData.append("DATA_ " + QString::number(i) + " " + QString::number(d) + "\n");
+                }
+                strData.append("\n");
+                break;
+            }
+            case Types::Pack_Double:
+            {
+                double d = 0;
+                for(size_t i = 0; i < size; i++)
+                {
                     memcpy(&d, data_out + i * sizeof (d), sizeof (d));
                     strData.append("DATA_ " + QString::number(i) + " " + QString::number(d) + "\n");
                 }

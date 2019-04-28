@@ -314,11 +314,20 @@ char *getTypeString(enum Types type)
 {
     switch (type)
     {
+        case Pack_Char:
+            return "char";
+        case Pack_uChar:
+            return "uchar";
         case Pack_Int:
             return "int";
         case Pack_Float:
             return "float";
         case Pack_Double:
             return "double";
+        case Pack_func:
+            return "Pack_func";
+
+    default:
+        return "";
     }
 }
