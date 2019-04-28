@@ -37,8 +37,15 @@ int searchFunc(char *funcName)
     return 0;
 }
 
-void pushSim(PData_t **head, char *data)
+void pushSim(PData_t **head, char *data, pthread_mutex_t *sLock)
 {
+    printf("\nTRYING TO LOCK MUTEX %s\n", __FUNCTION__);
+    while(pthread_mutex_trylock(sLock))
+    {
+        printf("\rTRYING TO LOCK SIM MUTEX %s", __FUNCTION__);
+    }
+    printf("\nLOCKED SIM MUTEX %s\n", __FUNCTION__);
+
     if(*head == NULL)
     {
         printf("PUSHING TO EMPTY\n");
@@ -69,6 +76,8 @@ void pushSim(PData_t **head, char *data)
     //(*current)->nInsFilled = nov;
     (*head)->next = NULL;
     printf("Data pushed to SIM\n");
+
+    pthread_mutex_unlock(sLock);
 }
 
 // Adding item to the end of the list

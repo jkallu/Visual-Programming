@@ -31,7 +31,7 @@ int searchFunc(char *funcName);
 PData_t ** findPosOfLastFilled();
 void appendData(char *funcName, char noIn, char nov, char *data);
 void pushToEnd(char *funcName, char noIn, char nov, char *data);
-void pushSim(PData_t **head, char *data);
+void pushSim(PData_t **head, char *data, pthread_mutex_t *sLock);
 void pushToBegin(PData_t **head, char *data);
 void localProcedureCall(char *funcName, char noIn, char nov, char *data);
 void pushAfter(PData_t *prev_node);

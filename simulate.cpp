@@ -214,6 +214,7 @@ void * Simulate::simLoop(void *simLoopD)
         //pthread_mutex_lock(&simLock);
         if(simPData != nullptr)
         {
+            data = nullptr;
             printf("SIZE   FROM SIM %ld\n", simPData->size);
             popFirstSim(&simPData, &data);
 

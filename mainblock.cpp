@@ -249,10 +249,10 @@ void MainBlock::createEventLoopFiles(QString dir)
             "{\n"
 
 
-            "pthread_mutex_lock(simLock);\n"
-            "pushSim(simPData, data);\n"
+            //"pthread_mutex_lock(simLock);\n"
+            "pushSim(simPData, data, simLock);\n"
             "printf(\"SIZE   FROM TH %ld\\n\", (*simPData)->size);\n"
-            "pthread_mutex_unlock(simLock);\n"
+            //"pthread_mutex_unlock(simLock);\n"
             "}\n"
             "if(data != NULL)\n"
             "{\n"

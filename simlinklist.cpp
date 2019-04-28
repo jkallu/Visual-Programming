@@ -8,7 +8,12 @@ pthread_mutex_t simLock = PTHREAD_MUTEX_INITIALIZER;
 
 int popFirstSim(PData_t **head, char **data)
 {
-    pthread_mutex_lock(&simLock);
+    while(pthread_mutex_trylock(&simLock))
+    {
+        printf("\rTRYING TO LOCK MUTEX %s", __FUNCTION__);
+    }
+    printf("\nLOCKED MUTEX %s\n", __FUNCTION__);
+    //pthread_mutex_lock(&simLock);
     //PData_t **head = &gPData;
     if ((*head) == nullptr) {
         *data = nullptr;

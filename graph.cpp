@@ -49,7 +49,7 @@ void Graph::setData(char *data)
     qDebug() << "CREQATING GRAPH INS";
     //resetGL();
     //reset();
-    Types type = Types::Pack_func;
+    Types type = Types::PACK_COUNT_MAX;
     size_t size_0 = 0, size_1 = 0;
     char *data_0 = nullptr, *data_1 = nullptr;
 
@@ -84,16 +84,17 @@ void Graph::setData(char *data)
     {
         for(size_t i = 0; i < size_0; i++)
         {
-            float d;
-            memcpy(&d, data_0 + add, sizeof (float));
+            float d = 0;
+            memcpy(&d, data_0 + i * sizeof (d), sizeof (d));
             in[0][i] = d;
+            qDebug() << i << " " << d << endl;
             flagIn[0] = true;
-            add += sizeof (float);
+            add += sizeof (d);
         }
         add = 0;
         for(size_t i = 0; i < size_1; i++)
         {
-            float d;
+            float d = 0;
             memcpy(&d, data_1 + add, sizeof (float));
             in[1][i] = d;
             flagIn[1] = true;
