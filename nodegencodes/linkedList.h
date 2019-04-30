@@ -43,4 +43,6 @@ int popFirst(char **data);
 int popFilled(char **data);
 void testLinkedListData(void);
 
+char *getDataPack();
+
 #endif // LINKEDLIST_H

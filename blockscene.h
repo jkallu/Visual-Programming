@@ -42,6 +42,7 @@ public:
     void createConnectionTree();
     void createConnTreeIter(CTree_t *cTree);
     void iterateConnTree(CTree_t *cTree);
+    void saveDesign();
 
     QVBoxLayout *vbLayOutProp;
     QSpinBox *sbIns, *sbOuts;

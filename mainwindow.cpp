@@ -281,6 +281,7 @@ void MainWindow::createFileMenu(){
     fileMenu = menuBar()->addMenu(tr("&File"));
     fileMenu->addAction(runAction);
     fileMenu->addAction(stopAction);
+    fileMenu->addAction(saveAction);
 
     itemMenu = menuBar()->addMenu(tr("&Item"));
     itemMenu->addAction(deleteAction);
@@ -293,7 +294,7 @@ void MainWindow::createActions(){
     runAction->setStatusTip(tr("Run"));
     connect(runAction, SIGNAL(triggered()), this, SLOT(run()));
 
-    stopAction = new QAction(QIcon(":/icons/stop.png"), tr("S&un"), this);
+    stopAction = new QAction(QIcon(":/icons/stop.png"), tr("S&top"), this);
     //runAction->setShortcuts(QKeySequence::Quit);
     stopAction->setStatusTip(tr("Stop"));
     connect(stopAction, SIGNAL(triggered()), this, SLOT(stop()));
@@ -302,6 +303,11 @@ void MainWindow::createActions(){
     deleteAction->setShortcut(tr("Delete"));
     deleteAction->setStatusTip(tr("Delete item from diagram"));
     connect(deleteAction, SIGNAL(triggered()), this, SLOT(deleteItem()));
+
+    saveAction = new QAction(QIcon(":/icons/delete.png"), tr("&Save"), this);
+    saveAction->setShortcut(tr("Save"));
+    saveAction->setStatusTip(tr("Save design"));
+    connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
 }
 
 void MainWindow::run(){
@@ -315,6 +321,12 @@ void MainWindow::stop()
     blockScene->stop();
     runToolBar->setEnabled(true);
     stopToolBar->setDisabled(true);
+}
+
+void MainWindow::save()
+{
+    teOuts->append("Saving design...\n");
+    blockScene->saveDesign();
 }
 
 void MainWindow::deleteItem(){

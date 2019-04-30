@@ -139,7 +139,7 @@ public:
     //void createConnectionTree();
     void generateCodeIter(CTree_t *cTree, CTree_t *main);
 
-
+    void deleteConnectTree(CTree_t *cTree);
 
     Graph *graphs[MAX_BLOCKS];
     int countGraphs;

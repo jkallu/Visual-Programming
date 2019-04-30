@@ -315,6 +315,23 @@ QGroupBox* ManageBlocks::addNetworkServerBlock(int nIn, int nOut){
     return ab->groupBox;
 }
 
+void ManageBlocks::deleteConnectTree(CTree_t *cTree)
+{
+    if (cTree != nullptr)
+    {
+        for(size_t i = 0; i < cTree->child.size(); i++)
+        {
+            deleteConnectTree(cTree->child.at(i));
+        }
+        cTree->child.clear();
+        if(cTree != nullptr)
+        {
+            //delete[] cTree;
+            //cTree = nullptr;
+        }
+    }
+}
+
 void ManageBlocks::generateCodeIter(CTree_t *cTree, CTree_t *main)
 {
     //QString dir = "../Node/nodegencodes/"; /// must rewrite

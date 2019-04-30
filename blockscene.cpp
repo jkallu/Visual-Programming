@@ -550,6 +550,20 @@ void BlockScene::connectDesignToBackend(int i){
     }
 }
 
+void BlockScene::saveDesign()
+{
+    if(manageBlocks->connTree != nullptr)
+    {
+        manageBlocks->deleteConnectTree(manageBlocks->connTree);
+    }
+
+    createConnectionTree();
+
+    qDebug() << "START";
+    iterateConnTree(manageBlocks->connTree);
+    qDebug() << "END";
+}
+
 void BlockScene::runDesign(){
     // check for any unconnected nodes
     emit outputTextReady("Compiler started");
@@ -652,6 +666,10 @@ void BlockScene::iterateConnTree(CTree_t *cTree)
     if(cTree->blockIO != nullptr)
     {
         cout << " Block " << cTree->blockIO->leName->text().toStdString() << endl;
+        for(int i = 0; i < cTree->blockIO->numOfOutputs; i++)
+        {
+            cout << "io" << cTree->blockIO->conToIONum[i] << endl;
+        }
     }
     if(cTree->parent != nullptr && cTree->parent->blockIO != nullptr)
     {

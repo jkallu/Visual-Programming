@@ -553,3 +553,8 @@ void testLinkedListData(void)
     printf("****************************************************\n\n");
 }
 
+char *getDataPack()
+{
+
+}
+
