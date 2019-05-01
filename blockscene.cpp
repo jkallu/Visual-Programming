@@ -26,7 +26,7 @@ BlockScene::BlockScene(QMenu *itemMenu, QObject *parent):
 
     vbLayOutProp = new QVBoxLayout();
 
-
+    sbIns = nullptr;
 
 
     auto marginRect = addRect(sceneRect().adjusted(-25000, -25000, 25000, 25000));
@@ -125,6 +125,21 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         return;
     }
 
+    if(sbIns != nullptr)
+    {
+        insertBlock(mouseEvent->scenePos(), sbIns->value(), sbOuts->value());
+    }
+    else
+    {
+        insertBlock(mouseEvent->scenePos(), 0, 0);
+    }
+
+    QGraphicsScene::mousePressEvent(mouseEvent);
+
+}
+
+void BlockScene::insertBlock(QPointF pos, int n_ins, int n_outs)
+{
     switch (myMode) {
     case InsertItem:
 
@@ -138,8 +153,8 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
             countConstant++;
             break;
         case BlockItem::Array:{
-            ins = sbIns->value();
-            outs = sbOuts->value();
+            ins = n_ins;
+            outs = n_outs;
             removeAllWidgetsFromProperties();
             vbLayOutProp->addWidget(manageBlocks->addContArrayBlock(ins, outs), 0);
             typeID = countArray;
@@ -249,15 +264,15 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         case BlockItem::MainBlock:
             removeAllWidgetsFromProperties();
             ins = 0;//sbIns->value();
-            outs = 1;//sbOuts->value();
+            outs = 1;//n_outs;
             vbLayOutProp->addWidget(manageBlocks->addGenerateMainBlock(), 0, 0);
             typeID = countMain;
             countMain++;
             break;
 
         case BlockItem::DeMux:{
-            ins = sbIns->value();
-            outs = sbOuts->value();
+            ins = n_ins;
+            outs = n_outs;
             removeAllWidgetsFromProperties();
             vbLayOutProp->addWidget(manageBlocks->addDeMuxBlock(ins, outs), 0);
             typeID = countDeMux;
@@ -266,8 +281,8 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         }
 
         case BlockItem::LocalProcedure:{
-            ins = sbIns->value();
-            outs = sbOuts->value();
+            ins = n_ins;
+            outs = n_outs;
             removeAllWidgetsFromProperties();
             vbLayOutProp->addWidget(manageBlocks->addLocalProcedureBlock(ins, outs), 0);
             typeID = countLocalProcedure;
@@ -275,8 +290,8 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
             break;
         }
         case BlockItem::NetworkClient:{
-            ins = sbIns->value();
-            outs = sbOuts->value();
+            ins = n_ins;
+            outs = n_outs;
             removeAllWidgetsFromProperties();
             vbLayOutProp->addWidget(manageBlocks->addNetworkClientBlock(ins, outs), 0);
             typeID = countNetworkClient;
@@ -284,8 +299,8 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
             break;
         }
         case BlockItem::NetworkServer:{
-            ins = sbIns->value();
-            outs = sbOuts->value();
+            ins = n_ins;
+            outs = n_outs;
             removeAllWidgetsFromProperties();
             vbLayOutProp->addWidget(manageBlocks->addNetworkServerBlock(ins, outs), 0);
             typeID = countNetworkServer;
@@ -302,7 +317,7 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         connect(blockItem[countBlockItem], SIGNAL(blockItemClicked(BlockItem*,QGraphicsSceneMouseEvent*)), this, SLOT(blockItemClicked(BlockItem*, QGraphicsSceneMouseEvent *)));
         //blockItem[countBlockItem]->setBrush(myItemColor);
         addItem(blockItem[countBlockItem]);
-        blockItem[countBlockItem]->setPos(mouseEvent->scenePos());
+        blockItem[countBlockItem]->setPos(pos);
         emit itemInserted(blockItem[countBlockItem]);
 
 
@@ -310,7 +325,7 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
         break;
 
     case MoveItem:
-        BlockItem *child = dynamic_cast<BlockItem*>(itemAt(mouseEvent->scenePos(), QTransform()));
+        BlockItem *child = dynamic_cast<BlockItem*>(itemAt(pos, QTransform()));
         if(child){
             displayBlockProperties(child->getType(), child->getTypeId());
             //qDebug() << child->getType()<< child->getTypeId();
@@ -319,27 +334,24 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
 
         /*case InsertText:
-            textItem = new DiagramTextItem();
-            textItem->setFont(myFont);
-            textItem->setTextInteractionFlags(Qt::TextEditorInteraction);
-            textItem->setZValue(1000.0);
-            connect(textItem, SIGNAL(lostFocus(DiagramTextItem*)),
-                    this, SLOT(editorLostFocus(DiagramTextItem*)));
-            connect(textItem, SIGNAL(selectedChange(QGraphicsItem*)),
-                    this, SIGNAL(itemSelected(QGraphicsItem*)));
-            addItem(textItem);
-            textItem->setDefaultTextColor(myTextColor);
-            textItem->setPos(mouseEvent->scenePos());
-            emit textInserted(textItem);*/
+        textItem = new DiagramTextItem();
+        textItem->setFont(myFont);
+        textItem->setTextInteractionFlags(Qt::TextEditorInteraction);
+        textItem->setZValue(1000.0);
+        connect(textItem, SIGNAL(lostFocus(DiagramTextItem*)),
+                this, SLOT(editorLostFocus(DiagramTextItem*)));
+        connect(textItem, SIGNAL(selectedChange(QGraphicsItem*)),
+                this, SIGNAL(itemSelected(QGraphicsItem*)));
+        addItem(textItem);
+        textItem->setDefaultTextColor(myTextColor);
+        textItem->setPos(mouseEvent->scenePos());
+        emit textInserted(textItem);*/
         //default:
         //   ;
     }
 
-    //qDebug() << mouseEvent->pos();
-
     QGraphicsScene::update();
 
-    QGraphicsScene::mousePressEvent(mouseEvent);
 
 }
 
@@ -550,6 +562,55 @@ void BlockScene::connectDesignToBackend(int i){
     }
 }
 
+void BlockScene::openDesign(QString fileName)
+{
+    ifstream file(fileName.toStdString());
+
+    if(file.is_open())
+    {
+        string strBlock;
+        int tp, nIns, nOuts;
+        int x, y;
+        QPointF point;
+        BlockItem::BlockType type;
+
+        int lCon, rCon;
+
+        while(file.good())
+        {
+            file >> strBlock >> tp >> nIns >> nOuts >> x >> y;
+
+            point.setX(x);
+            point.setY(y);
+            type = static_cast<BlockItem::BlockType>(tp);
+
+            cout << strBlock << " " << type << " " << x << " " << y << endl;
+
+
+            setItemType(type);
+            setMode(InsertItem);
+
+            removeAllWidgetsFromProperties();
+
+            // deselect all items
+            QList<QGraphicsItem *> items = selectedItems();
+            foreach( QGraphicsItem *item, items ) {
+                item->setSelected(false);
+            }
+
+            insertBlock(point, nIns, nOuts);
+
+            if(file.good())
+            {
+                file >> lCon >> rCon;
+                cout << lCon << " " << rCon << endl;
+            }
+        }
+
+        file.close();
+    }
+}
+
 void BlockScene::saveDesign()
 {
     if(manageBlocks->connTree != nullptr)
@@ -560,8 +621,43 @@ void BlockScene::saveDesign()
     createConnectionTree();
 
     qDebug() << "START";
-    iterateConnTree(manageBlocks->connTree);
+    ofstream file("design.txt");
+    saveIter(manageBlocks->connTree, &file);
     qDebug() << "END";
+}
+
+void BlockScene::saveIter(CTree_t *cTree, ofstream *file)
+{
+    if(cTree->blockIO != nullptr)
+    {
+        (*file) << cTree->blockIO->leName->text().toStdString() << " "
+                << cTree->blockIO->getType() << " "
+                << cTree->blockIO->numOfInputs << " "
+                << cTree->blockIO->numOfOutputs << " ";
+        for(int i = 0; i < countBlockItem; i++)
+        {
+            if(blockItem[i]->getTypeId() == cTree->blockIO->getId() &&
+                    blockItem[i]->getType() == cTree->blockIO->getType()
+                    )
+            {
+                (*file) << blockItem[i]->pos().rx() << " " << blockItem[i]->pos().ry() << endl;
+            }
+        }
+    }
+
+    if(cTree->child.size() == 0)
+    {
+        return;
+    }
+
+    for(size_t i = 0; i < cTree->child.size(); i++)
+    {
+        if(cTree->blockIO != nullptr)
+        {
+            (*file) << i << " " << cTree->blockIO->conToIONum[i] << endl;
+        }
+        saveIter(cTree->child.at(i), file);
+    }
 }
 
 void BlockScene::runDesign(){
@@ -668,8 +764,9 @@ void BlockScene::iterateConnTree(CTree_t *cTree)
         cout << " Block " << cTree->blockIO->leName->text().toStdString() << endl;
         for(int i = 0; i < cTree->blockIO->numOfOutputs; i++)
         {
-            cout << "io" << cTree->blockIO->conToIONum[i] << endl;
+            cout << "io " << cTree->blockIO->conToIONum[i] << endl;
         }
+
     }
     if(cTree->parent != nullptr && cTree->parent->blockIO != nullptr)
     {

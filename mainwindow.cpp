@@ -282,6 +282,7 @@ void MainWindow::createFileMenu(){
     fileMenu->addAction(runAction);
     fileMenu->addAction(stopAction);
     fileMenu->addAction(saveAction);
+    fileMenu->addAction(openAction);
 
     itemMenu = menuBar()->addMenu(tr("&Item"));
     itemMenu->addAction(deleteAction);
@@ -308,6 +309,11 @@ void MainWindow::createActions(){
     saveAction->setShortcut(tr("Save"));
     saveAction->setStatusTip(tr("Save design"));
     connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
+
+    openAction = new QAction(QIcon(":/icons/delete.png"), tr("&Open"), this);
+    openAction->setShortcut(tr("Open"));
+    openAction->setStatusTip(tr("Open design"));
+    connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
 }
 
 void MainWindow::run(){
@@ -327,6 +333,16 @@ void MainWindow::save()
 {
     teOuts->append("Saving design...\n");
     blockScene->saveDesign();
+}
+
+void MainWindow::open()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,
+        tr("Open Image"), "", tr("Design Files (*.txt)"));
+
+    blockScene->openDesign(fileName);
+
+    teOuts->append("Opening design " + fileName + "\n");
 }
 
 void MainWindow::deleteItem(){

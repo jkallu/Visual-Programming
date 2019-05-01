@@ -43,6 +43,9 @@ public:
     void createConnTreeIter(CTree_t *cTree);
     void iterateConnTree(CTree_t *cTree);
     void saveDesign();
+    void saveIter(CTree_t *cTree, ofstream *file);
+    void openDesign(QString file);
+    void insertBlock(QPointF pos, int n_ins, int n_outs);
 
     QVBoxLayout *vbLayOutProp;
     QSpinBox *sbIns, *sbOuts;

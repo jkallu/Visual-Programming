@@ -51,6 +51,7 @@ private:
     QAction *stopAction;
     QAction *deleteAction;
     QAction *saveAction;
+    QAction *openAction;
 
     QToolBar *editToolBar;
     QToolBar *runToolBar;
@@ -77,6 +78,7 @@ public slots:
     void deleteItem();
     void updateTEOuts(QString strOut);
     void save();
+    void open();
 };
 
 #endif // MAINWINDOW_H
