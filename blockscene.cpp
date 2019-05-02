@@ -29,6 +29,7 @@ BlockScene::BlockScene(QMenu *itemMenu, QObject *parent):
     sbIns = nullptr;
 
 
+
     auto marginRect = addRect(sceneRect().adjusted(-25000, -25000, 25000, 25000));
     sceneRect(); // hack to force update of scene bounding box
     delete marginRect;
@@ -69,7 +70,10 @@ void BlockScene::nodeConnectionStarted(Node *node, QGraphicsSceneMouseEvent *mou
         nodeStart = node;
 
         // create the temporary connection guide
-        createTemporaryGuideLine(mouseEvent);
+        if(mouseEvent != nullptr)
+        {
+            createTemporaryGuideLine(mouseEvent);
+        }
         //
 
         myMode = BlockScene::InsertLine;
@@ -79,7 +83,10 @@ void BlockScene::nodeConnectionStarted(Node *node, QGraphicsSceneMouseEvent *mou
         makeNodeConnection();
 
         // delete temporary connection guide line
-        deleteTemporaryGuideLine();
+        if(mouseEvent != nullptr)
+        {
+            deleteTemporaryGuideLine();
+        }
         //
 
         flagConnectionStarted = false;
@@ -101,6 +108,7 @@ void BlockScene::makeNodeConnection(){
 void BlockScene::setMode(Mode mode){
     myMode = mode;
 }
+
 
 void BlockScene::setItemType(BlockItem::BlockType type){
     myItemType = type;
@@ -355,6 +363,43 @@ void BlockScene::insertBlock(QPointF pos, int n_ins, int n_outs)
 
 }
 
+bool BlockScene::hasBlock(std::string blockName)
+{
+    for(size_t j = 0; j < manageBlocks->blockIO.size(); j++)
+    {
+        if(manageBlocks->blockIO.at(j)->leName->text().toStdString() == blockName)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+BlockItem * BlockScene::getBlockItemWithName(string blockName)
+{
+    for(size_t j = 0; j < manageBlocks->blockIO.size(); j++)
+    {
+        if(manageBlocks->blockIO.at(j)->leName->text().toStdString() == blockName)
+        {
+            for(int i = 0; i < countBlockItem; i++)
+            {
+                if(manageBlocks->blockIO.at(j)->getType() == blockItem[i]->getType() &&
+                        manageBlocks->blockIO.at(j)->getId() ==  blockItem[i]->getTypeId())
+                {
+                    cout << " ** ### " <<  manageBlocks->blockIO.at(j)->leName->text().toStdString() << endl;
+                    return blockItem[i];
+                }
+            }
+
+            break;
+        }
+    }
+
+    return nullptr;
+}
+
 void BlockScene::removeAllWidgetsFromProperties(){
     QLayoutItem *childWid;
     while ((childWid = vbLayOutProp->takeAt(0)) != 0) {
@@ -562,22 +607,61 @@ void BlockScene::connectDesignToBackend(int i){
     }
 }
 
+void BlockScene::openDesignIter(OTree_t *oTr, ifstream *file)
+{
+    if(!file->good())
+    {
+        return;
+    }
+
+    if(oTr == nullptr)
+    {
+        oTr = new OTree_t;
+    }
+
+    (*file) >> oTr->conIOFrom >> oTr->conIOTo;
+
+    (*file) >> oTr->name >> oTr->type >> oTr->nIn >> oTr->nOut >> oTr->x >> oTr->y;
+
+
+    for(int i = 0; i < oTr->nOut; i++)
+    {
+        OTree_t *tmp = new OTree_t;
+        tmp->parent = oTr;
+        oTr->child.push_back(tmp);
+
+        openDesignIter(oTr->child.at(oTr->child.size() - 1), file);
+    }
+}
+
 void BlockScene::openDesign(QString fileName)
 {
+
+
+
+
+
+
     ifstream file(fileName.toStdString());
 
     if(file.is_open())
     {
-        string strBlock;
+        oTree = new OTree_t;
+        openDesignIter(oTree, &file);
+        /*string strBlock, strBlockPrev;
         int tp, nIns, nOuts;
         int x, y;
         QPointF point;
         BlockItem::BlockType type;
 
-        int lCon, rCon;
+        int lCon = 0, rCon = 0;
+
+        bool flagConn = false;
 
         while(file.good())
         {
+            strBlockPrev = strBlock;
+
             file >> strBlock >> tp >> nIns >> nOuts >> x >> y;
 
             point.setX(x);
@@ -586,28 +670,95 @@ void BlockScene::openDesign(QString fileName)
 
             cout << strBlock << " " << type << " " << x << " " << y << endl;
 
+            if(!hasBlock(strBlock))
+            {
+                setItemType(type);
+                setMode(InsertItem);
 
-            setItemType(type);
-            setMode(InsertItem);
+                removeAllWidgetsFromProperties();
 
-            removeAllWidgetsFromProperties();
+                // deselect all items
+                QList<QGraphicsItem *> items = selectedItems();
+                foreach( QGraphicsItem *item, items ) {
+                    item->setSelected(false);
+                }
 
-            // deselect all items
-            QList<QGraphicsItem *> items = selectedItems();
-            foreach( QGraphicsItem *item, items ) {
-                item->setSelected(false);
+                insertBlock(point, nIns, nOuts);
             }
 
-            insertBlock(point, nIns, nOuts);
+            if(flagConn)
+            {
+                //cout << countBlockItem - 2 << endl;
+                BlockItem *bItem = nullptr;
+                bItem = getBlockItemWithName(strBlockPrev);
+                if(bItem == nullptr)
+                {
+                    return;
+                }
+                cout << "***" << bItem->getType() << " " << bItem->getTypeId()<< endl;
+                emit bItem->nodeConnectionStarted(bItem->getOutputNode(lCon), nullptr);
+
+                bItem = getBlockItemWithName(strBlock);
+                if(bItem == nullptr)
+                {
+                    return;
+                }
+                cout << "***" << bItem->getType() << " " << bItem->getId() << endl;
+                emit bItem->nodeConnectionStarted(bItem->getInputNode(rCon), nullptr);
+
+                flagConn = false;
+            }
 
             if(file.good())
             {
                 file >> lCon >> rCon;
+                flagConn = true;
                 cout << lCon << " " << rCon << endl;
             }
         }
+        */
 
         file.close();
+
+        createFromOpenIter(oTree);
+    }
+}
+
+void BlockScene::createFromOpenIter(OTree_t *otr)
+{
+    cout << otr->name << " " << endl;
+
+    if(!hasBlock(otr->name))
+    {
+        setItemType(static_cast<BlockItem::BlockType>(otr->type));
+        setMode(InsertItem);
+        insertBlock(QPointF(otr->x, otr->y), otr->nIn, otr->nOut);
+    }
+
+    if(otr->nIn > 0)
+    {
+        BlockItem *bItem = nullptr;
+        bItem = getBlockItemWithName(otr->parent->name);
+        if(bItem == nullptr)
+        {
+            return;
+        }
+        cout << "***" << bItem->getType() << " " << bItem->getTypeId()<< endl;
+        emit bItem->nodeConnectionStarted(bItem->getOutputNode(otr->conIOFrom), nullptr);
+
+        bItem = getBlockItemWithName(otr->name);
+        if(bItem == nullptr)
+        {
+            return;
+        }
+        cout << "***" << bItem->getType() << " " << bItem->getId() << endl;
+        emit bItem->nodeConnectionStarted(bItem->getInputNode(otr->conIOTo), nullptr);
+
+    }
+
+    for(size_t i = 0; i < otr->child.size(); i++)
+    {
+        createFromOpenIter(otr->child.at(i));
     }
 }
 
@@ -630,6 +781,10 @@ void BlockScene::saveIter(CTree_t *cTree, ofstream *file)
 {
     if(cTree->blockIO != nullptr)
     {
+        if(cTree->blockIO->numOfInputs == 0)
+        {
+            (*file) << "-1 -1" << endl;
+        }
         (*file) << cTree->blockIO->leName->text().toStdString() << " "
                 << cTree->blockIO->getType() << " "
                 << cTree->blockIO->numOfInputs << " "

@@ -54,6 +54,8 @@ public:
 
     QPixmap image() const;
 
+
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) override;
     void contextMenuEvent(QGraphicsSceneContextMenuEvent *event) override;
