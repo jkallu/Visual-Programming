@@ -72,6 +72,10 @@ MainWindow::MainWindow()
 
 
     //simulate->start("generateArray");
+
+    vScrolInitVal = mView->verticalScrollBar()->value();
+    hScrolInitVal = mView->horizontalScrollBar()->value();
+
 }
 
 void MainWindow::createToolBox(){
@@ -314,6 +318,11 @@ void MainWindow::createActions(){
     openAction->setShortcut(tr("Open"));
     openAction->setStatusTip(tr("Open design"));
     connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
+
+    defaultAction = new QAction(QIcon(":/icons/delete.png"), tr("&Default"), this);
+    defaultAction->setShortcut(tr("Default"));
+    defaultAction->setStatusTip(tr("Default item from diagram"));
+    connect(defaultAction, SIGNAL(triggered()), this, SLOT(setDefault()));
 }
 
 void MainWindow::run(){
@@ -383,8 +392,22 @@ void MainWindow::createToolbars(){
     editToolBar = addToolBar(tr("Edit"));
     editToolBar->addAction(deleteAction);
 
+    editToolBar = addToolBar(tr("Default"));
+    editToolBar->addAction(defaultAction);
 
 
+
+
+}
+
+void MainWindow::setDefault()
+{
+    //qDebug() << hScrolInitVal << " " << mView->horizontalScrollBar()->value();
+    //qDebug() << vScrolInitVal << " " << mView->verticalScrollBar()->value();
+    mView->resetMatrix();
+    //mView->resetTransform();
+    mView->horizontalScrollBar()->setValue(hScrolInitVal - 292);
+    mView->verticalScrollBar()->setValue(vScrolInitVal - 273);
 
 }
 

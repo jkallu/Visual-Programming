@@ -52,6 +52,7 @@ private:
     QAction *deleteAction;
     QAction *saveAction;
     QAction *openAction;
+    QAction *defaultAction;
 
     QToolBar *editToolBar;
     QToolBar *runToolBar;
@@ -66,7 +67,7 @@ private:
     QHBoxLayout *hbIO;
     QGroupBox *gbIO;
 
-
+    int vScrolInitVal, hScrolInitVal;
 
 
 
@@ -79,6 +80,7 @@ public slots:
     void updateTEOuts(QString strOut);
     void save();
     void open();
+    void setDefault();
 };
 
 #endif // MAINWINDOW_H
