@@ -69,13 +69,13 @@ QGroupBox* ManageBlocks::addGraphBlock(){
     return ab->groupBox;
 }
 
-QGroupBox* ManageBlocks::addContArrayBlock(int nIn, int nOut){
-    ConstArrayBlock *ab = new ConstArrayBlock(countConstArrayBlock, nIn, nOut);
-    ab->groupBox->setTitle(ab->groupBox->title() + "_" + QString::number(countConstArrayBlock));
-    ab->leName->setText("const_array_block_" + QString::number(countConstArrayBlock));
+QGroupBox* ManageBlocks::addContArrayBlock(int countArray, int nIn, int nOut){
+    ConstArrayBlock *ab = new ConstArrayBlock(countArray, nIn, nOut);
+    ab->groupBox->setTitle(ab->groupBox->title() + "_" + QString::number(countArray));
+    ab->leName->setText("const_array_block_" + QString::number(countArray));
     for(int i = 0; i < ab->numOfOutputs; i++)
     {
-        ab->lblOutData[i]->setText("const_array_block_" + QString::number(countConstArrayBlock) + "_" + QString::number(i));
+        ab->lblOutData[i]->setText("const_array_block_" + QString::number(countArray) + "_" + QString::number(i));
     }
     strListBlockNames.append(ab->leName->text());
 

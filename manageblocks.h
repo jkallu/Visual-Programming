@@ -90,7 +90,7 @@ public:
     QGroupBox* addConstantBlock();
     QGroupBox* addExpressionBlock();
     QGroupBox* addGraphBlock();
-    QGroupBox* addContArrayBlock(int nIn = ConstArrayBlock::getNumInputs(), int nOut = ConstArrayBlock::getNumOutputs());
+    QGroupBox* addContArrayBlock(int countArray, int nIn = ConstArrayBlock::getNumInputs(), int nOut = ConstArrayBlock::getNumOutputs());
     QGroupBox* addDataSplitBlock();
     QGroupBox* addAdderBlock();
     QGroupBox* addDelayBlock();

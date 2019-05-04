@@ -146,7 +146,7 @@ void BlockScene::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent)
 
 }
 
-void BlockScene::insertBlock(QPointF pos, int n_ins, int n_outs)
+void BlockScene::insertBlock(QPointF pos, int n_ins, int n_outs, bool flagOpen, int typId)
 {
     switch (myMode) {
     case InsertItem:
@@ -164,9 +164,23 @@ void BlockScene::insertBlock(QPointF pos, int n_ins, int n_outs)
             ins = n_ins;
             outs = n_outs;
             removeAllWidgetsFromProperties();
-            vbLayOutProp->addWidget(manageBlocks->addContArrayBlock(ins, outs), 0);
-            typeID = countArray;
-            countArray++;
+            if(flagOpen)
+            {
+                if(typId > countArray)
+                {
+                    countArray = typId;
+                }
+                typeID = typId;
+            }
+            else
+            {
+                typeID = countArray;
+                countArray++;
+            }
+
+            vbLayOutProp->addWidget(manageBlocks->addContArrayBlock(typeID, ins, outs), 0);
+
+
             break;
         }
         case BlockItem::Expression:
@@ -607,9 +621,18 @@ void BlockScene::connectDesignToBackend(int i){
     }
 }
 
+void BlockScene::printOpenIter(OTree_t *otr)
+{
+    cout << "name " << otr->name << " con From " << otr->conIOFrom << " child size " << otr->child.size()<< endl;
+    for(size_t i = 0; i < otr->child.size(); i++)
+    {
+        printOpenIter(otr->child.at(i));
+    }
+}
+
 void BlockScene::openDesignIter(OTree_t *oTr, ifstream *file)
 {
-    if(!file->good())
+    if(file->eof())
     {
         return;
     }
@@ -619,9 +642,29 @@ void BlockScene::openDesignIter(OTree_t *oTr, ifstream *file)
         oTr = new OTree_t;
     }
 
-    (*file) >> oTr->conIOFrom >> oTr->conIOTo;
+    int ioFrom, ioTo;
 
-    (*file) >> oTr->name >> oTr->type >> oTr->nIn >> oTr->nOut >> oTr->x >> oTr->y;
+    (*file) >> ioFrom >> ioTo;
+
+    if(file->eof())
+    {
+        return;
+    }
+
+    if(ioFrom == -1)
+    {
+        OTree_t *tmp = new OTree_t;
+        tmp->parent = oTr;
+        oTr->child.push_back(tmp);
+        oTr = oTr->child.at(oTr->child.size() - 1);
+    }
+    oTr->conIOFrom = ioFrom;
+    oTr->conIOTo = ioTo;
+
+    //(*file) >> oTr->conIOFrom >> oTr->conIOTo;
+
+
+    (*file) >> oTr->name >> oTr->type >> oTr->typeId >> oTr->nIn >> oTr->nOut >> oTr->x >> oTr->y;
 
 
     for(int i = 0; i < oTr->nOut; i++)
@@ -647,80 +690,17 @@ void BlockScene::openDesign(QString fileName)
     if(file.is_open())
     {
         oTree = new OTree_t;
-        openDesignIter(oTree, &file);
-        /*string strBlock, strBlockPrev;
-        int tp, nIns, nOuts;
-        int x, y;
-        QPointF point;
-        BlockItem::BlockType type;
-
-        int lCon = 0, rCon = 0;
-
-        bool flagConn = false;
-
-        while(file.good())
+        while(!file.eof())
         {
-            strBlockPrev = strBlock;
-
-            file >> strBlock >> tp >> nIns >> nOuts >> x >> y;
-
-            point.setX(x);
-            point.setY(y);
-            type = static_cast<BlockItem::BlockType>(tp);
-
-            cout << strBlock << " " << type << " " << x << " " << y << endl;
-
-            if(!hasBlock(strBlock))
-            {
-                setItemType(type);
-                setMode(InsertItem);
-
-                removeAllWidgetsFromProperties();
-
-                // deselect all items
-                QList<QGraphicsItem *> items = selectedItems();
-                foreach( QGraphicsItem *item, items ) {
-                    item->setSelected(false);
-                }
-
-                insertBlock(point, nIns, nOuts);
-            }
-
-            if(flagConn)
-            {
-                //cout << countBlockItem - 2 << endl;
-                BlockItem *bItem = nullptr;
-                bItem = getBlockItemWithName(strBlockPrev);
-                if(bItem == nullptr)
-                {
-                    return;
-                }
-                cout << "***" << bItem->getType() << " " << bItem->getTypeId()<< endl;
-                emit bItem->nodeConnectionStarted(bItem->getOutputNode(lCon), nullptr);
-
-                bItem = getBlockItemWithName(strBlock);
-                if(bItem == nullptr)
-                {
-                    return;
-                }
-                cout << "***" << bItem->getType() << " " << bItem->getId() << endl;
-                emit bItem->nodeConnectionStarted(bItem->getInputNode(rCon), nullptr);
-
-                flagConn = false;
-            }
-
-            if(file.good())
-            {
-                file >> lCon >> rCon;
-                flagConn = true;
-                cout << lCon << " " << rCon << endl;
-            }
+            openDesignIter(oTree, &file);
         }
-        */
 
         file.close();
-
-        createFromOpenIter(oTree);
+        //printOpenIter(oTree);
+        for(size_t i = 0; i < oTree->child.size(); i++)
+        {
+            createFromOpenIter(oTree->child.at(i));
+        }
     }
 }
 
@@ -732,7 +712,7 @@ void BlockScene::createFromOpenIter(OTree_t *otr)
     {
         setItemType(static_cast<BlockItem::BlockType>(otr->type));
         setMode(InsertItem);
-        insertBlock(QPointF(otr->x, otr->y), otr->nIn, otr->nOut);
+        insertBlock(QPointF(otr->x, otr->y), otr->nIn, otr->nOut, true, otr->typeId);
     }
 
     if(otr->nIn > 0)
@@ -787,6 +767,7 @@ void BlockScene::saveIter(CTree_t *cTree, ofstream *file)
         }
         (*file) << cTree->blockIO->leName->text().toStdString() << " "
                 << cTree->blockIO->getType() << " "
+                << cTree->blockIO->getId() << " "
                 << cTree->blockIO->numOfInputs << " "
                 << cTree->blockIO->numOfOutputs << " ";
         for(int i = 0; i < countBlockItem; i++)

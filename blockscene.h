@@ -17,9 +17,10 @@
 #define MAX_BLOCKS 10000
 
 typedef struct OTree{
-    int x;
-    int y;
+    float x;
+    float y;
     int type;
+    int typeId;
     int nIn;
     int nOut;
     int conIOFrom;
@@ -62,12 +63,13 @@ public:
     void saveDesign();
     void saveIter(CTree_t *cTree, ofstream *file);
     void openDesign(QString file);
-    void insertBlock(QPointF pos, int n_ins, int n_outs);
+    void insertBlock(QPointF pos, int n_ins, int n_outs, bool flagOpen = false, int typId = 0);
 
     bool hasBlock(std::string blockName);
     BlockItem *getBlockItemWithName(string blockName);
     void openDesignIter(OTree_t *oTr, ifstream *file);
     void createFromOpenIter(OTree_t *otr);
+    void printOpenIter(OTree_t *otr);
 
     QVBoxLayout *vbLayOutProp;
     QSpinBox *sbIns, *sbOuts;
