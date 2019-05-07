@@ -15,17 +15,28 @@ void ExpressionBlock::init()
     lblScript = new QLabel("Script");
     teScript = new QTextEdit;
 
+    lblFormula = new QLabel("Formula");
+    formulaWidget = new FormulaWidget;
+    formulaWidget->setFixedHeight(100);
+
+
     boxLayout->addWidget(lblExp);
     boxLayout->addWidget(leExpression);
 
+    boxLayout->addWidget(lblFormula);
+    boxLayout->addWidget(formulaWidget);
+
     boxLayout->addWidget(lblScript);
     boxLayout->addWidget(teScript);
+
 
     boxLayout->rowStretch(1);
 
     groupBox->setLayout(boxLayout);
 
     groupBox->setTitle("Expression Block");
+
+    connect(leExpression, SIGNAL(textChanged(const QString &)), formulaWidget, SLOT(updateFormula(const QString &)));
 }
 
 void ExpressionBlock::generateOutputs(){

@@ -6,7 +6,10 @@
 #include <QLineEdit>
 #include <QTextEdit>
 
+#include "formulawidget.h"
+
 class BlockIO;
+class FormulaWidget;
 
 class ExpressionBlock : virtual public BlockIO
 {
@@ -24,6 +27,9 @@ public:
 
     QTextEdit *teScript;
     QLabel *lblScript;
+
+    QLabel *lblFormula;
+    FormulaWidget *formulaWidget;
 };
 
 #endif // EXPRESSIONBLOCK_H

@@ -55,7 +55,8 @@ SOURCES += \
     ./nodegencodes/packer.c \
     ./nodegencodes/linkedList.c \
     networkclientblock.cpp \
-    networkserverblock.cpp
+    networkserverblock.cpp \
+    formulawidget.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -95,7 +96,8 @@ HEADERS += \
     ./nodegencodes/packer.h \
     ./nodegencodes/linkedList.h \
     networkclientblock.h \
-    networkserverblock.h
+    networkserverblock.h \
+    formulawidget.h
 
 RESOURCES += \
     node.qrc
