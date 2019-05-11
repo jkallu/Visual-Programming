@@ -29,14 +29,17 @@ Lexer::Lexer(string fname, bool flagFile)
 
 Token *Lexer::getNextToken()
 {
-    char c;
-    strStream.get(c);
+    skipWhiteSpace();
+
 
     if(strStream.eof() || !strStream.good())
     {
         return new Token(TokenType::EndOfInput);
     }
 
+
+    char c;
+    strStream.get(c);
 
     if(isIDentifier(c))
     {
@@ -63,8 +66,24 @@ Token *Lexer::getNextToken()
     }
     else
     {
-        return nullptr;
+        cout << "No handler !!" << endl;
     }
+}
+
+bool Lexer::isWhiteSpace(char c)
+{
+    if(   c == ' '
+          || c == '\t'
+          || c == '\n'
+          || c == '\v'
+          || c == '\f'
+          || c == '\r'
+          )
+    {
+        return true;
+    }
+
+    return false;
 }
 
 bool Lexer::isIDentifier(char c)
@@ -109,9 +128,47 @@ bool Lexer::isParenthesis(char c)
     }
 }
 
+void Lexer::skipWhiteSpace()
+{
+    char c;
+    strStream.get(c);
+
+    while(isWhiteSpace(c))
+    {
+        if(strStream.eof() || !strStream.good())
+        {
+            return ;
+        }
+
+        if(c == '\n')
+        {
+            line ++;
+        }
+
+        strStream.get(c);
+    }
+
+    strStream.unget();
+}
+
 Token *Lexer::recognizeIdentifier()
 {
+    string identifier = "";
+    char c;
+    while (!strStream.eof())
+    {
+        strStream.get(c);
+        if(!(isIDentifier(c) || isNumber(c) || c == '_'))
+        {
+            strStream.unget();
+            break;
+        }
+        column++;
+        identifier += c;
 
+    }
+
+    return new Token(TokenType::Identifier, identifier, line, column);
 }
 
 Token *Lexer::recognizeNumber()

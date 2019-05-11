@@ -24,7 +24,9 @@ public:
     Token *recognizeNumber();
     Token *recognizeOperator();
     Token *recognizeParenthesis();
+    void skipWhiteSpace();
 
+    bool isWhiteSpace(char c);
     bool isIDentifier(char c);
     bool isNumber(char c);
     bool isParenthesis(char c);
