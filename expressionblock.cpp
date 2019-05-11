@@ -4,6 +4,9 @@ ExpressionBlock::ExpressionBlock(int i):
     BlockIO(i, 1, 1, BlockItem::BlockType::Expression)
 {
     init();
+
+    lexer = new Lexer("(())", false);
+    lexer->test();
 }
 
 void ExpressionBlock::init()

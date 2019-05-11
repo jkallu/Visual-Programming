@@ -56,7 +56,10 @@ SOURCES += \
     ./nodegencodes/linkedList.c \
     networkclientblock.cpp \
     networkserverblock.cpp \
-    formulawidget.cpp
+    formulawidget.cpp \
+    lexer.cpp \
+    token.cpp \
+    fsm.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -97,7 +100,10 @@ HEADERS += \
     ./nodegencodes/linkedList.h \
     networkclientblock.h \
     networkserverblock.h \
-    formulawidget.h
+    formulawidget.h \
+    lexer.h \
+    token.h \
+    fsm.h
 
 RESOURCES += \
     node.qrc

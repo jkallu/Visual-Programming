@@ -7,9 +7,12 @@
 #include <QTextEdit>
 
 #include "formulawidget.h"
+#include "lexer.h"
+
 
 class BlockIO;
 class FormulaWidget;
+class Lexer;
 
 class ExpressionBlock : virtual public BlockIO
 {
@@ -30,6 +33,8 @@ public:
 
     QLabel *lblFormula;
     FormulaWidget *formulaWidget;
+
+    Lexer *lexer;
 };
 
 #endif // EXPRESSIONBLOCK_H
