@@ -22,19 +22,24 @@ class Lexer
 {
 public:
     Lexer(string fname, bool flagFile);
-    Token *getNextToken();
-    Token *recognizeIdentifier();
-    Token *recognizeNumber();
-    Token *recognizeOperator();
-    Token *recognizeParenthesis();
+    Token* getNextToken();
+    Token* recognizeIdentifier();
+    Token* recognizeNumber();
+    Token* recognizeOperator();
+    Token* recognizeParenthesis();
+    Token* recognizeCurlyBrackets();
+    Token* recognizeComparisonOperator();
+    Token* recognizeArithmeticOperator();
     void skipWhiteSpace();
-    FSM *buildNumberRecognizer();
 
     bool isWhiteSpace(char c);
     bool isIDentifier(char c);
     bool isNumber(char c);
     bool isParenthesis(char c);
+    bool isCurlyBrackets(char c);
     bool isOperator(char c);
+    bool isComparisonOperator(char c);
+    bool isArithmeticOperator(char c);
 
     void test();
     vector <Token *> allTokens();

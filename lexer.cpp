@@ -64,9 +64,16 @@ Token *Lexer::getNextToken()
         strStream.unget();
         return recognizeParenthesis();
     }
+
+    else if(isCurlyBrackets(c))
+    {
+        strStream.unget();
+        return recognizeCurlyBrackets();
+    }
+
     else
     {
-        cout << "No handler !!" << endl;
+        cout << "No handler !! for " << c << endl;
     }
 }
 
@@ -98,22 +105,36 @@ bool Lexer::isNumber(char c)
 
 bool Lexer::isOperator(char c)
 {
+    return (isArithmeticOperator(c) || isComparisonOperator(c));
+}
+
+bool Lexer::isComparisonOperator(char c)
+{
     if(
-            c == '+'
-            || c == '-'
-            || c == '*'
-            || c == '/'
-            || c == '>'
+            c == '>'
             || c == '<'
             || c == '='
             )
     {
         return true;
     }
-    else
+
+    return false;
+}
+
+bool Lexer::isArithmeticOperator(char c)
+{
+    if(
+            c == '+'
+            || c == '-'
+            || c == '*'
+            || c == '/'
+            )
     {
-        return false;
+        return true;
     }
+
+    return false;
 }
 
 bool Lexer::isParenthesis(char c)
@@ -126,6 +147,16 @@ bool Lexer::isParenthesis(char c)
     {
         return false;
     }
+}
+
+bool Lexer::isCurlyBrackets(char c)
+{
+    if(c == '{' || c == '}')
+    {
+        return true;
+    }
+
+    return false;
 }
 
 void Lexer::skipWhiteSpace()
@@ -171,11 +202,6 @@ Token *Lexer::recognizeIdentifier()
     return new Token(TokenType::Identifier, identifier, line, column);
 }
 
-FSM* Lexer::buildNumberRecognizer()
-{
-
-}
-
 Token *Lexer::recognizeNumber()
 {
     NumberFSM numberFSM;
@@ -188,10 +214,25 @@ Token *Lexer::recognizeNumber()
 
 Token *Lexer::recognizeOperator()
 {
+    char c;
+    strStream.get(c);
 
+    if(isArithmeticOperator(c))
+    {
+        strStream.unget();
+        return recognizeArithmeticOperator();
+    }
+
+    else if(isComparisonOperator(c))
+    {
+        strStream.unget();
+        return recognizeComparisonOperator();
+    }
+
+    return nullptr;
 }
 
-Token *Lexer::recognizeParenthesis()
+Token* Lexer::recognizeParenthesis()
 {
     char c;
     strStream.get(c);
@@ -204,6 +245,98 @@ Token *Lexer::recognizeParenthesis()
     }
 
     return new Token(TokenType::RightParenthesis, ")", line, column - 1);
+}
+
+Token* Lexer::recognizeCurlyBrackets()
+{
+    char c;
+    strStream.get(c);
+
+    column++;
+
+    if(c == '{')
+    {
+        return new Token(TokenType::LeftCurlyBracket, "{", line, column - 1);
+    }
+
+    return new Token(TokenType::RightCurlyBracket, "}", line, column - 1);
+}
+
+Token* Lexer::recognizeArithmeticOperator()
+{
+    char c;
+    strStream.get(c);
+
+    column++;
+
+    if(c == '+')
+    {
+        return new Token(TokenType::Plus, "+", line, column - 1);
+    }
+
+    else if (c == '-')
+    {
+        return new Token(TokenType::Minus, "-", line, column - 1);
+    }
+
+    else if (c == '*')
+    {
+        return new Token(TokenType::Times, "*", line, column - 1);
+    }
+
+    return new Token(TokenType::Div, "/", line, column - 1);
+}
+
+Token *Lexer::recognizeComparisonOperator()
+{
+    char c;
+    strStream.get(c);
+
+    column++;
+
+    char lookAhead = '\0';
+
+    if(!strStream.eof())
+    {
+        strStream.get(lookAhead);
+    }
+
+
+    if(c == '<')
+    {
+        if(lookAhead == '=')
+        {
+            column++;
+            return new Token(TokenType::LessThanOrEqual, "<=", line, column - 2);
+        }
+
+        strStream.unget();
+        return new Token(TokenType::LessThan, "<", line, column - 1);
+    }
+
+    else if (c == '>')
+    {
+        if(lookAhead == '=')
+        {
+            column++;
+            return new Token(TokenType::GreaterThanOrEqual, ">=", line, column - 2);
+        }
+
+        strStream.unget();
+        return new Token(TokenType::GreaterThan, ">", line, column - 1);
+    }
+
+    else
+    {
+        if(lookAhead == '=')
+        {
+            column++;
+            return new Token(TokenType::Equal, "==", line, column - 2);
+        }
+
+        strStream.unget();
+        return new Token(TokenType::Assign, "=", line, column - 1);
+    }
 }
 
 void Lexer::test()

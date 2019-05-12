@@ -21,6 +21,9 @@ enum TokenType{
                 // Parenthesis
                 LeftParenthesis,
                 RightParenthesis,
+                // curly brackets
+                LeftCurlyBracket,
+                RightCurlyBracket,
                 // End
                 EndOfInput
               };
