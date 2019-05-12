@@ -31,6 +31,9 @@ class Token
 public:
     Token(enum TokenType tType, string val = "", int ln = 0, int col = 0);
 
+    void setColumn(int col){column = col;}
+    void setLine(int lin){line = lin;}
+    void setType(enum TokenType typ){tokenType = typ;}
 
     enum TokenType tokenType;
     string value;

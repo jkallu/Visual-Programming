@@ -5,7 +5,7 @@ ExpressionBlock::ExpressionBlock(int i):
 {
     init();
 
-    lexer = new Lexer("(sin( x_0 ) cos (x_0))", false);
+    lexer = new Lexer("(sin( x_0 10.150e+359) cos (x_0))", false);
     lexer->test();
 }
 

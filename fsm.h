@@ -3,21 +3,24 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+
+#include "token.h"
 
 using namespace std;
 
 class FSM
 {
 public:
-    FSM(int sts[] = {}, int initState = 0, int acceptState[] = {});
-    ~FSM();
+    FSM();
 
-    int nextState(int currentState, char c);
-    void run(string input); // for test
+    virtual int nextState(int currentState, char c);
+    Token *run(stringstream *input, int col); // for test
 
-    int *states;
+    vector <int> states;
     int initialState;
-    int *acceptingStates;
+    int endState;
+    vector <int> acceptingStates;
 };
 
 #endif // FSM_H

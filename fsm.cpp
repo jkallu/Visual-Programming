@@ -1,15 +1,11 @@
 #include "fsm.h"
 #include <ctype.h>
-#include "token.h"
 
-FSM::FSM(int sts[], int initState, int acceptState[])
+#include <sstream>
+
+FSM::FSM()
 {
-    int num_states = sizeof (sts) / sizeof (int);
 
-    for(int i = 0; i < num_states; i++)
-    {
-        cout << sts[i] << endl;
-    }
 }
 
 int FSM::nextState(int currentState, char c)
@@ -33,20 +29,32 @@ int FSM::nextState(int currentState, char c)
     return TokenType::EndOfInput;
 }
 
-void FSM::run(string input)
+Token * FSM::run(stringstream* input, int col)
 {
+    string val = "";
+
     int currentState = initialState;
 
-    for (int i = 0; i < input.length(); i++)
+    char c;
+    while (!input->eof())
     {
-        char c = input.at(i);
-        int nectState = nextState(currentState, c);
-        
-        
+        input->get(c);
+
+        int next_state = nextState(currentState, c);
+
+        cout << next_state << endl;
+
+        if(next_state == endState)
+        {
+            input->unget();
+            break;
+        }
+
+        val += c;
+        col ++;
+
+        currentState = next_state;
     }
-}
 
-FSM::~FSM()
-{
-
+    return new Token(TokenType::Identifier, val, 0, col);
 }

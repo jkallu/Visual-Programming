@@ -59,7 +59,8 @@ SOURCES += \
     formulawidget.cpp \
     lexer.cpp \
     token.cpp \
-    fsm.cpp
+    fsm.cpp \
+    numberfsm.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -103,7 +104,8 @@ HEADERS += \
     formulawidget.h \
     lexer.h \
     token.h \
-    fsm.h
+    fsm.h \
+    numberfsm.h
 
 RESOURCES += \
     node.qrc

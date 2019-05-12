@@ -4,16 +4,19 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <sstream>
+#include <vector>
 
 #include "token.h"
 #include "fsm.h"
-#include <sstream>
-#include <vector>
+#include "numberfsm.h"
+
 
 using namespace std;
 
 class Token;
 class FSM;
+class NumberFSM;
 
 class Lexer
 {
@@ -25,6 +28,7 @@ public:
     Token *recognizeOperator();
     Token *recognizeParenthesis();
     void skipWhiteSpace();
+    FSM *buildNumberRecognizer();
 
     bool isWhiteSpace(char c);
     bool isIDentifier(char c);

@@ -171,9 +171,19 @@ Token *Lexer::recognizeIdentifier()
     return new Token(TokenType::Identifier, identifier, line, column);
 }
 
-Token *Lexer::recognizeNumber()
+FSM* Lexer::buildNumberRecognizer()
 {
 
+}
+
+Token *Lexer::recognizeNumber()
+{
+    NumberFSM numberFSM;
+    Token *tok = numberFSM.run(&strStream, column);
+    tok->setLine(line);
+    tok->setType(TokenType::Number);
+
+    return tok;
 }
 
 Token *Lexer::recognizeOperator()
