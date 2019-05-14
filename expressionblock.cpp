@@ -7,6 +7,9 @@ ExpressionBlock::ExpressionBlock(int i):
 
     lexer = new Lexer("{sin( x_0 + 10.150e+359) cos (x_0)}", false);
     lexer->test();
+
+    earleyParser = new EarleyParser;
+    earleyParser->parse();
 }
 
 void ExpressionBlock::init()

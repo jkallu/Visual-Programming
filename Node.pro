@@ -60,7 +60,11 @@ SOURCES += \
     lexer.cpp \
     token.cpp \
     fsm.cpp \
-    numberfsm.cpp
+    numberfsm.cpp \
+    parserhelper.cpp \
+    rule.cpp \
+    grammar.cpp \
+    earleyparser.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -105,7 +109,11 @@ HEADERS += \
     lexer.h \
     token.h \
     fsm.h \
-    numberfsm.h
+    numberfsm.h \
+    parserhelper.h \
+    rule.h \
+    grammar.h \
+    earleyparser.h
 
 RESOURCES += \
     node.qrc

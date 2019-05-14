@@ -8,11 +8,13 @@
 
 #include "formulawidget.h"
 #include "lexer.h"
+#include "earleyparser.h"
 
 
 class BlockIO;
 class FormulaWidget;
 class Lexer;
+class EarleyParser;
 
 class ExpressionBlock : virtual public BlockIO
 {
@@ -35,6 +37,7 @@ public:
     FormulaWidget *formulaWidget;
 
     Lexer *lexer;
+    EarleyParser *earleyParser;
 };
 
 #endif // EXPRESSIONBLOCK_H
