@@ -39,10 +39,22 @@ void Grammar::createRules()
     Rule rule6;
     rule6.left = 'T';
     rule6.right.push_back("1");
-    rule6.right.push_back("2");
-    rule6.right.push_back("3");
-    rule6.right.push_back("4");
     rules.push_back(rule6);
+
+    Rule rule7;
+    rule7.left = 'T';
+    rule7.right.push_back("2");
+    rules.push_back(rule7);
+
+    Rule rule8;
+    rule8.left = 'T';
+    rule8.right.push_back("3");
+    rules.push_back(rule8);
+
+    Rule rule9;
+    rule9.left = 'T';
+    rule9.right.push_back("4");
+    rules.push_back(rule9);
 }
 
 bool Grammar::symbolIsTerminal(string symbol)

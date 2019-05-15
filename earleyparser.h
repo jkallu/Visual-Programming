@@ -14,10 +14,15 @@ public:
     EarleyParser();
 
     void parse();
-    void predict();
-    void printRule(Rule rule);
+    void predict(string symbol, size_t s);
     void findRulesIter(string symbol, size_t s);
     void addState(Rule state, size_t s);
+    Rule scan(string token, size_t st);
+    void complete(string symbol, size_t s);
+
+    void printStates();
+    void printState(size_t st);
+    void printRule(Rule rule);
 
     bool isSymbolProcessed(string symbol);
 
