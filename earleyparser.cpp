@@ -7,89 +7,179 @@ EarleyParser::EarleyParser()
 
 void EarleyParser::parse()
 {
-    string tokens = "2+3*4";
+    string tokens = "2+3*4+2*1";
 
     Rule startRule = grammar->getStartRule();
-    size_t st = 0;
+    addState(startRule, 0);
 
-    predict(startRule.left, st);
-    processedSymbols.clear();
 
-    printState(st);
-
-    for (size_t i = 0; i < tokens.size(); i++)
+    for (size_t i = 0; i <= tokens.size(); i++)
     {
         string token;
-        token += tokens.at(i);
-        Rule rule = scan(token, st);
 
-        st++;
-
-        rule.dot_pos++;
-        addState(rule, st);
-
-        complete(rule.left, st);
-        processedSymbols.clear();
-
-
-
-        for (size_t j = 0; j < stateList.at(st).size(); j++)
+        if(i < tokens.size())
         {
-            Rule tmp_rule = stateList.at(st).at(j);
-            if(tmp_rule.dot_pos < tmp_rule.right.size())
+            token += tokens.at(i);
+        }
+
+        if(i >= stateList.size())
+        {
+            cout << "Error in Parsing" << endl;
+            return;
+        }
+
+        for (size_t j = 0; j < stateList.at(i).size(); j++)
+        {
+            Rule rule = stateList.at(i).at(j);
+            if(!rule.isFinished())
             {
-                if(!grammar->symbolIsTerminal(tmp_rule.right.at(tmp_rule.dot_pos)))
+                string next_elm = rule.nextElement();
+                if(!grammar->symbolIsTerminal(next_elm))
                 {
-                    predict(tmp_rule.right.at(tmp_rule.dot_pos), st);
+                    predict(next_elm, i);
+                }
+
+                else if(i < tokens.size())
+                {
+                    scan(token, i);
+                }
+            }
+            else
+            {
+                complete(rule, i);
+            }
+        }
+        printState(i);
+
+        if(i == tokens.size())
+        {
+            if(successfullSentence())
+            {
+                cout << "SUCCESSFUL" << endl;
+            }
+            else
+            {
+                cout << "FAILURE" << endl;
+            }
+        }
+    }
+}
+
+bool EarleyParser::successfullSentence()
+{
+    Rule start = grammar->getStartRule();
+    for (size_t i = 0; i < stateList.at(stateList.size() - 1).size(); i++)
+    {
+        Rule rule = stateList.at(stateList.size() - 1).at(i);
+        if(rule.isFinished())
+        {
+            if(rule.left != start.left ||
+                    rule.right.size() != start.right.size()
+                    )
+            {
+                continue;
+            }
+
+            for(size_t j = 0; j < rule.right.size(); j++)
+            {
+                if(rule.right.at(j) != start.right.at(j))
+                {
+                    break;
+                }
+
+                if(j == rule.right.size() - 1)
+                {
+                    return true; // success
                 }
             }
         }
-
-        processedSymbols.clear();
-
-        printState(st);
-
     }
 
+    return false;
+}
 
+bool EarleyParser::duplicateRule(Rule rule, States_t state)
+{
+    for (size_t i = 0; i < state.size(); i++)
+    {
+        if(rule.left != state.at(i).left ||
+                rule.dot_pos != state.at(i).dot_pos ||
+                rule.right.size() != state.at(i).right.size()
+                )
+        {
+            continue;
+        }
+
+        for(size_t j = 0; j < rule.right.size(); j++)
+        {
+            if(rule.right.at(j) != state.at(i).right.at(j))
+            {
+                break;
+            }
+
+            if(j == rule.right.size() - 1)
+            {
+                return true; // duplicate
+            }
+        }
+    }
+
+    return false; // not duplicate
+}
+
+bool EarleyParser::finished(States_t state)
+{
+    return state.at(0).isFinished();
 }
 
 void EarleyParser::predict(string symbol, size_t s)
 {
-    findRulesIter(symbol, s);
-}
+    vector <Rule> rules = grammar->getRulesForSymbol(symbol);
 
-Rule EarleyParser::scan(string token, size_t st)
-{
-    for (size_t i = 0; i < stateList.at(st).size(); i++)
+    for (size_t i = 0; i < rules.size(); i++)
     {
-        Rule rule = stateList.at(st).at(i);
-        if(rule.dot_pos < rule.right.size())
-        {
-            if(rule.right.at(rule.dot_pos) == token)
-            {
-                return rule;
-            }
-        }
+        Rule rule = rules.at(i);
+        rule.n = s;
+        addState(rule, s);
     }
 }
 
-void EarleyParser::complete(string symbol, size_t s)
+void EarleyParser::scan(string token, size_t st)
 {
-    if(!isSymbolProcessed(symbol))
+    if(st >= stateList.size())
     {
-        processedSymbols.push_back(symbol);
-        for(size_t i = 0; i < stateList.at(s - 1).size(); i++)
+        cout << "Error in Parsing" << endl;
+        return;
+    }
+
+    for (size_t i = 0; i < stateList.at(st).size(); i++)
+    {
+        Rule rule = stateList.at(st).at(i);
+        if(!rule.isFinished())
         {
-            Rule rule = stateList.at(s - 1).at(i);
-            if(rule.dot_pos < rule.right.size())
+            if(rule.nextElement() == token)
             {
-                if(rule.right.at(rule.dot_pos) == symbol)
-                {
-                    rule.dot_pos++;
-                    addState(rule, s);
-                    complete(rule.left, s);
-                }
+                rule.dot_pos++;
+                addState(rule, st + 1);
+                return;
+            }
+        }
+    }
+
+    cout << "Unrecognized token " << token << endl;
+}
+
+void EarleyParser::complete(Rule rl, size_t s)
+{
+    for(size_t i = 0; i < stateList.at(rl.n).size(); i++)
+    {
+        Rule rule = stateList.at(rl.n).at(i);
+        if(!rule.isFinished())
+        {
+            if(rule.nextElement() == rl.left)
+            {
+                rule.dot_pos++;
+                addState(rule, s);
             }
         }
     }
@@ -97,9 +187,18 @@ void EarleyParser::complete(string symbol, size_t s)
 
 void EarleyParser::addState(Rule state, size_t s)
 {
+    if(s > stateList.size())
+    {
+        cout << "Error in Parsing" << endl;
+        return;
+    }
+
     if(s < stateList.size())
     {
-        stateList.at(s).push_back(state);
+        if(!duplicateRule(state, stateList.at(s)))
+        {
+            stateList.at(s).push_back(state);
+        }
     }
     else
     {
@@ -178,5 +277,10 @@ void EarleyParser::printRule(Rule rule)
         }
         cout << rule.right.at(i) << " " ;
     }
+    if(rule.right.size() == rule.dot_pos)
+    {
+        cout << ".";
+    }
+    cout << " " << rule.n;
     cout << endl;
 }

@@ -13,6 +13,7 @@ public:
     bool symbolIsTerminal(string symbol);
     Rule getStartRule();
     vector <Rule> getRulesForSymbol(string symbol);
+    bool finished(Rule rule);
 
 private:
     vector <Rule> rules;

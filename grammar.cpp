@@ -89,3 +89,15 @@ vector <Rule> Grammar::getRulesForSymbol(string symbol)
     return tmp_rules;
 }
 
+
+
+bool Grammar::finished(Rule rule)
+{
+    if(rule.dot_pos + 1 < rule.right.size())
+    {
+        return false;
+    }
+
+    return true;
+}
+
