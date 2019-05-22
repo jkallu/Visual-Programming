@@ -4,6 +4,7 @@ Rule::Rule()
 {
     dot_pos = 0;
     n = 0;
+    flagVisited = false;
     //flagFinished = false;
 }
 

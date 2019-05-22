@@ -13,6 +13,9 @@ public:
     bool isFinished();
     string nextElement();
     string lastElement();
+
+    bool visited() {return flagVisited;}
+    void setVisited(bool flag) {flagVisited = flag;}
     //void setFinished(bool flag){flagFinished = flag;}
 
 
@@ -20,6 +23,7 @@ public:
     vector <string> right;
     size_t dot_pos;
     size_t n;
+    bool flagVisited;
     //bool flagFinished;
 };
 
