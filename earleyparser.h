@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include "grammar.h"
+#include <QQueue>
+#include "token.h"
 
 typedef vector <Rule> States_t;
 
@@ -16,13 +18,14 @@ typedef struct ParseTree{
 using namespace std;
 
 class Grammar;
+class Token;
 
 class EarleyParser
 {
 public:
     EarleyParser();
 
-    void parse();
+    string parse(vector<Token *> tokens);
     void predict(string symbol, size_t s);
     void findRulesIter(string symbol, size_t s);
     void addState(Rule rule, size_t s, vector<States_t> *stList);
@@ -56,6 +59,10 @@ public:
 
     void printParseTree(ParseTree_t* pTree);
 
+    void printParseTreeBFS();
+
+    string compileToCIter(ParseTree_t *pTree);
+
     size_t dfsRecursCnt;
 
     Grammar *grammar;
@@ -72,7 +79,9 @@ public:
 
     vector <string> dfsProcessedSymbols;
 
-    size_t state_pos;
+    size_t state_pos, treeLvlPos;
+
+    QQueue <ParseTree_t *> queue;
 };
 
 #endif // EARLEYPARSER_H

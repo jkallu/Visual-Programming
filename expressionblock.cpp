@@ -5,18 +5,13 @@ ExpressionBlock::ExpressionBlock(int i):
 {
     init();
 
-    lexer = new Lexer("{sin( x_0 + 10.150e+359) cos (x_0)}", false);
-    lexer->test();
-
-    earleyParser = new EarleyParser;
-    earleyParser->parse();
 }
 
 void ExpressionBlock::init()
 {
     lblExp = new QLabel("Expression");
 
-    leExpression = new QLineEdit("sin");
+    leExpression = new QLineEdit("x");
 
     lblScript = new QLabel("Script");
     teScript = new QTextEdit;
@@ -60,6 +55,14 @@ void ExpressionBlock::generateOutputs(){
 
 void ExpressionBlock::generateCode(QString dir)
 {
+    lexer = new Lexer(leExpression->text().toStdString(), false);
+    earleyParser = new EarleyParser;
+    string compiledExp = earleyParser->parse(lexer->allTokens());
+
+    delete lexer;
+    delete earleyParser;
+
+
     std::ofstream fileHeader(QString(dir+leName->text()).toLatin1()+".h");
     QString upper = leName->text().toUpper();
     fileHeader << "#ifndef " << upper.toStdString() << "_H \n";
@@ -109,7 +112,8 @@ void ExpressionBlock::generateCode(QString dir)
                 "{\n"
                     "int d;\n"
                     "memcpy(&d, in + add, sizeof (int));\n"
-                    "d = " << leExpression->text().toStdString() <<"((double)d);\n"
+                    //"d = " << leExpression->text().toStdString() <<"((double)d);\n"
+                    "d = " << compiledExp << ";\n"
                     "memcpy(in + add, &d, sizeof (int));\n"
                     "add += sizeof (int);\n"
                 "}\n"
@@ -120,7 +124,8 @@ void ExpressionBlock::generateCode(QString dir)
                 "{\n"
                     "float d;\n"
                     "memcpy(&d, in + add, sizeof (float));\n"
-                    "d =  " << leExpression->text().toStdString() <<"((double)d);\n"
+                    //"d =  " << leExpression->text().toStdString() <<"((double)d);\n"
+                    "d = " << compiledExp << ";\n"
                     "memcpy(in + add, &d, sizeof (float));\n"
                     "add += sizeof (float);\n"
                 "}\n"
@@ -131,7 +136,8 @@ void ExpressionBlock::generateCode(QString dir)
                 "{\n"
                     "double d;\n"
                     "memcpy(&d, in + add, sizeof (double));\n"
-                    "d =  " << leExpression->text().toStdString() <<"(d);\n"
+                    //"d =  " << leExpression->text().toStdString() <<"(d);\n"
+                    "d = " << compiledExp << ";\n"
                     "memcpy(in + add, &d, sizeof (double));\n"
                     "add += sizeof (double);\n"
                 "}\n"

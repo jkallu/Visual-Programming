@@ -19,7 +19,7 @@ Lexer::Lexer(string fname, bool flagFile)
     }
     else
     {
-        strStream.str(fname);
+        strStream.str(fname + '\0');
     }
 
 
@@ -30,9 +30,7 @@ Lexer::Lexer(string fname, bool flagFile)
 Token *Lexer::getNextToken()
 {
     skipWhiteSpace();
-
-
-    if(strStream.eof() || !strStream.good())
+    if(strStream.eof() || strStream.fail())
     {
         return new Token(TokenType::EndOfInput);
     }
@@ -69,6 +67,11 @@ Token *Lexer::getNextToken()
     {
         strStream.unget();
         return recognizeCurlyBrackets();
+    }
+
+    else if (c == '\0')
+    {
+        return new Token(TokenType::EndOfInput);
     }
 
     else
@@ -176,6 +179,10 @@ void Lexer::skipWhiteSpace()
             line ++;
         }
 
+        if(strStream.eof() || strStream.fail())
+        {
+            return;
+        }
         strStream.get(c);
     }
 
@@ -365,6 +372,11 @@ vector <Token *>Lexer::allTokens()
     {
         tokens.push_back(token);
         token = getNextToken();
+    }
+
+    for (size_t i = 0; i < tokens.size(); i++)
+    {
+        cout << tokens.at(i)->value << " " << tokens.at(i)->tokenType << endl;
     }
 
     return tokens;

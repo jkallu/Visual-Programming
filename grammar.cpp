@@ -28,12 +28,12 @@ void Grammar::createRules()
     rule4.left = 'M';
     rule4.right.push_back("M");
     rule4.right.push_back("*");
-    rule4.right.push_back("T");
+    rule4.right.push_back("W");
     rules.push_back(rule4);
 
     Rule rule5;
     rule5.left = 'M';
-    rule5.right.push_back("T");
+    rule5.right.push_back("W");
     rules.push_back(rule5);
 
     Rule rule6;
@@ -55,6 +55,41 @@ void Grammar::createRules()
     rule9.left = 'T';
     rule9.right.push_back("4");
     rules.push_back(rule9);
+
+    Rule rule;
+
+    rule.left = 'W';
+    rule.right.push_back("T");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'W';
+    rule.right.push_back("U");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'U';
+    rule.right.push_back("Y");
+    rule.right.push_back("(");
+    rule.right.push_back("V");
+    rule.right.push_back(")");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'Y';
+    rule.right.push_back("sin");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'Y';
+    rule.right.push_back("cos");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'V';
+    rule.right.push_back("x");
+    rules.push_back(rule);
+    rule.right.clear();
 }
 
 bool Grammar::symbolIsTerminal(string symbol)

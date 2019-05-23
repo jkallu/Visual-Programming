@@ -6,9 +6,9 @@ EarleyParser::EarleyParser()
     dfsRecursCnt = 0;
 }
 
-void EarleyParser::parse()
+string EarleyParser::parse(vector  <Token *> tokens)
 {
-    string tokens = "2+3*4+1*3+4";
+    //string tokens = "sin(0)";
 
     Rule startRule = grammar->getStartRule();
     addState(startRule, 0, &stateList);
@@ -20,13 +20,13 @@ void EarleyParser::parse()
 
         if(i < tokens.size())
         {
-            token += tokens.at(i);
+            token += tokens.at(i)->value;
         }
 
         if(i >= stateList.size())
         {
             cout << "Error in Parsing" << endl;
-            return;
+            return "";
         }
 
         for (size_t j = 0; j < stateList.at(i).size(); j++)
@@ -59,6 +59,7 @@ void EarleyParser::parse()
                 printStates(&stateList);
                 cout << "SUCCESSFUL" << endl;
                 createPasrseTree();
+                return compileToCIter(parseTree);
             }
             else
             {
@@ -66,6 +67,29 @@ void EarleyParser::parse()
             }
         }
     }
+}
+
+string EarleyParser::compileToCIter(ParseTree_t *pTree)
+{
+    string exp;
+    if(grammar->symbolIsTerminal(pTree->symbol))
+    {
+        if(pTree->symbol == "x")
+        {
+            return  "((double)d)";
+        }
+        else
+        {
+            return  pTree->symbol;
+        }
+    }
+
+    for (size_t i = 0; i < pTree->child.size(); i++)
+    {
+        exp += compileToCIter(pTree->child.at(i));
+    }
+
+    return exp;
 }
 
 bool EarleyParser::successfullSentence()
@@ -492,19 +516,35 @@ void EarleyParser::DFSRecurse(vector<States_t> *stList, size_t pos, ParseTree_t 
 
 void EarleyParser::printParseTree(ParseTree_t *pTree)
 {
-    cout << pTree->symbol << endl;
+
+    cout << pTree->symbol << " ";
+
+    treeLvlPos++;
 
     if(pTree->child.size() > 0)
     {
+
         for (size_t i = 0; i < pTree->child.size(); i++)
         {
+
             printParseTree(pTree->child.at(i));
+
+
+
+
+
         }
+
     }
-    else
+
+    treeLvlPos--;
+
+    cout  << endl;
+    for (int j = 0; j < treeLvlPos; j++)
     {
-        cout << "---" << endl;
+        cout << "| ";
     }
+
 }
 
 void EarleyParser::parseRecursively(ParseTree_t *pTree, size_t pos, vector<States_t> *stList)
@@ -566,7 +606,8 @@ void EarleyParser::createPasrseTree()
 
     state_pos = stateList.size() - 1;
     parseRecursively(parseTree, stateList.size() - 1, &stateList);
-    //DFSRecurse(&stateListCompleteRev, 0, parseTree);
+
+    treeLvlPos = 0;
     printParseTree(parseTree);
 
     /*States_t final_state = stateList.at(stateList.size() - 1);
@@ -579,6 +620,17 @@ void EarleyParser::createPasrseTree()
     cout << final_rule->left << endl;
 
     recurseParser(*final_rule, final_state);*/
+}
+
+void EarleyParser::printParseTreeBFS()
+{
+    while(queue.size() > 0)
+    {
+        ParseTree_t *pTree = queue.dequeue();
+        cout << pTree->symbol << " ";
+    }
+
+
 }
 
 Rule * EarleyParser::getNotVisitedRulesForSymbolWithPriorityFromState(string symbol, States_t *state)
