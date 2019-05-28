@@ -15,7 +15,7 @@ NumberFSM::NumberFSM()
     acceptingStates.push_back(NumberStates::NumberWithExponent);
 }
 
-int NumberFSM::nextState(int currentState, char c)
+int NumberFSM::nextState(int currentState, char c, char next)
 {
     switch (currentState) {
     case NumberStates::Initial:
@@ -31,6 +31,10 @@ int NumberFSM::nextState(int currentState, char c)
         }
 
         if (c == '.') {
+            if(next == '.')
+            {
+                break; // ..
+            }
             return NumberStates::BeginNumberWithFractionalPart;
         }
 

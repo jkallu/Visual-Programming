@@ -3,63 +3,113 @@
 Grammar::Grammar()
 {
     createRules();
+    printRules();
 }
 
 void Grammar::createRules()
 {
-    Rule rule1;
-    rule1.left = 'P';
-    rule1.right.push_back("S");
-    rules.push_back(rule1);
-
-    Rule rule2;
-    rule2.left = 'S';
-    rule2.right.push_back("S");
-    rule2.right.push_back("+");
-    rule2.right.push_back("M");
-    rules.push_back(rule2);
-
-    Rule rule3;
-    rule3.left = 'S';
-    rule3.right.push_back("M");
-    rules.push_back(rule3);
-
-    Rule rule4;
-    rule4.left = 'M';
-    rule4.right.push_back("M");
-    rule4.right.push_back("*");
-    rule4.right.push_back("W");
-    rules.push_back(rule4);
-
-    Rule rule5;
-    rule5.left = 'M';
-    rule5.right.push_back("W");
-    rules.push_back(rule5);
-
-    Rule rule6;
-    rule6.left = 'T';
-    rule6.right.push_back("1");
-    rules.push_back(rule6);
-
-    Rule rule7;
-    rule7.left = 'T';
-    rule7.right.push_back("2");
-    rules.push_back(rule7);
-
-    Rule rule8;
-    rule8.left = 'T';
-    rule8.right.push_back("3");
-    rules.push_back(rule8);
-
-    Rule rule9;
-    rule9.left = 'T';
-    rule9.right.push_back("4");
-    rules.push_back(rule9);
-
     Rule rule;
+
+    rule.left = "Grammar";
+    rule.right.push_back("SetNotation");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = "SetNotation";
+    rule.right.push_back("Expression");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = "SetNotation";
+    rule.right.push_back("Expression");
+    rule.right.push_back("|");
+    rule.right.push_back("Qualifier");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = "Qualifier";
+    rule.right.push_back("Generator");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = "Generator";
+    rule.right.push_back("[");
+    rule.right.push_back("T");
+    rule.right.push_back("T");
+    rule.right.push_back("..");
+    rule.right.push_back("T");
+    rule.right.push_back("]");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = "Qualifier";
+    rule.right.push_back("Expression");
+    rule.right.push_back(",");
+    rule.right.push_back("Expression");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = "Expression";
+    rule.right.push_back("P");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = "Expression";
+    rule.right.push_back("x");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'P';
+    rule.right.push_back("S");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'S';
+    rule.right.push_back("S");
+    rule.right.push_back("+");
+    rule.right.push_back("M");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'S';
+    rule.right.push_back("M");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'M';
+    rule.right.push_back("M");
+    rule.right.push_back("*");
+    rule.right.push_back("W");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'M';
+    rule.right.push_back("W");
+    rules.push_back(rule);
+    rule.right.clear();
 
     rule.left = 'W';
     rule.right.push_back("T");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'T';
+    rule.right.push_back("1");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'T';
+    rule.right.push_back("2");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'T';
+    rule.right.push_back("3");
+    rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = 'T';
+    rule.right.push_back("4");
     rules.push_back(rule);
     rule.right.clear();
 
@@ -69,22 +119,18 @@ void Grammar::createRules()
     rule.right.clear();
 
     rule.left = 'U';
-    rule.right.push_back("Y");
+    rule.right.push_back("Trigonometric_functions");
     rule.right.push_back("(");
     rule.right.push_back("V");
     rule.right.push_back(")");
     rules.push_back(rule);
     rule.right.clear();
 
-    rule.left = 'Y';
-    rule.right.push_back("sin");
-    rules.push_back(rule);
-    rule.right.clear();
-
-    rule.left = 'Y';
-    rule.right.push_back("cos");
-    rules.push_back(rule);
-    rule.right.clear();
+    vector <Rule> trigonometric_rules = getTrigonometricRules();
+    for (size_t i = 0; i < trigonometric_rules.size(); i++)
+    {
+        rules.push_back(trigonometric_rules.at(i));
+    }
 
     rule.left = 'V';
     rule.right.push_back("x");
@@ -134,5 +180,38 @@ bool Grammar::finished(Rule rule)
     }
 
     return true;
+}
+
+vector <Rule> Grammar::getTrigonometricRules()
+{
+    vector <Rule> trigonometric_rules;
+    Rule rule;
+
+    rule.left = "Trigonometric_functions";
+    rule.right.push_back("sin");
+    trigonometric_rules.push_back(rule);
+    rule.right.clear();
+
+    rule.left = "Trigonometric_functions";
+    rule.right.push_back("cos");
+    trigonometric_rules.push_back(rule);
+    rule.right.clear();
+
+    return trigonometric_rules;
+}
+
+void Grammar::printRules()
+{
+    for (size_t i = 0; i < rules.size(); i++)
+    {
+        Rule rule = rules.at(i);
+        std::cout << rule.left << " -> ";
+        for (size_t j = 0; j < rule.right.size(); j++)
+        {
+            std::cout << rule.right.at(j) << " ";
+        }
+
+        cout << "\n";
+    }
 }
 

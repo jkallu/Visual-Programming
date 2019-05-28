@@ -25,7 +25,7 @@ string EarleyParser::parse(vector  <Token *> tokens)
 
         if(i >= stateList.size())
         {
-            cout << "Error in Parsing" << endl;
+            cout << __FUNCTION__ << "Error in Parsing" << endl;
             return "";
         }
 
@@ -59,7 +59,7 @@ string EarleyParser::parse(vector  <Token *> tokens)
                 printStates(&stateList);
                 cout << "SUCCESSFUL" << endl;
                 createPasrseTree();
-                return compileToCIter(parseTree);
+                return compileToC(parseTree);
             }
             else
             {
@@ -69,10 +69,49 @@ string EarleyParser::parse(vector  <Token *> tokens)
     }
 }
 
+
+string EarleyParser::compileToC(ParseTree_t *pTree)
+{
+    return compileToCSetNotationIter(pTree);
+}
+
+string EarleyParser::compileToCSetNotationIter(ParseTree_t *pTree)
+{
+    if(pTree->symbol == "SetNotation")
+    {
+        if(pTree->child.size() == 1)
+        {
+            return compileToCIter(pTree);
+        }
+        else if (pTree->child.size() > 1)
+        {
+            return deSugar(pTree);
+        }
+    }
+
+    for (size_t i = 0; i < pTree->child.size(); i++)
+    {
+        compileToCSetNotationIter(pTree->child.at(i));
+    }
+}
+
+string EarleyParser::deSugar(ParseTree_t *pTree)
+{
+    for (size_t i = 2; i < pTree->child.size(); i++)
+    {
+        ParseTree_t *pTree_chld = pTree->child.at(i);
+        if(pTree_chld->symbol == "Generator")
+        {
+
+            cout << "GENERATOR " << pTree_chld->child.at(1) << " " << pTree_chld->child.at(2) << " " << pTree_chld->child.at(4) << endl;
+        }
+    }
+}
+
 string EarleyParser::compileToCIter(ParseTree_t *pTree)
 {
     string exp;
-    if(grammar->symbolIsTerminal(pTree->symbol))
+    if(pTree->child.size() == 0)
     {
         if(pTree->symbol == "x")
         {
@@ -226,7 +265,7 @@ void EarleyParser::scan(string token, size_t st)
         }
     }
 
-    cout << "Unrecognized token " << token << endl;
+    cout << __FUNCTION__ << " Unrecognized token " << token << endl;
 }
 
 void EarleyParser::complete(Rule rl, size_t s)

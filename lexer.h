@@ -22,6 +22,7 @@ class Lexer
 {
 public:
     Lexer(string fname, bool flagFile);
+
     Token* getNextToken();
     Token* recognizeIdentifier();
     Token* recognizeNumber();
@@ -30,6 +31,11 @@ public:
     Token* recognizeCurlyBrackets();
     Token* recognizeComparisonOperator();
     Token* recognizeArithmeticOperator();
+    Token* recognizeLogicalOperator();
+    Token* recognizeVerticalBar();
+    Token* recognizeDoubleDots();
+    Token* recognizeSquareBracket();
+
     void skipWhiteSpace();
 
     bool isWhiteSpace(char c);
@@ -40,6 +46,9 @@ public:
     bool isOperator(char c);
     bool isComparisonOperator(char c);
     bool isArithmeticOperator(char c);
+    bool isVerticalBar(char c);
+    bool isDot(char c);
+    bool isSquareBracket(char c);
 
     void test();
     vector <Token *> allTokens();

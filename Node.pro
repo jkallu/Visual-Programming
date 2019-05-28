@@ -64,7 +64,8 @@ SOURCES += \
     parserhelper.cpp \
     rule.cpp \
     grammar.cpp \
-    earleyparser.cpp
+    earleyparser.cpp \
+    compiletoc.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -113,7 +114,8 @@ HEADERS += \
     parserhelper.h \
     rule.h \
     grammar.h \
-    earleyparser.h
+    earleyparser.h \
+    compiletoc.h
 
 RESOURCES += \
     node.qrc

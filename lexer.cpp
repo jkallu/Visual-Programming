@@ -69,6 +69,24 @@ Token *Lexer::getNextToken()
         return recognizeCurlyBrackets();
     }
 
+    else if(isSquareBracket(c))
+    {
+        strStream.unget();
+        return recognizeSquareBracket();
+    }
+
+    else if (isVerticalBar(c))
+    {
+        strStream.unget();
+        return recognizeLogicalOperator();
+    }
+
+    else if (isDot(c))
+    {
+        strStream.unget();
+        return recognizeDoubleDots();
+    }
+
     else if (c == '\0')
     {
         return new Token(TokenType::EndOfInput);
@@ -155,6 +173,36 @@ bool Lexer::isParenthesis(char c)
 bool Lexer::isCurlyBrackets(char c)
 {
     if(c == '{' || c == '}')
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool Lexer::isSquareBracket(char c)
+{
+    if(c == '[' || c == ']')
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool Lexer::isVerticalBar(char c)
+{
+    if(c == '|')
+    {
+        return true;
+    }
+
+    return false;
+}
+
+bool Lexer::isDot(char c)
+{
+    if(c == '.')
     {
         return true;
     }
@@ -269,6 +317,21 @@ Token* Lexer::recognizeCurlyBrackets()
     return new Token(TokenType::RightCurlyBracket, "}", line, column - 1);
 }
 
+Token* Lexer::recognizeSquareBracket()
+{
+    char c;
+    strStream.get(c);
+
+    column++;
+
+    if(c == '[')
+    {
+        return new Token(TokenType::LeftSquareBracket, "[", line, column - 1);
+    }
+
+    return new Token(TokenType::RightSquareBracket, "]", line, column - 1);
+}
+
 Token* Lexer::recognizeArithmeticOperator()
 {
     char c;
@@ -344,6 +407,42 @@ Token *Lexer::recognizeComparisonOperator()
         strStream.unget();
         return new Token(TokenType::Assign, "=", line, column - 1);
     }
+}
+
+Token *Lexer::recognizeLogicalOperator()
+{
+    char c;
+    strStream.get(c);
+
+    column++;
+
+    if(c == '|')
+    {
+        return new Token(TokenType::VerticalBar, "|", line, column - 1);
+    }
+
+    return nullptr;
+}
+
+Token *Lexer::recognizeDoubleDots()
+{
+    char c;
+    strStream.get(c);
+
+    column++;
+
+    if(c == '.')
+    {
+        strStream.get(c);
+        if(c == '.')
+        {
+            column++;
+            return new Token(TokenType::DoubleDots, "..", line, column - 1);
+        }
+        strStream.unget();
+    }
+
+    return nullptr;
 }
 
 void Lexer::test()

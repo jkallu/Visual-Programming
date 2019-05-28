@@ -16,6 +16,9 @@ enum TokenType{
                 LessThan,
                 LessThanOrEqual,
                 Equal,
+                // Logical operators
+                VerticalBar,
+
                 // Assignment operator
                 Assign,
                 // Parenthesis
@@ -24,6 +27,11 @@ enum TokenType{
                 // curly brackets
                 LeftCurlyBracket,
                 RightCurlyBracket,
+                // Square brackets
+                LeftSquareBracket,
+                RightSquareBracket,
+                // Double dots
+                DoubleDots,
                 // End
                 EndOfInput
               };

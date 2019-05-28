@@ -8,7 +8,7 @@ FSM::FSM()
 
 }
 
-int FSM::nextState(int currentState, char c)
+int FSM::nextState(int currentState, char c, char next)
 {
     switch (currentState)
     {
@@ -36,11 +36,15 @@ Token * FSM::run(stringstream* input, int col)
     int currentState = initialState;
 
     char c;
+    char next;
     while (!input->eof())
     {
         input->get(c);
 
-        int next_state = nextState(currentState, c);
+        input->get(next);
+        input->unget();
+
+        int next_state = nextState(currentState, c, next);
 
         cout << next_state << endl;
 

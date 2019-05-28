@@ -18,7 +18,7 @@ class NumberFSM : public FSM
 public:
     NumberFSM();
 
-    int nextState(int currentState, char c) override;
+    int nextState(int currentState, char c, char next) override;
 
 };
 

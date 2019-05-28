@@ -5,13 +5,11 @@
 #include "grammar.h"
 #include <QQueue>
 #include "token.h"
+#include "compiletoc.h"
 
-typedef vector <Rule> States_t;
 
-typedef struct ParseTree{
-    string symbol;
-    vector <ParseTree *> child;
-} ParseTree_t;
+
+
 
 
 
@@ -19,11 +17,20 @@ using namespace std;
 
 class Grammar;
 class Token;
+class CompileToC;
 
 class EarleyParser
 {
 public:
     EarleyParser();
+
+    typedef vector <Rule> States_t;
+
+    typedef struct ParseTree{
+        string symbol;
+        vector <ParseTree *> child;
+    } ParseTree_t; // when make any changes to ParseTree_t, also reflect inside compilertoc.h
+
 
     string parse(vector<Token *> tokens);
     void predict(string symbol, size_t s);
@@ -53,6 +60,8 @@ public:
     bool isRuleProcessed(Rule rule);
 
     void createStateListCompletedReversed();
+
+
     void DFSRecurse(vector<States_t> *stList, size_t pos, ParseTree_t *pTree); // Deapth first search
 
     void parseRecursively(ParseTree_t *pTree, size_t pos, vector<States_t> *stList);
@@ -62,6 +71,9 @@ public:
     void printParseTreeBFS();
 
     string compileToCIter(ParseTree_t *pTree);
+    string compileToCSetNotationIter(ParseTree_t *pTree);
+    string compileToC(ParseTree_t *pTree);
+    string deSugar(ParseTree_t *pTree);
 
     size_t dfsRecursCnt;
 

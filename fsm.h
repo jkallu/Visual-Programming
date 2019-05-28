@@ -14,7 +14,7 @@ class FSM
 public:
     FSM();
 
-    virtual int nextState(int currentState, char c);
+    virtual int nextState(int currentState, char c, char next);
     Token *run(stringstream *input, int col); // for test
 
     vector <int> states;
