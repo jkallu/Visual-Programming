@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include "commonheader.h"
 
 using namespace std;
 
@@ -14,11 +14,10 @@ class CompileToC
 public:
     CompileToC();
 
-    //EarleyParser::ParseTree_t *parseTree;
-
-
-    //string start(ParseTree_t *pTree);
-    //string compileToCIter(ParseTree_t *pTree);
+    string compileToCIter(ParseTree_t *pTree);
+    string compileToCSetNotationIter(ParseTree_t *pTree);
+    string start(ParseTree_t *pTree);
+    string deSugar(ParseTree_t *pTree);
 
 
 

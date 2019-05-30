@@ -115,7 +115,8 @@ HEADERS += \
     rule.h \
     grammar.h \
     earleyparser.h \
-    compiletoc.h
+    compiletoc.h \
+    commonheader.h
 
 RESOURCES += \
     node.qrc

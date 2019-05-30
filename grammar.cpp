@@ -12,89 +12,117 @@ void Grammar::createRules()
 
     rule.left = "Grammar";
     rule.right.push_back("SetNotation");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = "SetNotation";
     rule.right.push_back("Expression");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = "SetNotation";
     rule.right.push_back("Expression");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rule.right.push_back("|");
+    rule.rightTokenType.push_back(TokenType::VerticalBar);
     rule.right.push_back("Qualifier");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = "Qualifier";
     rule.right.push_back("Generator");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = "Generator";
     rule.right.push_back("[");
+    rule.rightTokenType.push_back(TokenType::LeftSquareBracket);
     rule.right.push_back("T");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rule.right.push_back("T");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rule.right.push_back("..");
+    rule.rightTokenType.push_back(TokenType::DoubleDots);
     rule.right.push_back("T");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rule.right.push_back("]");
+    rule.rightTokenType.push_back(TokenType::RightSquareBracket);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = "Qualifier";
     rule.right.push_back("Expression");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rule.right.push_back(",");
+    rule.rightTokenType.push_back(TokenType::Comma);
     rule.right.push_back("Expression");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = "Expression";
     rule.right.push_back("P");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
-    rule.left = "Expression";
+   /*rule.left = "Expression";
     rule.right.push_back("x");
+    rule.rightTokenType.push_back(TokenType::Identifier);
     rules.push_back(rule);
-    rule.right.clear();
+    rule.right.clear();*/
 
     rule.left = 'P';
     rule.right.push_back("S");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = 'S';
     rule.right.push_back("S");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rule.right.push_back("+");
+    rule.rightTokenType.push_back(TokenType::Plus);
     rule.right.push_back("M");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = 'S';
     rule.right.push_back("M");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = 'M';
     rule.right.push_back("M");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rule.right.push_back("*");
+    rule.rightTokenType.push_back(TokenType::Times);
     rule.right.push_back("W");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = 'M';
     rule.right.push_back("W");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = 'W';
     rule.right.push_back("T");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rules.push_back(rule);
     rule.right.clear();
 
     rule.left = 'T';
     rule.right.push_back("1");
+    rule.rightTokenType.push_back(TokenType::Number);
     rules.push_back(rule);
     rule.right.clear();
 
@@ -120,9 +148,13 @@ void Grammar::createRules()
 
     rule.left = 'U';
     rule.right.push_back("Trigonometric_functions");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rule.right.push_back("(");
+    rule.rightTokenType.push_back(TokenType::LeftParenthesis);
     rule.right.push_back("V");
+    rule.rightTokenType.push_back(TokenType::EndOfInput);
     rule.right.push_back(")");
+    rule.rightTokenType.push_back(TokenType::RightParenthesis);
     rules.push_back(rule);
     rule.right.clear();
 
@@ -134,6 +166,7 @@ void Grammar::createRules()
 
     rule.left = 'V';
     rule.right.push_back("x");
+    rule.rightTokenType.push_back(TokenType::Identifier);
     rules.push_back(rule);
     rule.right.clear();
 }
@@ -189,11 +222,13 @@ vector <Rule> Grammar::getTrigonometricRules()
 
     rule.left = "Trigonometric_functions";
     rule.right.push_back("sin");
+    rule.rightTokenType.push_back(TokenType::Trigonometric);
     trigonometric_rules.push_back(rule);
     rule.right.clear();
 
     rule.left = "Trigonometric_functions";
     rule.right.push_back("cos");
+    rule.rightTokenType.push_back(TokenType::Trigonometric);
     trigonometric_rules.push_back(rule);
     rule.right.clear();
 

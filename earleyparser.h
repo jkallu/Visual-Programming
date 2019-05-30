@@ -7,10 +7,7 @@
 #include "token.h"
 #include "compiletoc.h"
 
-
-
-
-
+#include "commonheader.h"
 
 
 using namespace std;
@@ -26,10 +23,6 @@ public:
 
     typedef vector <Rule> States_t;
 
-    typedef struct ParseTree{
-        string symbol;
-        vector <ParseTree *> child;
-    } ParseTree_t; // when make any changes to ParseTree_t, also reflect inside compilertoc.h
 
 
     string parse(vector<Token *> tokens);
@@ -37,7 +30,8 @@ public:
     void findRulesIter(string symbol, size_t s);
     void addState(Rule rule, size_t s, vector<States_t> *stList);
     void addStateForReversed(Rule rule, size_t s, vector<States_t> *stList);
-    void scan(string token, size_t st);
+    //void scan(string token, size_t st);
+    void scan(Token *token, size_t st);
     void complete(Rule rl, size_t s);
 
     void changePriorityDuplicateRule(Rule rule, States_t *state);
@@ -70,10 +64,7 @@ public:
 
     void printParseTreeBFS();
 
-    string compileToCIter(ParseTree_t *pTree);
-    string compileToCSetNotationIter(ParseTree_t *pTree);
-    string compileToC(ParseTree_t *pTree);
-    string deSugar(ParseTree_t *pTree);
+
 
     size_t dfsRecursCnt;
 
@@ -94,6 +85,8 @@ public:
     size_t state_pos, treeLvlPos;
 
     QQueue <ParseTree_t *> queue;
+
+    CompileToC *compileToC;
 };
 
 #endif // EARLEYPARSER_H

@@ -466,6 +466,10 @@ vector <Token *>Lexer::allTokens()
 {
     vector  <Token *> tokens;
     Token *token = getNextToken();
+    if(token->value == "sin" || token->value == "cos")
+    {
+        token->tokenType = TokenType::Trigonometric;
+    }
 
     while (token->tokenType != TokenType::EndOfInput)
     {

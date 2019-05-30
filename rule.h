@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "token.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ public:
     bool isFinished();
     string nextElement();
     string lastElement();
+    enum TokenType nextElementType();
 
     bool visited() {return flagVisited;}
     void setVisited(bool flag) {flagVisited = flag;}
@@ -21,6 +23,7 @@ public:
 
     string left;
     vector <string> right;
+    vector <enum TokenType> rightTokenType;
     size_t dot_pos;
     size_t n;
     bool flagVisited;

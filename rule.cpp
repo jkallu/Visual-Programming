@@ -28,6 +28,16 @@ string Rule::nextElement()
     return "";
 }
 
+enum TokenType Rule::nextElementType()
+{
+    if(dot_pos < rightTokenType.size())
+    {
+        return rightTokenType.at(dot_pos);
+    }
+
+    return TokenType::EndOfInput;
+}
+
 string Rule::lastElement()
 {
     if(right.size() > 0)

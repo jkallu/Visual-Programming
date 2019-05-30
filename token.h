@@ -32,6 +32,10 @@ enum TokenType{
                 RightSquareBracket,
                 // Double dots
                 DoubleDots,
+                // Comma
+                Comma,
+                // Trigonometric
+                Trigonometric,
                 // End
                 EndOfInput
               };

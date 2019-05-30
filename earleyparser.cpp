@@ -4,6 +4,7 @@ EarleyParser::EarleyParser()
 {
     grammar = new Grammar;
     dfsRecursCnt = 0;
+    compileToC = new CompileToC;
 }
 
 string EarleyParser::parse(vector  <Token *> tokens)
@@ -16,11 +17,13 @@ string EarleyParser::parse(vector  <Token *> tokens)
 
     for (size_t i = 0; i <= tokens.size(); i++)
     {
-        string token;
+        //string token;
+        Token *token;
 
         if(i < tokens.size())
         {
-            token += tokens.at(i)->value;
+            //token += tokens.at(i)->value;
+            token = tokens.at(i);
         }
 
         if(i >= stateList.size())
@@ -59,7 +62,7 @@ string EarleyParser::parse(vector  <Token *> tokens)
                 printStates(&stateList);
                 cout << "SUCCESSFUL" << endl;
                 createPasrseTree();
-                return compileToC(parseTree);
+                return compileToC->start(parseTree);
             }
             else
             {
@@ -70,66 +73,7 @@ string EarleyParser::parse(vector  <Token *> tokens)
 }
 
 
-string EarleyParser::compileToC(ParseTree_t *pTree)
-{
-    return compileToCSetNotationIter(pTree);
-}
 
-string EarleyParser::compileToCSetNotationIter(ParseTree_t *pTree)
-{
-    if(pTree->symbol == "SetNotation")
-    {
-        if(pTree->child.size() == 1)
-        {
-            return compileToCIter(pTree);
-        }
-        else if (pTree->child.size() > 1)
-        {
-            return deSugar(pTree);
-        }
-    }
-
-    for (size_t i = 0; i < pTree->child.size(); i++)
-    {
-        compileToCSetNotationIter(pTree->child.at(i));
-    }
-}
-
-string EarleyParser::deSugar(ParseTree_t *pTree)
-{
-    for (size_t i = 2; i < pTree->child.size(); i++)
-    {
-        ParseTree_t *pTree_chld = pTree->child.at(i);
-        if(pTree_chld->symbol == "Generator")
-        {
-
-            cout << "GENERATOR " << pTree_chld->child.at(1) << " " << pTree_chld->child.at(2) << " " << pTree_chld->child.at(4) << endl;
-        }
-    }
-}
-
-string EarleyParser::compileToCIter(ParseTree_t *pTree)
-{
-    string exp;
-    if(pTree->child.size() == 0)
-    {
-        if(pTree->symbol == "x")
-        {
-            return  "((double)d)";
-        }
-        else
-        {
-            return  pTree->symbol;
-        }
-    }
-
-    for (size_t i = 0; i < pTree->child.size(); i++)
-    {
-        exp += compileToCIter(pTree->child.at(i));
-    }
-
-    return exp;
-}
 
 bool EarleyParser::successfullSentence()
 {
@@ -243,7 +187,7 @@ void EarleyParser::predict(string symbol, size_t s)
     }
 }
 
-void EarleyParser::scan(string token, size_t st)
+void EarleyParser::scan(Token *token, size_t st)
 {
     if(st >= stateList.size())
     {
@@ -256,7 +200,7 @@ void EarleyParser::scan(string token, size_t st)
         Rule rule = stateList.at(st).at(i);
         if(!rule.isFinished())
         {
-            if(rule.nextElement() == token)
+            if(rule.nextElement() == token->value)
             {
                 rule.dot_pos++;
                 addState(rule, st + 1, &stateList);
