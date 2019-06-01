@@ -127,3 +127,6 @@ LIBS += -ldl
 
 #LIBS += -L/Applications/root_v6.12.06/lib/  `/Applications/root_v6.12.06/bin/root-config --glibs --libs` -lSpectrum
 
+DISTFILES += \
+    vp.png
+

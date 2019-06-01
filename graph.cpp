@@ -11,6 +11,8 @@ void Graph::init()
     glWidget = new GLWidget();
 
     boxLayout->addWidget(glWidget, 3, 0, 1, 2);
+    lblData->setVisible(false);
+    teData->setVisible(false);
 
     boxLayout->rowStretch(1);
 

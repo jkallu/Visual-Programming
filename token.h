@@ -49,6 +49,7 @@ public:
     void setColumn(int col){column = col;}
     void setLine(int lin){line = lin;}
     void setType(enum TokenType typ){tokenType = typ;}
+    enum TokenType getType(){return tokenType;}
 
     enum TokenType tokenType;
     string value;

@@ -309,8 +309,8 @@ BlockItem::BlockItem(BlockType blockType, int id_l, int tpId, QMenu *contextMenu
 
         painterpath.addText(0, 50, QFont("Times", 40), "M");
 
-        colorLight = QColor(Qt::red);
-        colorDark = QColor(Qt::darkRed);
+        colorLight = QColor(Qt::white);
+        colorDark = QColor(Qt::white);
 
         break;
 
@@ -423,13 +423,9 @@ void BlockItem::creatOutputNodes(int num){
 
 void BlockItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *)
 {
-    //painter->setPen(Qt::NoPen);
-    //painter->setBrush(Qt::darkGray);
-    //painter->drawEllipse(-7, -7, 10, 10);
-    //painter->drawPolygon(polygon());
-
 
     QRadialGradient gradient(-3, -3, 10);
+    /*
     if (option->state & QStyle::State_Sunken) {
         gradient.setCenter(3, 3);
         gradient.setFocalPoint(3, 3);
@@ -439,8 +435,12 @@ void BlockItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
         gradient.setColorAt(0, colorLight);
         gradient.setColorAt(1, colorDark);
     }
+    */
+    gradient.setColorAt(0, Qt::white);
+    gradient.setColorAt(1, Qt::white);
+
     painter->setBrush(gradient);
-    painter->setPen(QPen(Qt::darkGray,2));
+    painter->setPen(QPen(Qt::darkBlue,2));
 
     //painter->setPen(QPen(Qt::black, 0));
     painter->drawPolygon(myPolygon);
@@ -450,7 +450,7 @@ void BlockItem::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
     painter->setFont(font);
 
     QPen pen = painter->pen();
-    pen.setColor(Qt::white);
+    pen.setColor(Qt::darkBlue);
     painter->setPen(pen);
     painter->drawText(QPoint(10, arrayWH.ry() / 2), name);
 

@@ -44,8 +44,11 @@ BlockIO::BlockIO(int id_l, int numOfIn, int numOfOut, BlockItem::BlockType typ):
     for(int i = 0; i < numOfInputs; i++){
         lblIn[i] = new QLabel("Input_" + QString::number(i));
         lblInData[i] = new QLabel("InputData_" + QString::number(i));
-        boxLayout->addWidget(lblIn[i]);
-        boxLayout->addWidget(lblInData[i]);
+        //boxLayout->addWidget(lblIn[i]);
+        //boxLayout->addWidget(lblInData[i]);
+
+        //lblIn[i]->setVisible(false);
+        //lblInData[i]->setVisible(false);
     }
 
     for(int i = 0; i < numOfOutputs; i++){
@@ -56,8 +59,11 @@ BlockIO::BlockIO(int id_l, int numOfIn, int numOfOut, BlockItem::BlockType typ):
 
         lblOutConTo[i] = new QLabel("Out_" + QString::number(i) + "_ConTo");
         lblOutConToBlock[i] = new QLabel("OutConToBlock_" + QString::number(i));
-        boxLayout->addWidget(lblOutConTo[i]);
-        boxLayout->addWidget(lblOutConToBlock[i]);
+        //boxLayout->addWidget(lblOutConTo[i]);
+        //boxLayout->addWidget(lblOutConToBlock[i]);
+
+        //lblIn[i]->setVisible(false);
+        //lblInData[i]->setVisible(false);
     }
 
     lblData = new QLabel("Data");
