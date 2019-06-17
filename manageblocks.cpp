@@ -25,6 +25,7 @@ ManageBlocks::ManageBlocks()
     countlocalProcedureBlock = 0;
     countNetworkClientBlock = 0;
     countNetworkServerBlock = 0;
+    countSimulate3dBlock = 0;
 
     connTree = nullptr;
 
@@ -314,6 +315,17 @@ QGroupBox* ManageBlocks::addNetworkServerBlock(int nIn, int nOut){
 
     return ab->groupBox;
 }
+
+QGroupBox* ManageBlocks::addSimulate3dBlock(){
+    Simulate3dBlock *ab = new Simulate3dBlock(countSimulate3dBlock);
+    ab->leName->setText("Simulate3d_" + QString::number(countSimulate3dBlock));
+
+    countSimulate3dBlock++;
+
+    blockIO.push_back(ab);
+    return ab->groupBox;
+}
+
 
 void ManageBlocks::deleteConnectTree(CTree_t *cTree)
 {

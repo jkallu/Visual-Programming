@@ -9,12 +9,14 @@
 #include "formulawidget.h"
 #include "lexer.h"
 #include "earleyparser.h"
+#include "gsltest.h"
 
 
 class BlockIO;
 class FormulaWidget;
 class Lexer;
 class EarleyParser;
+class GSLTest;
 
 class ExpressionBlock : virtual public BlockIO
 {
@@ -38,6 +40,8 @@ public:
 
     Lexer *lexer;
     EarleyParser *earleyParser;
+
+    GSLTest *gslTest;
 };
 
 #endif // EXPRESSIONBLOCK_H

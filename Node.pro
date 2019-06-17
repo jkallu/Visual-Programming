@@ -1,4 +1,4 @@
-QT += gui widgets opengl script
+QT += gui widgets opengl script 3dcore 3drender 3dinput 3dlogic 3dextras 3danimation
 
 #mac# LIBS += -framework GLUT -framework OpenGL
 
@@ -65,7 +65,10 @@ SOURCES += \
     rule.cpp \
     grammar.cpp \
     earleyparser.cpp \
-    compiletoc.cpp
+    compiletoc.cpp \
+    gsltest.cpp \
+    simulate3d.cpp \
+    simulate3dblock.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -116,13 +119,16 @@ HEADERS += \
     grammar.h \
     earleyparser.h \
     compiletoc.h \
-    commonheader.h
+    commonheader.h \
+    gsltest.h \
+    simulate3d.h \
+    simulate3dblock.h
 
 RESOURCES += \
     node.qrc
 
 #INCLUDEPATH += /home/jin/qt_pgms/nodegencodes
-LIBS += -ldl
+LIBS += -ldl -lgsl -lgslcblas -lm
 #INCLUDEPATH += /Applications/root_v6.12.06/include
 
 #LIBS += -L/Applications/root_v6.12.06/lib/  `/Applications/root_v6.12.06/bin/root-config --glibs --libs` -lSpectrum

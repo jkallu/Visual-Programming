@@ -5,6 +5,8 @@ ExpressionBlock::ExpressionBlock(int i):
 {
     init();
 
+    gslTest = new GSLTest;
+    gslTest->odeSolution();
 }
 
 void ExpressionBlock::init()

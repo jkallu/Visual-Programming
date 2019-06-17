@@ -88,7 +88,7 @@ BlockItem::BlockItem(BlockType blockType, int id_l, int tpId, QMenu *contextMenu
                   << QPointF(0, 0);
         createInputNodes(1);
         creatOutputNodes(2);
-        name = "Split_" + QString::number(typeId);
+        name = "Duplicate_" + QString::number(typeId);
 
         painterpath.moveTo(QPointF(0, 50));
         painterpath.lineTo(QPointF(50, 50));
@@ -375,6 +375,23 @@ BlockItem::BlockItem(BlockType blockType, int id_l, int tpId, QMenu *contextMenu
 
         colorLight = QColor(Qt::red);
         colorDark = QColor(Qt::darkRed);
+
+        break;
+
+    case Simulate:
+        myPolygon << QPointF(0, 0) << QPointF(arrayWH.rx(), 0)
+                  << QPointF(arrayWH.rx(), arrayWH.ry()) << QPointF(0, arrayWH.ry())
+                  << QPointF(0, 0);
+
+        createInputNodes(2);
+        creatOutputNodes(0);
+        name = "Simulate_" + QString::number(typeId);
+
+        painterpath.addRect(0, 0, 100, 100);
+        painterpath.addRect(10, 10, 80, 80);
+
+        colorLight = QColor(Qt::green);
+        colorDark = QColor(Qt::darkGreen);
 
         break;
 

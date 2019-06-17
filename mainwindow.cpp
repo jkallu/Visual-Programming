@@ -90,7 +90,7 @@ void MainWindow::createToolBox(){
     layout->addWidget(createCellWidget(tr("Array"), BlockItem::Array),0, 1);
     layout->addWidget(createCellWidget(tr("Expression"), BlockItem::Expression), 1, 0);
     layout->addWidget(createCellWidget(tr("Graph"), BlockItem::Graph), 1, 1);
-    layout->addWidget(createCellWidget(tr("Split"), BlockItem::Split), 2, 0);
+    layout->addWidget(createCellWidget(tr("Duplicate"), BlockItem::Split), 2, 0);
     layout->addWidget(createCellWidget(tr("Adder"), BlockItem::Adder), 2, 1);
     layout->addWidget(createCellWidget(tr("Delay"), BlockItem::Delay), 3, 0);
     layout->addWidget(createCellWidget(tr("Accumulator"), BlockItem::Accumulator), 3, 1);
@@ -108,6 +108,7 @@ void MainWindow::createToolBox(){
     layout->addWidget(createCellWidget(tr("LocalProcedureBlock"), BlockItem::LocalProcedure), 9, 1);
     layout->addWidget(createCellWidget(tr("NetworkClientBlock"), BlockItem::NetworkClient), 10, 0);
     layout->addWidget(createCellWidget(tr("NetworkServerBlock"), BlockItem::NetworkServer), 10, 1);
+    layout->addWidget(createCellWidget(tr("Simulate3d"), BlockItem::Simulate), 11, 0);
 
     QWidget *itemWidget = new QWidget;
     itemWidget->setLayout(layout);

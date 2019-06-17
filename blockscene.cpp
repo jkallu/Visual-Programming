@@ -23,6 +23,7 @@ BlockScene::BlockScene(QMenu *itemMenu, QObject *parent):
     countLocalProcedure = 0;
     countNetworkClient = 0;
     countNetworkServer = 0;
+    countSimulate3d = 0;
 
     vbLayOutProp = new QVBoxLayout();
 
@@ -327,6 +328,13 @@ void BlockScene::insertBlock(QPointF pos, int n_ins, int n_outs, bool flagOpen, 
             vbLayOutProp->addWidget(manageBlocks->addNetworkServerBlock(ins, outs), 0);
             typeID = countNetworkServer;
             countNetworkServer++;
+            break;
+
+        case BlockItem::Simulate:
+            removeAllWidgetsFromProperties();
+            vbLayOutProp->addWidget(manageBlocks->addSimulate3dBlock());
+            typeID = countSimulate3d;
+            countSimulate3d++;
             break;
         }
 

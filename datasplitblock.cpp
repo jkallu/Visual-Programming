@@ -11,7 +11,7 @@ void DataSplitBlock::init()
     boxLayout->rowStretch(1);
 
     groupBox->setLayout(boxLayout);
-    groupBox->setTitle("Split Block");
+    groupBox->setTitle("Duplicate Block");
 }
 
 void DataSplitBlock::generateOutputs(){
