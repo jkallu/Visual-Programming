@@ -319,7 +319,7 @@ void MainBlock::createEventLoopFiles(QString dir)
             "if(*ptr_global_data == NULL)\n"
             "{\n"
             "    pthread_mutex_unlock(&global_lock);\n"
-            "    printf(\"\\rGLOBAL DATA IS NULL\");\n"
+            //"    printf(\"\\rGLOBAL DATA IS NULL\");\n"
             "    usleep(10);\n"
             "}\n"
             "else\n"

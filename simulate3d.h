@@ -58,7 +58,7 @@ public:
     virtual ~Simulate3d();
     void show();
 
-private:
+//private:
     Qt3DCore::QEntity *m_rootEntity;
     Qt3DCore::QEntity *m_sphereEntity;
 

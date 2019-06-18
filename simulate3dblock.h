@@ -3,6 +3,7 @@
 
 #include "blockio.h"
 #include "simulate3d.h"
+#include "vector"
 
 class BlockIO;
 class Simulate3d;
@@ -13,8 +14,15 @@ public:
     Simulate3dBlock(int i);
 
     void init() override;
+    void setData(char *data) override;
+    void show();
 
     Qt3DExtras::Qt3DWindow *view;
+    Simulate3d *simulate3d;
+    Qt3DAnimation::QClipAnimator *animator;
+    Qt3DAnimation::QAnimationClip *animationClip;
+
+    std::vector <double> x_data, y_data, z_data, t_data;
 };
 
 #endif // SIMULATE3DBLOCK_H

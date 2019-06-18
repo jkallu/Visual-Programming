@@ -351,7 +351,8 @@ void ManageBlocks::generateCodeIter(CTree_t *cTree, CTree_t *main)
     if(cTree->blockIO->getType() != BlockItem::MainBlock
             && !listBlock.contains(cTree->blockIO->leName->text()))
     {
-        if(cTree->blockIO->getType() != BlockItem::Graph)
+        if(cTree->blockIO->getType() != BlockItem::Graph &&
+           cTree->blockIO->getType() != BlockItem::Simulate)
         {
             cTree->blockIO->generateCode(main->blockIO->getDir());
             main->blockIO->addHeader(cTree->blockIO->leName->text());
@@ -399,6 +400,7 @@ void ManageBlocks::generateCode()
 
     for(size_t i = 0; i < blockIO.size(); i++){
         if(blockIO.at(i)->isBlockEnabled()){
+
             blockIO.at(i)->generateCode(dir);
             generateMainBlock[0]->addHeader(blockIO.at(i)->leName->text());
             simulate->addSource(blockIO.at(i)->leName->text());
