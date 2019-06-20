@@ -29,7 +29,7 @@ public:
     enum Mode {MoveItem, ConnectItem};
     enum BlockType {Constant, Array, Expression, Graph, Split, Adder, Delay, Accumulator, ReadFile,
                     GetMax, LineDisplay, IfBlock, HistFromArrayBlock, FillHist, ReadMultiFile, GenerateGaus,
-                   GenerateXY, MainBlock, DeMux, LocalProcedure, NetworkClient, NetworkServer, Simulate};
+                   GenerateXY, MainBlock, DeMux, LocalProcedure, NetworkClient, NetworkServer, Simulate, GSL};
     BlockItem(BlockType blockType, int id_l, int tpId, QMenu *contextMenu, int nIn, int nOut);
     BlockType diagramType() const { return myBlockType; }
     QPolygonF polygon() const { return myPolygon; }

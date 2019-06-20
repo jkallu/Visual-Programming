@@ -79,8 +79,8 @@ void MainBlock::generateMakefile(QString dir)
     }
     file << "\n";
 
-    file << "%.o: %.c $(DEPS)\n\t$(CC) -c -o $@ $< $(CFLAGS) -lpthread -lm \n";
-    file << "gen: $(OBJ)\n\t$(CC) -o $@ $^ $(CFLAGS) -lpthread -lm \n";
+    file << "%.o: %.c $(DEPS)\n\t$(CC) -c -o $@ $< $(CFLAGS) -lpthread -ldl -lgsl -lgslcblas -lm \n";
+    file << "gen: $(OBJ)\n\t$(CC) -o $@ $^ $(CFLAGS) -lpthread -ldl -lgsl -lgslcblas -lm \n";
 
     file << ".PHONY: clean\n";
 

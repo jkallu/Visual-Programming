@@ -26,6 +26,7 @@ ManageBlocks::ManageBlocks()
     countNetworkClientBlock = 0;
     countNetworkServerBlock = 0;
     countSimulate3dBlock = 0;
+    countGSLBlock = 0;
 
     connTree = nullptr;
 
@@ -321,6 +322,16 @@ QGroupBox* ManageBlocks::addSimulate3dBlock(){
     ab->leName->setText("Simulate3d_" + QString::number(countSimulate3dBlock));
 
     countSimulate3dBlock++;
+
+    blockIO.push_back(ab);
+    return ab->groupBox;
+}
+
+QGroupBox* ManageBlocks::addGSLBlock(){
+    GSLBlock *ab = new GSLBlock(countGSLBlock, BlockItem::GSL);
+    ab->leName->setText("GSL_" + QString::number(countGSLBlock));
+
+    countGSLBlock++;
 
     blockIO.push_back(ab);
     return ab->groupBox;

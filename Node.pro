@@ -68,7 +68,8 @@ SOURCES += \
     compiletoc.cpp \
     gsltest.cpp \
     simulate3d.cpp \
-    simulate3dblock.cpp
+    simulate3dblock.cpp \
+    gslblock.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -122,7 +123,8 @@ HEADERS += \
     commonheader.h \
     gsltest.h \
     simulate3d.h \
-    simulate3dblock.h
+    simulate3dblock.h \
+    gslblock.h
 
 RESOURCES += \
     node.qrc
