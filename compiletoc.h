@@ -16,10 +16,10 @@ public:
 
     string compileToCIter(ParseTree_t *pTree);
     string compileToCSetNotationIter(ParseTree_t *pTree);
-    string start(ParseTree_t *pTree);
+    string start(ParseTree_t *pTree, string typ);
     string deSugar(ParseTree_t *pTree);
 
-
+    string type;
 
 };
 

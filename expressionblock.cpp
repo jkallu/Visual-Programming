@@ -5,8 +5,8 @@ ExpressionBlock::ExpressionBlock(int i):
 {
     init();
 
-    gslTest = new GSLTest;
-    gslTest->odeSolution();
+    //gslTest = new GSLTest;
+    //gslTest->odeSolution();
 }
 
 void ExpressionBlock::init()
@@ -59,7 +59,7 @@ void ExpressionBlock::generateCode(QString dir)
 {
     lexer = new Lexer(leExpression->text().toStdString(), false);
     earleyParser = new EarleyParser;
-    string compiledExp = earleyParser->parse(lexer->allTokens());
+    string compiledExp = earleyParser->parse(lexer->allTokens(), "EXP");
 
     delete lexer;
     delete earleyParser;

@@ -4,8 +4,9 @@ CompileToC::CompileToC()
 {
 
 }
-string CompileToC::start(ParseTree_t *pTree)
+string CompileToC::start(ParseTree_t *pTree, string typ)
 {
+    type = typ;
     return compileToCSetNotationIter(pTree);
 }
 
@@ -45,7 +46,7 @@ string CompileToC::deSugar(ParseTree_t *pTree)
     //    if(pTree_chld->symbol == "Generator")
     //    {
 
-            cout << "GENERATOR " << pTree->child.at(1)->child.at(0)->symbol << " " << pTree->child.at(2)->child.at(0)->symbol << " " << pTree->child.at(4)->child.at(0)->symbol << endl;
+    cout << "GENERATOR " << pTree->child.at(1)->child.at(0)->symbol << " " << pTree->child.at(2)->child.at(0)->symbol << " " << pTree->child.at(4)->child.at(0)->symbol << endl;
     //    }
     //}
 }
@@ -57,7 +58,18 @@ string CompileToC::compileToCIter(ParseTree_t *pTree)
     {
         if(pTree->symbol == "x")
         {
-            return  "((double)d)";
+            if(type == "EXP")
+            {
+                return  "((double)d)";
+            }
+            else if(type == "GSLEXP")
+            {
+                return "y[0]";
+            }
+            else
+            {
+                return  pTree->symbol;
+            }
         }
         else
         {

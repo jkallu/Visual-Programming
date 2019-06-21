@@ -7,8 +7,9 @@ EarleyParser::EarleyParser()
     compileToC = new CompileToC;
 }
 
-string EarleyParser::parse(vector  <Token *> tokens)
+string EarleyParser::parse(vector  <Token *> tokens, string typ)
 {
+    type = typ;
     //string tokens = "sin(0)";
 
     Rule startRule = grammar->getStartRule();
@@ -62,7 +63,7 @@ string EarleyParser::parse(vector  <Token *> tokens)
                 printStates(&stateList);
                 cout << "SUCCESSFUL" << endl;
                 createPasrseTree();
-                return compileToC->start(parseTree);
+                return compileToC->start(parseTree, type);
             }
             else
             {
@@ -209,7 +210,7 @@ void EarleyParser::scan(Token *token, size_t st)
         }
     }
 
-    cout << __FUNCTION__ << " Unrecognized token " << token << endl;
+    cout << __FUNCTION__ << " Unrecognized token " << token->value << endl;
 }
 
 void EarleyParser::complete(Rule rl, size_t s)

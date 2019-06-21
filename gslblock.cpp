@@ -4,16 +4,25 @@
 GSLBlock::GSLBlock(int i, BlockItem::BlockType type):
     BlockIO(i, 1, 1, type)
 {
-
+    init();
 }
 
 void GSLBlock::init()
 {
     lblExp = new QLabel("Expression");
-    leExpression = new QLineEdit("sin(x)");
+    leExpression = new QLineEdit("alpha * x * (1+ sin (omega*t))");
+
+    lblParms = new QLabel("Parameters");
+    teParms = new QTextEdit;
+    teParms->append("alpha = 0.015 \n");
+    teParms->append("omega = 2.0*M_PI/365.0");
+
 
     boxLayout->addWidget(lblExp);
     boxLayout->addWidget(leExpression);
+
+    boxLayout->addWidget(lblParms);
+    boxLayout->addWidget(teParms);
 
     lblData->setVisible(false);
     teData->setVisible(false);
@@ -26,7 +35,27 @@ void GSLBlock::init()
 
 void GSLBlock::generateCode(QString dir)
 {
-    std::string compiledExp  = "d";
+    //lexer = new Lexer(leExpression->text().toStdString(), false);
+    //earleyParser = new EarleyParser;
+    //string compiledExp = earleyParser->parse(lexer->allTokens(), "GSLEXP");
+
+    string compiledExp = leExpression->text().toStdString();
+
+    QTextDocument * doc = teParms->document();
+
+    int countParms = 0;
+
+    for (int i = 0; i < teParms->document()->blockCount(); i++)
+    {
+        QString line = doc->findBlockByLineNumber(i).text();
+        if(line.trimmed() != "")
+        {
+            countParms++;
+        }
+    }
+
+
+    std::string strd  = "d";
 
     std::ofstream fileHeader(QString(dir+leName->text()).toLatin1()+".h");
     QString upper = leName->text().toUpper();
@@ -53,10 +82,19 @@ void GSLBlock::generateCode(QString dir)
             "char *global_data;\n\n"
             ;
     file << "int dfunc (double t, const double y[], double f[], void *params_ptr) \n{\n"
-            "double *lparams = (double *) params_ptr;\n"
-            "double alpha = lparams[0];\n"
-            "double omega = lparams[1];\n"
-            "f[0] = alpha * y[0] * (1+ sin (omega*t));\n"
+            //"double *lparams = (double *) params_ptr;\n"
+            //"double alpha = lparams[0];\n"
+            //"double omega = lparams[1];\n"
+            ;
+    for (int i = 0; i < teParms->document()->blockCount(); i++)
+    {
+        QString line = doc->findBlockByLineNumber(i).text();
+        if(line.trimmed() != "")
+        {
+            file << "double " << line.toStdString() <<";\n";
+        }
+    }
+    file << "f[0] = "<< compiledExp << ";\n"
             "return GSL_SUCCESS; \n"
             "}\n";
     file << "void * " << leName->text().toStdString() << "(void *dat) \n{\n";
@@ -82,12 +120,12 @@ void GSLBlock::generateCode(QString dir)
             "const double eps_rel = 1.e-10; \n"
             "double alpha = 0.015;	\n"
             "double omega = 2.0*M_PI/365.0; \n"
-            "double myparams[2];   \n"
+            "double myparams[ " << countParms << "];   \n"
             "double y[dimension]; \n"
             "double h = 1.0e-6; \n"
             "gsl_odeiv2_system ode_system;	\n"
-            "myparams[0] = alpha;  \n"
-            "myparams[1] = omega; \n"
+            //"myparams[0] = alpha;  \n"
+            //"myparams[1] = omega; \n"
             "ode_system.function = dfunc;  \n"
             "ode_system.dimension = dimension; \n"
             "ode_system.params = myparams; \n"
@@ -107,7 +145,7 @@ void GSLBlock::generateCode(QString dir)
                     "int d;\n"
                     "memcpy(&d, in + add, sizeof (int));\n"
                     //"d = " << leExpression->text().toStdString() <<"((double)d);\n"
-                    "d = " << compiledExp << ";\n"
+                    "d = " << strd << ";\n"
                     "memcpy(in + add, &d, sizeof (int));\n"
                     "add += sizeof (int);\n"
                 "}\n"
@@ -140,7 +178,7 @@ void GSLBlock::generateCode(QString dir)
                     "double d;\n"
                     "memcpy(&d, in + add, sizeof (double));\n"
                     //"d =  " << leExpression->text().toStdString() <<"(d);\n"
-                    "d = " << compiledExp << ";\n"
+                    "d = " << strd << ";\n"
                     "memcpy(in + add, &d, sizeof (double));\n"
                     "add += sizeof (double);\n"
                 "}\n"

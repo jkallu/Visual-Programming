@@ -25,7 +25,7 @@ public:
 
 
 
-    string parse(vector<Token *> tokens);
+    string parse(vector<Token *> tokens, string typ);
     void predict(string symbol, size_t s);
     void findRulesIter(string symbol, size_t s);
     void addState(Rule rule, size_t s, vector<States_t> *stList);
@@ -87,6 +87,8 @@ public:
     QQueue <ParseTree_t *> queue;
 
     CompileToC *compileToC;
+
+    string type;
 };
 
 #endif // EARLEYPARSER_H
