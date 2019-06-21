@@ -12,6 +12,9 @@ public:
 
     void init() override;
     void generateCode(QString dir) override;
+
+    QLineEdit *leExpression;
+    QLabel *lblExp;
 };
 
 #endif // GSLBLOCK_H

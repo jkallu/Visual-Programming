@@ -9,6 +9,12 @@ GSLBlock::GSLBlock(int i, BlockItem::BlockType type):
 
 void GSLBlock::init()
 {
+    lblExp = new QLabel("Expression");
+    leExpression = new QLineEdit("sin(x)");
+
+    boxLayout->addWidget(lblExp);
+    boxLayout->addWidget(leExpression);
+
     lblData->setVisible(false);
     teData->setVisible(false);
 

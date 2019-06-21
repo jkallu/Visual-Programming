@@ -8,6 +8,17 @@ Simulate3dBlock::Simulate3dBlock(int i):
 
 void Simulate3dBlock::init()
 {
+    lblAxis = new QLabel("Axis");
+
+    cbAxis = new QComboBox;
+    cbAxis->addItem("x");
+    cbAxis->addItem("y");
+    cbAxis->addItem("z");
+
+    boxLayout->addWidget(lblAxis);
+    boxLayout->addWidget(cbAxis);
+
+
     view = new Qt3DExtras::Qt3DWindow();
     view->defaultFrameGraph()->setClearColor(QColor(QRgb(0x4d4d4f)));
 
@@ -166,21 +177,45 @@ void Simulate3dBlock::show()
     auto location = Qt3DAnimation::QChannel(QLatin1String("Location"));
 
     auto locationX =Qt3DAnimation::QChannelComponent(QLatin1String("Location X"));
+    auto locationY = Qt3DAnimation::QChannelComponent (QLatin1String("Location Y"));
+    auto locationZ = Qt3DAnimation::QChannelComponent(QLatin1String("Location Z"));
 
     int size = getSize(0, 0);
-    for(int i = 0; i < size; i++)
-    {
 
-        locationX.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][i], in[1][i])));
+    if(cbAxis->currentIndex() == 0)
+    {
+        for(int i = 0; i < size; i++)
+        {
+
+            locationX.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][i], in[1][i])));
+        }
+        locationY.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][0], 0.0)));
+        locationZ.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][0], 0.0)));
+    }
+    else if(cbAxis->currentIndex() == 1)
+    {
+        for(int i = 0; i < size; i++)
+        {
+
+            locationY.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][i], in[1][i])));
+        }
+        locationX.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][0], 0.0)));
+        locationZ.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][0], 0.0)));
+    }
+    else if(cbAxis->currentIndex() == 2)
+    {
+        for(int i = 0; i < size; i++)
+        {
+
+            locationZ.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][i], in[1][i])));
+        }
+        locationY.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][0], 0.0)));
+        locationX.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][0], 0.0)));
     }
 
-    auto locationY = Qt3DAnimation::QChannelComponent (QLatin1String("Location Y"));
-    locationY.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][0], 0.0)));
-    locationY.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][size - 1], 0.0)));
 
-    auto locationZ = Qt3DAnimation::QChannelComponent(QLatin1String("Location Z"));
-    locationZ.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][0], 0.0)));
-    locationZ.appendKeyFrame(Qt3DAnimation::QKeyFrame(QVector2D(in[0][size - 1], 0.0)));
+
+
 
     location.appendChannelComponent(locationX);
     location.appendChannelComponent(locationY);
@@ -203,7 +238,7 @@ void Simulate3dBlock::show()
 
     Qt3DAnimation::QChannelMapper *m_channelMapper = new Qt3DAnimation::QChannelMapper;
     m_channelMapper->addMapping(m_mapping);
-    animator->setLoopCount(3);
+    animator->setLoopCount(Qt3DAnimation::QAbstractClipAnimator::Infinite);
 
     animator->setChannelMapper(m_channelMapper);
 

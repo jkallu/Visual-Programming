@@ -27,7 +27,8 @@ Simulate3d::Simulate3d(Qt3DCore::QEntity *rootEntity)
 
 Simulate3d::~Simulate3d()
 {
-
+    delete m_rootEntity;
+    delete m_sphereEntity;
 }
 
 void Simulate3d::show()
@@ -77,7 +78,7 @@ void Simulate3d::show()
 
     Qt3DAnimation::QChannelMapper *m_channelMapper = new Qt3DAnimation::QChannelMapper;
     m_channelMapper->addMapping(m_mapping);
-    animator->setLoopCount(3);
+    //animator->setLoopCount(3);
 
     animator->setChannelMapper(m_channelMapper);
 

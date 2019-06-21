@@ -5,6 +5,9 @@
 #include "simulate3d.h"
 #include "vector"
 
+#include <QComboBox>
+#include <QLabel>
+
 class BlockIO;
 class Simulate3d;
 
@@ -23,6 +26,9 @@ public:
     Qt3DAnimation::QAnimationClip *animationClip;
 
     std::vector <double> x_data, y_data, z_data, t_data;
+
+    QLabel *lblAxis;
+    QComboBox *cbAxis;
 };
 
 #endif // SIMULATE3DBLOCK_H
