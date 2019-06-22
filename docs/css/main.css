@@ -1,1 +1,4 @@
-html, body{ margin:0 auto; }
+html, body{ 
+  max-width: 500px;
+  margin: auto;
+ }
