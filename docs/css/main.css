@@ -1,3 +1,14 @@
+/*
+      add below line to the head tag
+      <link rel="stylesheet" type="text/css" href="css/main.css" />
+      adapt the name of class of body here
+      here <body class="c21">
+      .c21 {
+            max-width: 500px;
+            margin: auto;
+      } 
+*/
+
 .c21 {
       max-width: 500px;
       margin: auto;
