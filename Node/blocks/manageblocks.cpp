@@ -251,7 +251,7 @@ QGroupBox* ManageBlocks::addGenerateMainBlock(){
     {
         ab->lblOutData[0]->setText("MainBlock_" + QString::number(countgenerateMainBlock) + "_" + QString::number(i));
     }
-    ab->leDir->setText("../Node/nodegencodes/");
+    ab->leDir->setText("../nodegencodes/");
     countgenerateMainBlock++;
 
     blockIO.push_back(ab);
@@ -407,7 +407,7 @@ void ManageBlocks::generateCodeIter(CTree_t *cTree, CTree_t *main)
 
 void ManageBlocks::generateCode()
 {
-    QString dir = "../Node/nodegencodes/";
+    QString dir = "../nodegencodes/";
 
     for(size_t i = 0; i < blockIO.size(); i++){
         if(blockIO.at(i)->isBlockEnabled()){

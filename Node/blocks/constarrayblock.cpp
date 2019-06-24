@@ -14,7 +14,7 @@ void ConstArrayBlock::init()
     qDebug() << "Hello from ConstArrayBlock";
     leCount = new QLineEdit("100");
     leBegin = new QLineEdit("0");
-    leEnd = new QLineEdit("10");
+    leEnd = new QLineEdit("6.3");
 
 
     lblCount = new QLabel("Count");
