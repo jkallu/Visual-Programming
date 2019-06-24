@@ -138,5 +138,6 @@ LIBS += -ldl -lgsl -lgslcblas -lm
 #LIBS += -L/Applications/root_v6.12.06/lib/  `/Applications/root_v6.12.06/bin/root-config --glibs --libs` -lSpectrum
 
 DISTFILES += \
-    vp.png
+    vp.png \
+    build/Makefile
 
