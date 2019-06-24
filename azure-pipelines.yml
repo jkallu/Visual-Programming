@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'jin-F3Q'
+  name: jin-F3Q
 
 steps:
 - script: |
