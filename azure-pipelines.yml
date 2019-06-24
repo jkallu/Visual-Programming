@@ -11,5 +11,6 @@ pool:
 
 steps:
 - script: |
+    cd Node/build
     make
   displayName: 'make'
