@@ -22,6 +22,12 @@ public:
     void resetGL();
     static int getNumInputs(){return  2;}
     static int getNumOutputs(){return 0;}
+
+    QLabel *lblAxis0;
+    QComboBox *cbAxis0;
+
+    QLabel *lblAxis1;
+    QComboBox *cbAxis1;
 };
 
 #endif // GRAPH_H

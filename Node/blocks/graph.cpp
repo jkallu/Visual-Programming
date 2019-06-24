@@ -10,7 +10,26 @@ void Graph::init()
 {
     glWidget = new GLWidget();
 
-    boxLayout->addWidget(glWidget, 3, 0, 1, 2);
+    lblAxis0 = new QLabel("Input0");
+    lblAxis1 = new QLabel("Input1");
+
+    cbAxis0 = new QComboBox;
+    cbAxis0->addItem("x");
+    cbAxis0->addItem("y");
+    cbAxis0->setCurrentIndex(0);
+
+    cbAxis1 = new QComboBox;
+    cbAxis1->addItem("x");
+    cbAxis1->addItem("y");
+    cbAxis1->setCurrentIndex(1);
+
+    boxLayout->addWidget(lblAxis0);
+    boxLayout->addWidget(cbAxis0);
+
+    boxLayout->addWidget(lblAxis1);
+    boxLayout->addWidget(cbAxis1);
+
+    boxLayout->addWidget(glWidget, 4, 0, 1, 2);
     lblData->setVisible(false);
     teData->setVisible(false);
 
@@ -27,10 +46,27 @@ void Graph::generateCode(QString dir)
 
 
 void Graph::draw(){
+    int axis0 = 0;
+    int axis1 = 1;
+
+    if(cbAxis0->currentIndex() != cbAxis1->currentIndex())
+    {
+        axis0 = cbAxis0->currentIndex();
+        axis1 = cbAxis1->currentIndex();
+    }
+
     int size = getSize(0, 0);
     glWidget->create_array(size);
-    for(int i = 0; i < size; i++){
-        glWidget->set_array_val(i, in[0][i], in[1][i]);
+    for(int i = 0; i < size; i++)
+    {
+        if(axis0 == 0)
+        {
+            glWidget->set_array_val(i, in[0][i], in[1][i]);
+        }
+        else
+        {
+            glWidget->set_array_val(i, in[1][i], in[0][i]);
+        }
     }
     glWidget->normalize_x_y();
     //glWidget->repaint();
