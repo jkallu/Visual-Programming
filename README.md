@@ -9,7 +9,7 @@
 ![Alt text](https://github.com/jkallu/Visual-Programming/blob/master/docs/images/sine_sim_30fps.gif? "Title")
 
 ## Prerequisites
-[Qt 5 or later](https://www.qt.io/download)
+[Qt 5 or later](https://www.qt.io/download)  
 [GNU Scientific Library (GSL)](https://www.gnu.org/software/gsl/) 
 ```
 $ sudo apt-get install libgsl23 libgslcblas0 libgsl-dbg libgsl-dev
