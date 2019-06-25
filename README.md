@@ -5,7 +5,8 @@
 * Visual programming use node-graph editor.
 * Each blocks has an additional capability of writing expressions (minimalist coding).
 * User can easily create an array, do math functions on this array with another blocks. 
-* When the visual blocks are executed, it generates the optimised C/C++ codes for the blocks, and the corresponding Makefile. * Then it do a compilation of the generated code and create a library Just in Time (JIT). 
+* When the visual blocks are executed, it generates the optimised C/C++ codes for the blocks, and the corresponding Makefile.
+* Then it do a compilation of the generated code and create a library Just in Time (JIT). 
 * It then dynamically load the library and execute the the library. 
 * Result of each block is brought back to the visual blocks ouput data and displayed. 
 * This can be considered as the simulation of the program and data execution. 
