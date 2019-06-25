@@ -1,6 +1,22 @@
 # Visual Programming and Simulation
 [![Build Status](https://dev.azure.com/jineshkallunkathariyil/Visual%20programming%20and%20simulation/_apis/build/status/jkallu.Visual-Programming?branchName=master)](https://dev.azure.com/jineshkallunkathariyil/Visual%20programming%20and%20simulation/_build/latest?definitionId=5&branchName=master)  
 
+* Visual programming uses a mix of visual blocks and traditional programming (coding) methods. 
+* Visual programming use node-graph editor.
+* Each blockas has additional capability of writing expressions (minimalist coding).
+* User can easily create an array, do math functions on this array with another blocks. 
+* When the visual blocks are executed, it generates the optimised C/C++ codes for the blocks, and the corresponding Makefile. * Then it do a compilation of the generated code and create a library Just in Time (JIT). 
+* It then dynamically load the library and execute the the library. 
+* Result of each block is brought back to the visual blocks ouput data and displayed. 
+* This can be considered as the simulation of the program and data execution. 
+* In this way one can easily see the outputs of each blocks just in time and can easily debug the program. 
+* Once the program execution is simulated and tested one can generate a standalone Makefile and the main program which calls the already created library and execute this program and generate the binary. 
+* This binary uses the same library used for simulation. 
+* In this way the simulation and stand alone results will be the same. 
+* More over the output binary is a compiled (non interpreted) binary.
+* Also blocks supports mathematical expressions which are then compiled to C/C++.
+* Set comprehension / List comprehension capability.
+
 
 [Documentation (under development)](https://jkallu.github.io/Visual-Programming/)  
 ## Generate and plot sine function
