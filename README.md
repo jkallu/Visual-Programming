@@ -4,7 +4,7 @@
 * Visual programming uses a mix of visual blocks and traditional programming (coding) methods. 
 * The program design uses node-graph editor.
 * Each blocks has an additional capability of writing expressions (minimalist coding).
-* User can easily create an array, do math functions on this array with another blocks. 
+* For example, user can easily create an array, do math functions on it and then plot the outputs. 
 * When the visual blocks are executed, it generates the optimised C/C++ codes for the blocks, and the corresponding Makefile.
 * Then it do a compilation of the generated code and create a library Just in Time (JIT). 
 * It then dynamically load the library and execute the the library. 
@@ -19,6 +19,7 @@
 * Set comprehension / List comprehension capability.
 * Support for GSL library, for example ode solver in GSL has a visual block. User only need to write the ode function to be solved. All the internal wirings are done automatically.
 * Support for 1D, 2D and 3D simulation. For example, one can connect a sine wave data (which is a solution to the spring mass system) to a 1D block, wher it accepts two data, time and one dimensional position data. The position data can be aligned in any of three axes (x, y or z). A sphere in the block will follow the dat, in this example sine data. 
+* Currently this program is under development. 
 
 
 [Documentation (under development)](https://jkallu.github.io/Visual-Programming/)  
