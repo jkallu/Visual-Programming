@@ -1,7 +1,7 @@
 # Visual Programming and Simulation
 [![Build Status](https://dev.azure.com/jineshkallunkathariyil/Visual%20programming%20and%20simulation/_apis/build/status/jkallu.Visual-Programming?branchName=master)](https://dev.azure.com/jineshkallunkathariyil/Visual%20programming%20and%20simulation/_build/latest?definitionId=5&branchName=master)  
 
-* Visual programming uses a mix of visual blocks and traditional programming (coding) methods. 
+* Visual programming uses a mix of visual blocks and functional programming (coding) methods. 
 * The program design uses node-graph editor.
 * Each blocks has an additional capability of writing expressions (minimalist coding).
 * For example, user can easily create an array, do math functions on it and then plot the outputs. 
