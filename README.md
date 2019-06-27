@@ -25,7 +25,7 @@
 * More is on the way... currently this program is under development. 
 
 
-[Documentation (under development)](https://vipro-docs.readthedocs.io/en/latest)  
+[Documentation (under development)](https://visual-programming.readthedocs.io)  
 ## Demos
 ### Generate and plot sine function
 ![Alt text](https://github.com/jkallu/Visual-Programming/blob/master/docs/images/sine_graph_30fps.gif? "Title")  
@@ -48,4 +48,4 @@ $ make
 $ ./Node
 ```
 
-[Documentation (under development)](https://vipro-docs.readthedocs.io/en/latest)
+[Documentation (under development)](https://visual-programming.readthedocs.io)
