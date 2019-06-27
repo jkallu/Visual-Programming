@@ -1,6 +1,6 @@
 # Visual Programming and Simulation
 [![Build Status](https://dev.azure.com/jineshkallunkathariyil/Visual%20programming%20and%20simulation/_apis/build/status/jkallu.Visual-Programming?branchName=master)](https://dev.azure.com/jineshkallunkathariyil/Visual%20programming%20and%20simulation/_build/latest?definitionId=5&branchName=master)
-[![Documentation Status](https://readthedocs.org/projects/vipro-docs/badge/?version=latest)](https://vipro-docs.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/visual-programming/badge/?version=latest)](https://visual-programming.readthedocs.io/en/latest/?badge=latest)
 
 
 * Visual programming uses a mix of visual blocks and functional programming (coding) methods. 
