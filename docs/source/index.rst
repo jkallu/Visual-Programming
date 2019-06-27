@@ -15,6 +15,7 @@ Visual programming and simulation
    viProEnv.rst
    expParsing.rst
    viSimEnv.rst
+   donations.rst
    
 
 
