@@ -23,6 +23,7 @@ Array block
 Array block is used to generate arrays. There are different ways to generate arrays. One is the classical programming way, where we give the total number of array elements, beginning (included), upper limit (excluded) and the type as shown in Figure 3.1.
 
 .. figure:: images/image7.png
+
    Figure 3.1: Array definition.
    
 Another way to generate the array is by the set notation (known as set comprehension or list comprehension). One can define it as,
