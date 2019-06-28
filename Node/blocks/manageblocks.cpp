@@ -27,6 +27,7 @@ ManageBlocks::ManageBlocks()
     countNetworkServerBlock = 0;
     countSimulate3dBlock = 0;
     countGSLBlock = 0;
+    countGnuplot = 0;
 
     connTree = nullptr;
 
@@ -332,6 +333,16 @@ QGroupBox* ManageBlocks::addGSLBlock(){
     ab->leName->setText("GSL_" + QString::number(countGSLBlock));
 
     countGSLBlock++;
+
+    blockIO.push_back(ab);
+    return ab->groupBox;
+}
+
+QGroupBox* ManageBlocks::addGnuplotBlock(){
+    GnuplotBlock *ab = new GnuplotBlock(countGnuplot);
+    ab->leName->setText("Gnuplot_" + QString::number(countGnuplot));
+
+    countGnuplot++;
 
     blockIO.push_back(ab);
     return ab->groupBox;

@@ -412,6 +412,23 @@ BlockItem::BlockItem(BlockType blockType, int id_l, int tpId, QMenu *contextMenu
 
         break;
 
+    case Gnuplot:
+        myPolygon << QPointF(0, 0) << QPointF(arrayWH.rx(), 0)
+                  << QPointF(arrayWH.rx(), arrayWH.ry()) << QPointF(0, arrayWH.ry())
+                  << QPointF(0, 0);
+
+        createInputNodes(1);
+        creatOutputNodes(1);
+        name = "Gnuplot_" + QString::number(typeId);
+
+        painterpath.addRect(0, 0, 100, 100);
+        painterpath.addRect(10, 10, 80, 80);
+
+        colorLight = QColor(Qt::green);
+        colorDark = QColor(Qt::darkGreen);
+
+        break;
+
     default:
         myPolygon << QPointF(-120, -80) << QPointF(-70, 80)
                   << QPointF(120, 80) << QPointF(70, -80)

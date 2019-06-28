@@ -1,4 +1,4 @@
-QT += gui widgets opengl script 3dcore 3drender 3dinput 3dlogic 3dextras 3danimation
+QT += gui widgets opengl script 3dcore 3drender 3dinput 3dlogic 3dextras 3danimation printsupport svg network
 
 #mac# LIBS += -framework GLUT -framework OpenGL
 
@@ -70,7 +70,14 @@ SOURCES += \
     compiler/rule.cpp \
     compiler/token.cpp \
     blocks/fillhist.cpp \
-    gui/formulawidget.cpp
+    gui/formulawidget.cpp \
+    gnuplot/QtGnuplotWidget.cpp \
+    gnuplot/QtGnuplotScene.cpp \
+    gnuplot/QtGnuplotItems.cpp \
+    gnuplot/QtGnuplotInstance.cpp \
+    gnuplot/QtGnuplotEvent.cpp \
+    gnuplot/embed_example.cpp \
+    gnuplot/gnuplotblock.cpp
 
 HEADERS += \
     condition.h \
@@ -126,12 +133,19 @@ HEADERS += \
     compiler/numberfsm.h \
     compiler/parserhelper.h \
     blocks/fillhist.h \
-    gui/formulawidget.h
+    gui/formulawidget.h \
+    gnuplot/embed_example.h \
+    gnuplot/QtGnuplotEvent.h \
+    gnuplot/QtGnuplotInstance.h \
+    gnuplot/QtGnuplotItems.h \
+    gnuplot/QtGnuplotScene.h \
+    gnuplot/QtGnuplotWidget.h \
+    gnuplot/gnuplotblock.h
 
 RESOURCES += \
     node.qrc
 
-INCLUDEPATH += ./blocks ./compiler ./gui
+INCLUDEPATH += ./blocks ./compiler ./gui ./gnuplot /home/jin/Downloads/gnuplot-5.2.7/src/qtterminal
 LIBS += -ldl -lgsl -lgslcblas -lm
 #INCLUDEPATH += /Applications/root_v6.12.06/include
 

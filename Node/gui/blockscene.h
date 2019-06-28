@@ -110,7 +110,8 @@ private:
         countIfBlock, countHistFromArrayBlock, countFillHist,
         countReadMultiFile, countGenerateGaus, countGenerateXY,
         countMain, countDeMux, countLocalProcedure,
-        countNetworkClient, countNetworkServer, countSimulate3d, countGSLBlock
+        countNetworkClient, countNetworkServer, countSimulate3d, countGSLBlock,
+        countGnuplot
     ;
 
     QGraphicsLineItem *line;

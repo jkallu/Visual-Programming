@@ -25,6 +25,7 @@ BlockScene::BlockScene(QMenu *itemMenu, QObject *parent):
     countNetworkServer = 0;
     countSimulate3d = 0;
     countGSLBlock = 0;
+    countGnuplot = 0;
 
     vbLayOutProp = new QVBoxLayout();
 
@@ -347,6 +348,15 @@ void BlockScene::insertBlock(QPointF pos, int n_ins, int n_outs, bool flagOpen, 
             vbLayOutProp->addWidget(manageBlocks->addGSLBlock());
             typeID = countGSLBlock;
             countGSLBlock++;
+            break;
+        }
+        case BlockItem::Gnuplot:{
+            ins = n_ins;
+            outs = n_outs;
+            removeAllWidgetsFromProperties();
+            vbLayOutProp->addWidget(manageBlocks->addGnuplotBlock());
+            typeID = countGnuplot;
+            countGnuplot++;
             break;
         }
 

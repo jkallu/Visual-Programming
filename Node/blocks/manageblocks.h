@@ -27,6 +27,7 @@
 #include "blockio.h"
 #include "simulate3dblock.h"
 #include "gslblock.h"
+#include "gnuplotblock.h"
 
 #include "simulate.h"
 #include <vector>
@@ -62,6 +63,7 @@ class NetworkClientBlock;
 class NetworkServerBlock;
 class Simulate3dBlock;
 class GSLBlock;
+class GnuplotBlock;
 
 class Simulate;
 
@@ -115,6 +117,7 @@ public:
     QGroupBox* addNetworkServerBlock(int nIn = NetworkServerBlock::getNumInputs(), int nOut = NetworkServerBlock::getNumOutputs());
     QGroupBox* addSimulate3dBlock();
     QGroupBox* addGSLBlock();
+    QGroupBox* addGnuplotBlock();
     //QGroupBox* addSumBlock();
 
     void normalize_x_y();
@@ -215,6 +218,7 @@ public:
     //Simulate3dBlock *simulate3dBlock[MAX_BLOCKS];
     int countSimulate3dBlock;
     int countGSLBlock;
+    int countGnuplot;
 
 
 

@@ -110,6 +110,7 @@ void MainWindow::createToolBox(){
     layout->addWidget(createCellWidget(tr("NetworkServerBlock"), BlockItem::NetworkServer), 10, 1);
     layout->addWidget(createCellWidget(tr("Simulate3d"), BlockItem::Simulate), 11, 0);
     layout->addWidget(createCellWidget(tr("GSL"), BlockItem::GSL), 11, 1);
+    layout->addWidget(createCellWidget(tr("Gnuplot"), BlockItem::Gnuplot), 12, 0);
 
     QWidget *itemWidget = new QWidget;
     itemWidget->setLayout(layout);
