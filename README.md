@@ -38,6 +38,7 @@
 ```
 $ sudo apt-get install libgsl23 libgslcblas0 libgsl-dbg libgsl-dev
 ```
+[Gnuplot](http://www.gnuplot.info/)  
 
 ## Get it
 ```
