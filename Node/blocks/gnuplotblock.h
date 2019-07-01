@@ -25,7 +25,7 @@ public:
     void init() override;
     void setData(char *data) override;
 
-    void draw();
+    void draw(QVector<QPointF> *points);
 
     //GnuplotWidget* widget;
 

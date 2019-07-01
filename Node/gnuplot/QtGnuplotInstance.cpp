@@ -129,10 +129,11 @@ QtGnuplotInstance& operator<<(QtGnuplotInstance& instance, const QString& comman
 QtGnuplotInstance& operator<<(QtGnuplotInstance& instance, const QVector<QPointF>& points)
 {
 	QByteArray array;
-
+    array.append("plot '-' w l "); // plot '-' (data from command line) with (w) line (l)
 	foreach (QPointF point, points)
+    {
 		array += QByteArray::number(point.x()) + " " + QByteArray::number(point.y()) + "\n";
-
+    }
 	array += "e\n";
 	instance.exec(array);
 
