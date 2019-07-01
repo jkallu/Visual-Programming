@@ -38,6 +38,7 @@ SOURCES += \
     blocks/generategausblock.cpp \
     blocks/generatexyblock.cpp \
     blocks/getmaxblock.cpp \
+    blocks/gnuplotblock.cpp \
     blocks/graph.cpp \
     blocks/gslblock.cpp \
     blocks/histfromarrblock.cpp \
@@ -77,7 +78,6 @@ SOURCES += \
     gnuplot/QtGnuplotInstance.cpp \
     gnuplot/QtGnuplotEvent.cpp \
     gnuplot/embed_example.cpp \
-    gnuplot/gnuplotblock.cpp \
     gnuplot/qtgnuplot.cpp
 
 HEADERS += \
@@ -102,6 +102,7 @@ HEADERS += \
     blocks/generategausblock.h \
     blocks/generatexyblock.h \
     blocks/getmaxblock.h \
+    blocks/gnuplotblock.h \
     blocks/graph.h \
     blocks/gslblock.h \
     blocks/histfromarrblock.h \
@@ -141,7 +142,6 @@ HEADERS += \
     gnuplot/QtGnuplotItems.h \
     gnuplot/QtGnuplotScene.h \
     gnuplot/QtGnuplotWidget.h \
-    gnuplot/gnuplotblock.h \
     gnuplot/qtgnuplot.h
 
 RESOURCES += \

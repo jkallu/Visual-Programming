@@ -20,10 +20,6 @@ void GnuplotBlock::init()
 
     groupBox->setLayout(boxLayout);
     groupBox->setTitle("Gnuplot Block");
-
-    instance->setWidget(widget);
-
-    widget->show();
 }
 
 void GnuplotBlock::generateCode(QString dir)
@@ -38,5 +34,7 @@ void GnuplotBlock::setData(char *data)
 
 void GnuplotBlock::draw()
 {
+    instance->setWidget(widget);
     *instance << "plot x w l lt 3\n";
+    widget->show();
 }
