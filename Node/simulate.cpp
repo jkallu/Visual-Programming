@@ -24,6 +24,17 @@ Simulate::Simulate(ManageBlocks *mBlk)
     flagSim = 1;
 
     //*simPData = NULL;
+    connect(this, SIGNAL(dataReady(char*, BlockIO*)), this, SLOT(setData(char*, BlockIO*)));
+}
+
+Simulate::~Simulate()
+{
+
+}
+
+void Simulate::setData(char *data, BlockIO *blockIo)
+{
+    blockIo->setData(data);
 }
 
 void Simulate::addSource(QString src)
@@ -167,6 +178,8 @@ void Simulate::start(char *callFunc, QString dir, QString libName)
     //simLoop(handle);
     (*exec)(callFunc, &simLock, flagSim, &simPData);
 
+    //simLoop((void*)simLoopD);
+
     printf("Main thread end\n");
     //dlclose(handle);
 }
@@ -239,7 +252,8 @@ void * Simulate::simLoop(void *simLoopD)
 
                             //if(func.type == BlockItem::Graph || func.type == BlockItem::Split)
                             //{
-                                sim->mBlocks->blockIO.at(i)->setData(data);
+                                ///sim->mBlocks->blockIO.at(i)->setData(data);
+                                emit sim->dataReady(data, sim->mBlocks->blockIO.at(i));
                             //}
                             //else
                             /*{

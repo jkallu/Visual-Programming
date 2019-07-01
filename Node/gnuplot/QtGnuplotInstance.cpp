@@ -72,9 +72,10 @@ void QtGnuplotInstance::setWidget(QtGnuplotWidget* widget)
 	if (m_widget)
 	{
 		QByteArray command;
-		command.append("set term qt widget \"" + m_widget->serverName() + "\" size " +
-		               QString::number(m_widget->plotAreaSize().width()) + "," +
-		               QString::number(m_widget->plotAreaSize().height()) + "\n");
+
+        command.append("set term qt widget \"" + m_widget->serverName() + "\" size " +
+                               QString::number(m_widget->plotAreaSize().width()) + "," +
+                               QString::number(m_widget->plotAreaSize().height()) + "\n");
 		exec(command);
 	}
 }

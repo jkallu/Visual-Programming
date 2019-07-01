@@ -50,9 +50,9 @@ GnuplotWidget::GnuplotWidget()
     //QGridLayout* gridLayout = new QGridLayout();
     //for (int i = 0; i < 4; i++)
     //{
-        widgets = new QtGnuplotWidget();
+        widgets = new QtGnuplotWidget(this);
         //connect(widgets[i], SIGNAL(statusTextChanged(const QString&)), this, SLOT(statusText(const QString&)));
-        widgets->setFixedSize(200,250);
+        //widgets->setFixedSize(200,250);
         //gridLayout->addWidget(widgets[i], i/2, i%2);
     //}
 
@@ -72,14 +72,14 @@ GnuplotWidget::GnuplotWidget()
 
 void GnuplotWidget::plot()
 {
-    gp.setWidget(widgets);
-	gp << "plot x w l lt 3\n";
-	gp << "print pi\n";
+    //gp.setWidget(widgets);
+    //gp << "plot x w l lt 3\n";
+    //gp << "print pi\n";
 
-    /*gp.setWidget(widgets[1]);
+    gp.setWidget(widgets);
 	gp << "set grid; plot x**2 w l lt 2 lw 4\n";
 
-	gp.setWidget(widgets[2]);
+    /*gp.setWidget(widgets[2]);
 	QVector<QPointF> points;
 	srand(time(NULL));
 	for (int i = 0; i < 100; i++)

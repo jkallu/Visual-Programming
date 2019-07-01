@@ -417,8 +417,8 @@ BlockItem::BlockItem(BlockType blockType, int id_l, int tpId, QMenu *contextMenu
                   << QPointF(arrayWH.rx(), arrayWH.ry()) << QPointF(0, arrayWH.ry())
                   << QPointF(0, 0);
 
-        createInputNodes(1);
-        creatOutputNodes(1);
+        createInputNodes(2);
+        creatOutputNodes(0);
         name = "Gnuplot_" + QString::number(typeId);
 
         painterpath.addRect(0, 0, 100, 100);

@@ -91,8 +91,8 @@ void QtGnuplotWidget::init()
 	// Construct GUI elements
 	m_scene = new QtGnuplotScene(m_eventHandler, this);
 	m_view = new QGraphicsView(m_scene);
-	m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	QVBoxLayout* layout = new QVBoxLayout();
 	layout->setContentsMargins(0, 0, 0, 0);
 	layout->addWidget(m_view);
@@ -175,14 +175,14 @@ void QtGnuplotWidget::processEvent(QtGnuplotEventType type, QDataStream& in)
 				if (!parent->isVisible())
 				{
 					m_skipResize = true;
-					m_sizeHint = s + QSize(2*m_view->frameWidth(), 2*m_view->frameWidth());
-					parent->updateGeometry();
-					parent->show();
+                    m_sizeHint = s + QSize(2*m_view->frameWidth(), 2*m_view->frameWidth());
+                    parent->updateGeometry();
+                    parent->show();
 					m_skipResize = false;
 				}
-				parent->resize(s + parent->size() - viewport->size());
+                parent->resize(s + parent->size() - viewport->size()); // commented by jkallu
 			}
-			viewport->resize(s);
+            viewport->resize(s); // commented by jkallu
 		}
 	}
 	else if (type == GEStatusText)

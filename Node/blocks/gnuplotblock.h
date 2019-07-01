@@ -4,8 +4,17 @@
 #include "blockio.h"
 #include "embed_example.h"
 
+
+#include "QtGnuplotWidget.h"
+#include "QtGnuplotInstance.h"
+
+class QtGnuplotWidget;
+class QtGnuplotInstance;
+
+
 class GnuplotWidget;
 class BlockIO;
+class QtGnuplot;
 
 class GnuplotBlock : virtual public BlockIO
 {
@@ -16,7 +25,12 @@ public:
     void init() override;
     void setData(char *data) override;
 
-    GnuplotWidget* widget = new GnuplotWidget();
+    void draw();
+
+    //GnuplotWidget* widget;
+
+    QtGnuplotWidget* widget;
+    QtGnuplotInstance *instance;
 };
 
 #endif // GNUPLOTBLOCK_H

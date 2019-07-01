@@ -374,7 +374,8 @@ void ManageBlocks::generateCodeIter(CTree_t *cTree, CTree_t *main)
             && !listBlock.contains(cTree->blockIO->leName->text()))
     {
         if(cTree->blockIO->getType() != BlockItem::Graph &&
-           cTree->blockIO->getType() != BlockItem::Simulate)
+           cTree->blockIO->getType() != BlockItem::Simulate &&
+           cTree->blockIO->getType() != BlockItem::Gnuplot)
         {
             cTree->blockIO->generateCode(main->blockIO->getDir());
             main->blockIO->addHeader(cTree->blockIO->leName->text());

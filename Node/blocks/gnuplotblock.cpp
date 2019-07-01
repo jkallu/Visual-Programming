@@ -8,8 +8,9 @@ GnuplotBlock::GnuplotBlock(int i):
 
 void GnuplotBlock::init()
 {
-    widget = new GnuplotWidget();
-    widget->plot();
+    widget = new QtGnuplotWidget;
+    instance = new QtGnuplotInstance;
+
 
     boxLayout->addWidget(widget, 4, 0, 1, 2);
     lblData->setVisible(false);
@@ -19,6 +20,10 @@ void GnuplotBlock::init()
 
     groupBox->setLayout(boxLayout);
     groupBox->setTitle("Gnuplot Block");
+
+    instance->setWidget(widget);
+
+    widget->show();
 }
 
 void GnuplotBlock::generateCode(QString dir)
@@ -28,5 +33,10 @@ void GnuplotBlock::generateCode(QString dir)
 
 void GnuplotBlock::setData(char *data)
 {
+    draw();
+}
 
+void GnuplotBlock::draw()
+{
+    *instance << "plot x w l lt 3\n";
 }

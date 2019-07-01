@@ -827,6 +827,7 @@ void BlockScene::saveIter(CTree_t *cTree, ofstream *file)
 }
 
 void BlockScene::runDesign(){
+
     // check for any unconnected nodes
     emit outputTextReady("Compiler started");
     bool flagRun = true;

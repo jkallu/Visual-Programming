@@ -77,7 +77,8 @@ SOURCES += \
     gnuplot/QtGnuplotInstance.cpp \
     gnuplot/QtGnuplotEvent.cpp \
     gnuplot/embed_example.cpp \
-    gnuplot/gnuplotblock.cpp
+    gnuplot/gnuplotblock.cpp \
+    gnuplot/qtgnuplot.cpp
 
 HEADERS += \
     condition.h \
@@ -140,7 +141,8 @@ HEADERS += \
     gnuplot/QtGnuplotItems.h \
     gnuplot/QtGnuplotScene.h \
     gnuplot/QtGnuplotWidget.h \
-    gnuplot/gnuplotblock.h
+    gnuplot/gnuplotblock.h \
+    gnuplot/qtgnuplot.h
 
 RESOURCES += \
     node.qrc
