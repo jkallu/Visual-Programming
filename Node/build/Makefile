@@ -987,8 +987,11 @@ compiler_rcc_clean:
 qrc_node.cpp: ../node.qrc \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/rcc \
 		../icons/stop.png \
+		../icons/save.png \
+		../icons/open.png \
 		../icons/delete.png \
-		../icons/run.png
+		../icons/run.png \
+		../icons/default.png
 	/media/newhd/Qt/5.12.1/gcc_64/bin/rcc -name node ../node.qrc -o qrc_node.cpp
 
 compiler_moc_predefs_make_all: moc_predefs.h

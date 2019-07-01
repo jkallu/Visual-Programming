@@ -312,17 +312,17 @@ void MainWindow::createActions(){
     deleteAction->setStatusTip(tr("Delete item from diagram"));
     connect(deleteAction, SIGNAL(triggered()), this, SLOT(deleteItem()));
 
-    saveAction = new QAction(QIcon(":/icons/delete.png"), tr("&Save"), this);
+    saveAction = new QAction(QIcon(":/icons/save.png"), tr("&Save"), this);
     saveAction->setShortcut(tr("Save"));
     saveAction->setStatusTip(tr("Save design"));
     connect(saveAction, SIGNAL(triggered()), this, SLOT(save()));
 
-    openAction = new QAction(QIcon(":/icons/delete.png"), tr("&Open"), this);
+    openAction = new QAction(QIcon(":/icons/open.png"), tr("&Open"), this);
     openAction->setShortcut(tr("Open"));
     openAction->setStatusTip(tr("Open design"));
     connect(openAction, SIGNAL(triggered()), this, SLOT(open()));
 
-    defaultAction = new QAction(QIcon(":/icons/delete.png"), tr("&Default"), this);
+    defaultAction = new QAction(QIcon(":/icons/default.png"), tr("&Default"), this);
     defaultAction->setShortcut(tr("Default"));
     defaultAction->setStatusTip(tr("Default item from diagram"));
     connect(defaultAction, SIGNAL(triggered()), this, SLOT(setDefault()));
