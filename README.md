@@ -29,8 +29,13 @@
 ## Demos
 ### Generate and plot sine function
 ![Alt text](https://github.com/jkallu/Visual-Programming/blob/master/docs/images/sine_graph_30fps.gif? "Title")  
+
 ### Generate and simulate sine function
 ![Alt text](https://github.com/jkallu/Visual-Programming/blob/master/docs/images/sine_sim_30fps.gif? "Title")
+
+### Simulation with Gnuplot
+![Alt text](https://github.com/jkallu/Visual-Programming/blob/master/docs/images/sine_gnuplot_sim.gif? "Title")
+
 
 ## Prerequisites
 [Qt 5 or later](https://www.qt.io/download)  
