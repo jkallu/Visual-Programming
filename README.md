@@ -39,6 +39,10 @@
 
 ## Prerequisites
 [Qt 5 or later](https://www.qt.io/download)  
+Necessary modules
+```
+gui widgets opengl script 3dcore 3drender 3dinput 3dlogic 3dextras 3danimation printsupport svg network
+```
 [GNU Scientific Library (GSL)](https://www.gnu.org/software/gsl/) 
 ```
 $ sudo apt-get install libgsl23 libgslcblas0 libgsl-dbg libgsl-dev
