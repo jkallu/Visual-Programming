@@ -48,8 +48,8 @@ void ExpressionBlock::generateOutputs(){
     for(int j = 0; j < size; j++){
         QString str_x_expression = leExpression->text();
         str_x_expression.replace(lblInData[0]->text(), QString::number(in[0][j]));
-        QScriptEngine x_expression;
-        out[0][j] = x_expression.evaluate(str_x_expression).toNumber();
+        //QScriptEngine x_expression;
+        //out[0][j] = x_expression.evaluate(str_x_expression).toNumber();
         //qDebug() << out[0][j];
     }
     flagOut[0] = true;

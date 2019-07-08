@@ -1,4 +1,4 @@
-QT += gui widgets opengl script 3dcore 3drender 3dinput 3dlogic 3dextras 3danimation printsupport svg network
+QT += gui widgets opengl 3dcore 3drender 3dinput 3dlogic 3dextras 3danimation printsupport svg network
 
 #mac# LIBS += -framework GLUT -framework OpenGL
 
@@ -142,7 +142,8 @@ HEADERS += \
     gnuplot/QtGnuplotItems.h \
     gnuplot/QtGnuplotScene.h \
     gnuplot/QtGnuplotWidget.h \
-    gnuplot/qtgnuplot.h
+    gnuplot/qtgnuplot.h \
+    gnuplot/mousecmn.h
 
 RESOURCES += \
     node.qrc

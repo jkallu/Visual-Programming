@@ -25,10 +25,10 @@ void IfBlock::generateOutputs(){
     for(int j = 0; j < size; j++){
         QString str_x_expression = leExp->text();
         str_x_expression.replace(lblInData[0]->text(), QString::number(in[0][j]));
-        QScriptEngine x_expression;
+        //QScriptEngine x_expression;
         QString str_fin_exp = "str_x_expression ";
-        bool res = x_expression.evaluate(str_x_expression).toBool();
-        qDebug() << str_x_expression << x_expression.evaluate(str_x_expression).toBool() << " resss";
+        bool res = 0;//x_expression.evaluate(str_x_expression).toBool();
+        //qDebug() << str_x_expression << x_expression.evaluate(str_x_expression).toBool() << " resss";
         if(res){
             out[0][j] = in[0][j];
             out[1][j] = 0;

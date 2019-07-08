@@ -21,6 +21,8 @@ Simulate3d::Simulate3d(Qt3DCore::QEntity *rootEntity)
 
     m_sphereEntity->setEnabled(true);
 
+    qRegisterMetaType<Qt3DAnimation::QAbstractAnimationClip*>("Qt3DAnimation::QAbstractAnimationClip*");
+
     //show();
 
 }

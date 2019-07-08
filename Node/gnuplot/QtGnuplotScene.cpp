@@ -47,7 +47,7 @@
 #include "QtGnuplotItems.h"
 
 extern "C" {
-#include "../mousecmn.h"
+#include "mousecmn.h"
 // This is defined in term_api.h, but including it there fails to compile
 typedef enum t_fillstyle { FS_EMPTY, FS_SOLID, FS_PATTERN, FS_DEFAULT, FS_TRANSPARENT_SOLID, FS_TRANSPARENT_PATTERN } t_fillstyle;
 }

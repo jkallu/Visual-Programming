@@ -45,7 +45,7 @@
 #include "QtGnuplotWidget.h"
 
 extern "C" {
-#include "../mousecmn.h"
+#include "mousecmn.h"
 }
 
 #include <QtNetwork>

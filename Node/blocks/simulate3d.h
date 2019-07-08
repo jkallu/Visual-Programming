@@ -49,6 +49,9 @@
 #include <Qt3DExtras/qt3dwindow.h>
 #include <Qt3DExtras/qfirstpersoncameracontroller.h>
 
+Q_DECLARE_METATYPE(Qt3DAnimation::QAbstractAnimationClip*)
+
+
 
 class Simulate3d : public QObject
 {

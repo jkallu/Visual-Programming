@@ -1,7 +1,7 @@
 #ifndef MANAGEBLOCKS_H
 #define MANAGEBLOCKS_H
 
-#include <QtScript>
+//#include <QtScript>
 #include "constantblock.h"
 #include "expressionblock.h"
 #include "constarrayblock.h"

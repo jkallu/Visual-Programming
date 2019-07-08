@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_3DEXTRAS_LIB -DQT_3DANIMATION_LIB -DQT_3DRENDER_LIB -DQT_3DINPUT_LIB -DQT_3DLOGIC_LIB -DQT_3DCORE_LIB -DQT_GAMEPAD_LIB -DQT_GUI_LIB -DQT_SCRIPT_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_OPENGL_LIB -DQT_PRINTSUPPORT_LIB -DQT_SVG_LIB -DQT_WIDGETS_LIB -DQT_3DEXTRAS_LIB -DQT_3DANIMATION_LIB -DQT_3DRENDER_LIB -DQT_3DINPUT_LIB -DQT_3DLOGIC_LIB -DQT_3DCORE_LIB -DQT_GAMEPAD_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++1y -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../../Node -I. -I../blocks -I../compiler -I../gui -I../gnuplot -I../../../../Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../../Node -I. -I../blocks -I../compiler -I../gui -I../gnuplot -I../../../../Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++
 QMAKE         = /media/newhd/Qt/5.12.1/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = Node1.0.0
 DISTDIR = /home/jin/qt_pgms/Node/Node/build/.tmp/Node1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/media/newhd/Qt/5.12.1/gcc_64/lib -Wl,-rpath-link,/media/newhd/Qt/5.12.1/gcc_64/lib
-LIBS          = $(SUBLIBS) -ldl -lgsl -lgslcblas -lm -L/media/newhd/Qt/5.12.1/gcc_64/lib -lQt5OpenGL -lQt5PrintSupport -lQt5Svg -lQt5Widgets -lQt53DExtras -lQt53DAnimation -lQt5Concurrent -lQt53DRender -lQt53DInput -lQt53DLogic -lQt53DCore -lQt5Gamepad -lQt5Gui -lQt5Script -lQt5Network -lQt5Core -lGL -lpthread   
+LIBS          = $(SUBLIBS) -ldl -lgsl -lgslcblas -lm -L/media/newhd/Qt/5.12.1/gcc_64/lib -lQt5OpenGL -lQt5PrintSupport -lQt5Svg -lQt5Widgets -lQt53DExtras -lQt53DAnimation -lQt5Concurrent -lQt53DRender -lQt53DInput -lQt53DLogic -lQt53DCore -lQt5Gamepad -lQt5Gui -lQt5Network -lQt5Core -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -456,7 +456,8 @@ DIST          = ../vp.png \
 		../gnuplot/QtGnuplotItems.h \
 		../gnuplot/QtGnuplotScene.h \
 		../gnuplot/QtGnuplotWidget.h \
-		../gnuplot/qtgnuplot.h ../main.cpp \
+		../gnuplot/qtgnuplot.h \
+		../gnuplot/mousecmn.h ../main.cpp \
 		../condition.cpp \
 		../datapack.cpp \
 		../simulate.cpp \
@@ -731,7 +732,6 @@ Makefile: ../Node.pro /media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++/qmake.conf
 		/media/newhd/Qt/5.12.1/gcc_64/lib/libQt53DCore.prl \
 		/media/newhd/Qt/5.12.1/gcc_64/lib/libQt5Gamepad.prl \
 		/media/newhd/Qt/5.12.1/gcc_64/lib/libQt5Gui.prl \
-		/media/newhd/Qt/5.12.1/gcc_64/lib/libQt5Script.prl \
 		/media/newhd/Qt/5.12.1/gcc_64/lib/libQt5Network.prl \
 		/media/newhd/Qt/5.12.1/gcc_64/lib/libQt5Core.prl
 	$(QMAKE) -o Makefile ../Node.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
@@ -937,7 +937,6 @@ Makefile: ../Node.pro /media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++/qmake.conf
 /media/newhd/Qt/5.12.1/gcc_64/lib/libQt53DCore.prl:
 /media/newhd/Qt/5.12.1/gcc_64/lib/libQt5Gamepad.prl:
 /media/newhd/Qt/5.12.1/gcc_64/lib/libQt5Gui.prl:
-/media/newhd/Qt/5.12.1/gcc_64/lib/libQt5Script.prl:
 /media/newhd/Qt/5.12.1/gcc_64/lib/libQt5Network.prl:
 /media/newhd/Qt/5.12.1/gcc_64/lib/libQt5Core.prl:
 qmake: FORCE
@@ -956,7 +955,7 @@ distdir: FORCE
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../node.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /media/newhd/Qt/5.12.1/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents ../condition.h ../datapack.h ../simulate.h ../simlinklist.h ../nodegencodes/packer.h ../nodegencodes/linkedList.h ../commonheader.h ../gsltest.h ../blocks/block.h ../blocks/blockio.h ../blocks/accumulatorblock.h ../blocks/adderblock.h ../blocks/constantblock.h ../blocks/constarrayblock.h ../blocks/datasplitblock.h ../blocks/delayblock.h ../blocks/demux.h ../blocks/expressionblock.h ../blocks/generategausblock.h ../blocks/generatexyblock.h ../blocks/getmaxblock.h ../blocks/gnuplotblock.h ../blocks/graph.h ../blocks/gslblock.h ../blocks/histfromarrblock.h ../blocks/ifblock.h ../blocks/linedisplayblock.h ../blocks/localprocedureblock.h ../blocks/mainblock.h ../blocks/manageblocks.h ../blocks/networkclientblock.h ../blocks/networkserverblock.h ../blocks/readfileblock.h ../blocks/readmultifilesblock.h ../blocks/simulate2dblock.h ../blocks/simulate3d.h ../blocks/simulate3dblock.h ../gui/blockitem.h ../gui/blockscene.h ../gui/edge.h ../gui/glwidget.h ../gui/mainwindow.h ../gui/mygraphicsview.h ../gui/node.h ../compiler/rule.h ../compiler/compiletoc.h ../compiler/grammar.h ../compiler/lexer.h ../compiler/earleyparser.h ../compiler/token.h ../compiler/fsm.h ../compiler/numberfsm.h ../compiler/parserhelper.h ../blocks/fillhist.h ../gui/formulawidget.h ../gnuplot/embed_example.h ../gnuplot/QtGnuplotEvent.h ../gnuplot/QtGnuplotInstance.h ../gnuplot/QtGnuplotItems.h ../gnuplot/QtGnuplotScene.h ../gnuplot/QtGnuplotWidget.h ../gnuplot/qtgnuplot.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../condition.h ../datapack.h ../simulate.h ../simlinklist.h ../nodegencodes/packer.h ../nodegencodes/linkedList.h ../commonheader.h ../gsltest.h ../blocks/block.h ../blocks/blockio.h ../blocks/accumulatorblock.h ../blocks/adderblock.h ../blocks/constantblock.h ../blocks/constarrayblock.h ../blocks/datasplitblock.h ../blocks/delayblock.h ../blocks/demux.h ../blocks/expressionblock.h ../blocks/generategausblock.h ../blocks/generatexyblock.h ../blocks/getmaxblock.h ../blocks/gnuplotblock.h ../blocks/graph.h ../blocks/gslblock.h ../blocks/histfromarrblock.h ../blocks/ifblock.h ../blocks/linedisplayblock.h ../blocks/localprocedureblock.h ../blocks/mainblock.h ../blocks/manageblocks.h ../blocks/networkclientblock.h ../blocks/networkserverblock.h ../blocks/readfileblock.h ../blocks/readmultifilesblock.h ../blocks/simulate2dblock.h ../blocks/simulate3d.h ../blocks/simulate3dblock.h ../gui/blockitem.h ../gui/blockscene.h ../gui/edge.h ../gui/glwidget.h ../gui/mainwindow.h ../gui/mygraphicsview.h ../gui/node.h ../compiler/rule.h ../compiler/compiletoc.h ../compiler/grammar.h ../compiler/lexer.h ../compiler/earleyparser.h ../compiler/token.h ../compiler/fsm.h ../compiler/numberfsm.h ../compiler/parserhelper.h ../blocks/fillhist.h ../gui/formulawidget.h ../gnuplot/embed_example.h ../gnuplot/QtGnuplotEvent.h ../gnuplot/QtGnuplotInstance.h ../gnuplot/QtGnuplotItems.h ../gnuplot/QtGnuplotScene.h ../gnuplot/QtGnuplotWidget.h ../gnuplot/qtgnuplot.h ../gnuplot/mousecmn.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../main.cpp ../condition.cpp ../datapack.cpp ../simulate.cpp ../simlinklist.cpp ../nodegencodes/packer.c ../nodegencodes/linkedList.c ../gsltest.cpp ../blocks/accumulatorblock.cpp ../blocks/adderblock.cpp ../blocks/block.cpp ../blocks/blockio.cpp ../blocks/constantblock.cpp ../blocks/constarrayblock.cpp ../blocks/datasplitblock.cpp ../blocks/delayblock.cpp ../blocks/demux.cpp ../blocks/expressionblock.cpp ../blocks/generategausblock.cpp ../blocks/generatexyblock.cpp ../blocks/getmaxblock.cpp ../blocks/gnuplotblock.cpp ../blocks/graph.cpp ../blocks/gslblock.cpp ../blocks/histfromarrblock.cpp ../blocks/ifblock.cpp ../blocks/linedisplayblock.cpp ../blocks/localprocedureblock.cpp ../blocks/mainblock.cpp ../blocks/manageblocks.cpp ../blocks/networkclientblock.cpp ../blocks/networkserverblock.cpp ../blocks/readfileblock.cpp ../blocks/readmultifilesblock.cpp ../blocks/simulate2dblock.cpp ../blocks/simulate3d.cpp ../blocks/simulate3dblock.cpp ../gui/blockitem.cpp ../gui/blockscene.cpp ../gui/glwidget.cpp ../gui/mainwindow.cpp ../gui/mygraphicsview.cpp ../gui/node.cpp ../gui/edge.cpp ../compiler/compiletoc.cpp ../compiler/earleyparser.cpp ../compiler/fsm.cpp ../compiler/grammar.cpp ../compiler/lexer.cpp ../compiler/numberfsm.cpp ../compiler/parserhelper.cpp ../compiler/rule.cpp ../compiler/token.cpp ../blocks/fillhist.cpp ../gui/formulawidget.cpp ../gnuplot/QtGnuplotWidget.cpp ../gnuplot/QtGnuplotScene.cpp ../gnuplot/QtGnuplotItems.cpp ../gnuplot/QtGnuplotInstance.cpp ../gnuplot/QtGnuplotEvent.cpp ../gnuplot/embed_example.cpp ../gnuplot/qtgnuplot.cpp $(DISTDIR)/
 
 
@@ -1163,8 +1162,75 @@ moc_simulate.cpp: ../simulate.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../nodegencodes/packer.h \
 		../blocks/manageblocks.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScript \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScriptDepends \
+		../blocks/constantblock.h \
+		../blocks/expressionblock.h \
+		../gui/formulawidget.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QWidget \
+		../compiler/lexer.h \
+		../compiler/token.h \
+		../compiler/fsm.h \
+		../compiler/numberfsm.h \
+		../compiler/earleyparser.h \
+		../compiler/grammar.h \
+		../compiler/rule.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
+		../compiler/compiletoc.h \
+		../commonheader.h \
+		../gsltest.h \
+		../blocks/graph.h \
+		../gui/glwidget.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/QGLWidget \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qgl.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopengl.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qt_windows.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopengles2ext.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopenglext.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpaintengine.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qglcolormap.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qtopenglglobal.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QSurfaceFormat \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qsurfaceformat.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QMatrix4x4 \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qmatrix4x4.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qvector3d.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qvector4d.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qquaternion.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qgenericmatrix.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtGlobal \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QBoxLayout \
+		../blocks/datasplitblock.h \
+		../blocks/adderblock.h \
+		../blocks/delayblock.h \
+		../blocks/accumulatorblock.h \
+		../blocks/readfileblock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QFile \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QTextStream \
+		../blocks/getmaxblock.h \
+		../blocks/linedisplayblock.h \
+		../blocks/ifblock.h \
+		../blocks/histfromarrblock.h \
+		../blocks/fillhist.h \
+		../blocks/readmultifilesblock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QPlainTextEdit \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qplaintextedit.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtextlayout.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qglyphrun.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qrawfont.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qfontdatabase.h \
+		../blocks/generategausblock.h \
+		../blocks/generatexyblock.h \
+		../blocks/mainblock.h \
+		../datapack.h \
+		../blocks/demux.h \
+		../blocks/localprocedureblock.h \
+		../blocks/networkclientblock.h \
+		../blocks/networkserverblock.h \
+		../blocks/simulate3dblock.h \
+		../blocks/simulate3d.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
+		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCoreDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
@@ -1244,7 +1310,6 @@ moc_simulate.cpp: ../simulate.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
@@ -1282,89 +1347,6 @@ moc_simulate.cpp: ../simulate.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclass.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclasspropertyiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontextinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptstring.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptprogram.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengineagent.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensioninterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensionplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalueiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptversion.h \
-		../blocks/constantblock.h \
-		../blocks/expressionblock.h \
-		../gui/formulawidget.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QWidget \
-		../compiler/lexer.h \
-		../compiler/token.h \
-		../compiler/fsm.h \
-		../compiler/numberfsm.h \
-		../compiler/earleyparser.h \
-		../compiler/grammar.h \
-		../compiler/rule.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
-		../compiler/compiletoc.h \
-		../commonheader.h \
-		../gsltest.h \
-		../blocks/graph.h \
-		../gui/glwidget.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/QGLWidget \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qgl.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopengl.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qt_windows.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopengles2ext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopenglext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpaintengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qglcolormap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qtopenglglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QSurfaceFormat \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qsurfaceformat.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QMatrix4x4 \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qmatrix4x4.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qvector3d.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qvector4d.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qquaternion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qgenericmatrix.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtGlobal \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QBoxLayout \
-		../blocks/datasplitblock.h \
-		../blocks/adderblock.h \
-		../blocks/delayblock.h \
-		../blocks/accumulatorblock.h \
-		../blocks/readfileblock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QFile \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QTextStream \
-		../blocks/getmaxblock.h \
-		../blocks/linedisplayblock.h \
-		../blocks/ifblock.h \
-		../blocks/histfromarrblock.h \
-		../blocks/fillhist.h \
-		../blocks/readmultifilesblock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QPlainTextEdit \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qplaintextedit.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtextlayout.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qglyphrun.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qrawfont.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qfontdatabase.h \
-		../blocks/generategausblock.h \
-		../blocks/generatexyblock.h \
-		../blocks/mainblock.h \
-		../datapack.h \
-		../blocks/demux.h \
-		../blocks/localprocedureblock.h \
-		../blocks/networkclientblock.h \
-		../blocks/networkserverblock.h \
-		../blocks/simulate3dblock.h \
-		../blocks/simulate3d.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
-		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCoreDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGui \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGuiDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qaccessible.h \
@@ -1905,7 +1887,7 @@ moc_simulate.cpp: ../simulate.h \
 		../simulate.h \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../simulate.h -o moc_simulate.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../simulate.h -o moc_simulate.cpp
 
 moc_simulate3d.cpp: ../blocks/simulate3d.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
@@ -2591,7 +2573,7 @@ moc_simulate3d.cpp: ../blocks/simulate3d.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput/QInputAspect \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../blocks/simulate3d.h -o moc_simulate3d.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../blocks/simulate3d.h -o moc_simulate3d.cpp
 
 moc_blockitem.cpp: ../gui/blockitem.h \
 		../gui/node.h \
@@ -2724,7 +2706,7 @@ moc_blockitem.cpp: ../gui/blockitem.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/blockitem.h -o moc_blockitem.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/blockitem.h -o moc_blockitem.cpp
 
 moc_blockscene.cpp: ../gui/blockscene.h \
 		../gui/node.h \
@@ -2865,141 +2847,6 @@ moc_blockscene.cpp: ../gui/blockscene.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qlayoutitem.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgridlayout.h \
 		../blocks/manageblocks.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScript \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScriptDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclass.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclasspropertyiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontextinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptstring.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptprogram.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengineagent.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensioninterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensionplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalueiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptversion.h \
 		../blocks/constantblock.h \
 		../blocks/blockio.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QComboBox \
@@ -3019,6 +2866,7 @@ moc_blockscene.cpp: ../gui/blockscene.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGridLayout \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGroupBox \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgroupbox.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
 		../condition.h \
 		../nodegencodes/packer.h \
 		../blocks/expressionblock.h \
@@ -3032,6 +2880,7 @@ moc_blockscene.cpp: ../gui/blockscene.h \
 		../compiler/grammar.h \
 		../compiler/rule.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
 		../compiler/compiletoc.h \
 		../commonheader.h \
 		../gsltest.h \
@@ -3090,6 +2939,122 @@ moc_blockscene.cpp: ../gui/blockscene.h \
 		../blocks/simulate3d.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGui \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGuiDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qaccessible.h \
@@ -3632,7 +3597,7 @@ moc_blockscene.cpp: ../gui/blockscene.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QSpinBox \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/blockscene.h -o moc_blockscene.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/blockscene.h -o moc_blockscene.cpp
 
 moc_glwidget.cpp: ../gui/glwidget.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/QGLWidget \
@@ -3787,7 +3752,7 @@ moc_glwidget.cpp: ../gui/glwidget.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractitemmodel.h \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/glwidget.h -o moc_glwidget.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/glwidget.h -o moc_glwidget.cpp
 
 moc_mainwindow.cpp: ../gui/mainwindow.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QMainWindow \
@@ -3935,141 +3900,6 @@ moc_mainwindow.cpp: ../gui/mainwindow.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qlayoutitem.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgridlayout.h \
 		../blocks/manageblocks.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScript \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScriptDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclass.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclasspropertyiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontextinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptstring.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptprogram.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengineagent.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensioninterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensionplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalueiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptversion.h \
 		../blocks/constantblock.h \
 		../blocks/blockio.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QComboBox \
@@ -4088,6 +3918,7 @@ moc_mainwindow.cpp: ../gui/mainwindow.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGridLayout \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGroupBox \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgroupbox.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
 		../condition.h \
 		../nodegencodes/packer.h \
 		../blocks/expressionblock.h \
@@ -4101,6 +3932,7 @@ moc_mainwindow.cpp: ../gui/mainwindow.h \
 		../compiler/grammar.h \
 		../compiler/rule.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
 		../compiler/compiletoc.h \
 		../commonheader.h \
 		../gsltest.h \
@@ -4159,6 +3991,122 @@ moc_mainwindow.cpp: ../gui/mainwindow.h \
 		../blocks/simulate3d.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGui \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGuiDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qaccessible.h \
@@ -4702,7 +4650,7 @@ moc_mainwindow.cpp: ../gui/mainwindow.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput/QWheelEvent \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/mainwindow.h -o moc_mainwindow.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/mainwindow.h -o moc_mainwindow.cpp
 
 moc_mygraphicsview.cpp: ../gui/mygraphicsview.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGraphicsView \
@@ -4826,7 +4774,7 @@ moc_mygraphicsview.cpp: ../gui/mygraphicsview.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QMouseEvent \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/mygraphicsview.h -o moc_mygraphicsview.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/mygraphicsview.h -o moc_mygraphicsview.cpp
 
 moc_node.cpp: ../gui/node.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGraphicsItem \
@@ -4920,7 +4868,7 @@ moc_node.cpp: ../gui/node.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QDebug \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/node.h -o moc_node.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/node.h -o moc_node.cpp
 
 moc_formulawidget.cpp: ../gui/formulawidget.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QWidget \
@@ -5028,7 +4976,7 @@ moc_formulawidget.cpp: ../gui/formulawidget.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtouchdevice.h \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/formulawidget.h -o moc_formulawidget.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/formulawidget.h -o moc_formulawidget.cpp
 
 moc_embed_example.cpp: ../gnuplot/embed_example.h \
 		../gnuplot/QtGnuplotInstance.h \
@@ -5359,7 +5307,7 @@ moc_embed_example.cpp: ../gnuplot/embed_example.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qsizepolicy.h \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gnuplot/embed_example.h -o moc_embed_example.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gnuplot/embed_example.h -o moc_embed_example.cpp
 
 moc_QtGnuplotEvent.cpp: ../gnuplot/QtGnuplotEvent.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
@@ -5414,7 +5362,7 @@ moc_QtGnuplotEvent.cpp: ../gnuplot/QtGnuplotEvent.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobject_impl.h \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gnuplot/QtGnuplotEvent.h -o moc_QtGnuplotEvent.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gnuplot/QtGnuplotEvent.h -o moc_QtGnuplotEvent.cpp
 
 moc_QtGnuplotInstance.cpp: ../gnuplot/QtGnuplotInstance.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
@@ -5612,7 +5560,7 @@ moc_QtGnuplotInstance.cpp: ../gnuplot/QtGnuplotInstance.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gnuplot/QtGnuplotInstance.h -o moc_QtGnuplotInstance.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gnuplot/QtGnuplotInstance.h -o moc_QtGnuplotInstance.cpp
 
 moc_QtGnuplotScene.cpp: ../gnuplot/QtGnuplotScene.h \
 		../gnuplot/QtGnuplotEvent.h \
@@ -5718,7 +5666,7 @@ moc_QtGnuplotScene.cpp: ../gnuplot/QtGnuplotScene.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gnuplot/QtGnuplotScene.h -o moc_QtGnuplotScene.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gnuplot/QtGnuplotScene.h -o moc_QtGnuplotScene.cpp
 
 moc_QtGnuplotWidget.cpp: ../gnuplot/QtGnuplotWidget.h \
 		../gnuplot/QtGnuplotEvent.h \
@@ -6203,7 +6151,7 @@ moc_QtGnuplotWidget.cpp: ../gnuplot/QtGnuplotWidget.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport/qabstractprintdialog.h \
 		moc_predefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/bin/moc
-	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtScript -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gnuplot/QtGnuplotWidget.h -o moc_QtGnuplotWidget.cpp
+	/media/newhd/Qt/5.12.1/gcc_64/bin/moc $(DEFINES) --include /home/jin/qt_pgms/Node/Node/build/moc_predefs.h -I/media/newhd/Qt/5.12.1/gcc_64/mkspecs/linux-g++ -I/home/jin/qt_pgms/Node/Node -I/home/jin/qt_pgms/Node/Node/blocks -I/home/jin/qt_pgms/Node/Node/compiler -I/home/jin/qt_pgms/Node/Node/gui -I/home/jin/qt_pgms/Node/Node/gnuplot -I/home/jin/Downloads/gnuplot-5.2.7/src/qtterminal -I/media/newhd/Qt/5.12.1/gcc_64/include -I/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL -I/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport -I/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg -I/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DExtras -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DAnimation -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DRender -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DInput -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DLogic -I/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGamepad -I/media/newhd/Qt/5.12.1/gcc_64/include/QtGui -I/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork -I/media/newhd/Qt/5.12.1/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../gnuplot/QtGnuplotWidget.h -o moc_QtGnuplotWidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -6367,141 +6315,6 @@ main.o: ../main.cpp ../gui/mainwindow.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qlayoutitem.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgridlayout.h \
 		../blocks/manageblocks.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScript \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScriptDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclass.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclasspropertyiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontextinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptstring.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptprogram.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengineagent.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensioninterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensionplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalueiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptversion.h \
 		../blocks/constantblock.h \
 		../blocks/blockio.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QComboBox \
@@ -6520,6 +6333,7 @@ main.o: ../main.cpp ../gui/mainwindow.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGridLayout \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGroupBox \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgroupbox.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
 		../condition.h \
 		../nodegencodes/packer.h \
 		../blocks/expressionblock.h \
@@ -6533,6 +6347,7 @@ main.o: ../main.cpp ../gui/mainwindow.h \
 		../compiler/grammar.h \
 		../compiler/rule.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
 		../compiler/compiletoc.h \
 		../commonheader.h \
 		../gsltest.h \
@@ -6591,6 +6406,122 @@ main.o: ../main.cpp ../gui/mainwindow.h \
 		../blocks/simulate3d.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGui \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGuiDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qaccessible.h \
@@ -7300,8 +7231,75 @@ simulate.o: ../simulate.cpp ../simulate.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../nodegencodes/packer.h \
 		../blocks/manageblocks.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScript \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScriptDepends \
+		../blocks/constantblock.h \
+		../blocks/expressionblock.h \
+		../gui/formulawidget.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QWidget \
+		../compiler/lexer.h \
+		../compiler/token.h \
+		../compiler/fsm.h \
+		../compiler/numberfsm.h \
+		../compiler/earleyparser.h \
+		../compiler/grammar.h \
+		../compiler/rule.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
+		../compiler/compiletoc.h \
+		../commonheader.h \
+		../gsltest.h \
+		../blocks/graph.h \
+		../gui/glwidget.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/QGLWidget \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qgl.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopengl.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qt_windows.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopengles2ext.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopenglext.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpaintengine.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qglcolormap.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qtopenglglobal.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QSurfaceFormat \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qsurfaceformat.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QMatrix4x4 \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qmatrix4x4.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qvector3d.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qvector4d.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qquaternion.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qgenericmatrix.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtGlobal \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QBoxLayout \
+		../blocks/datasplitblock.h \
+		../blocks/adderblock.h \
+		../blocks/delayblock.h \
+		../blocks/accumulatorblock.h \
+		../blocks/readfileblock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QFile \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QTextStream \
+		../blocks/getmaxblock.h \
+		../blocks/linedisplayblock.h \
+		../blocks/ifblock.h \
+		../blocks/histfromarrblock.h \
+		../blocks/fillhist.h \
+		../blocks/readmultifilesblock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QPlainTextEdit \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qplaintextedit.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtextlayout.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qglyphrun.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qrawfont.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qfontdatabase.h \
+		../blocks/generategausblock.h \
+		../blocks/generatexyblock.h \
+		../blocks/mainblock.h \
+		../datapack.h \
+		../blocks/demux.h \
+		../blocks/localprocedureblock.h \
+		../blocks/networkclientblock.h \
+		../blocks/networkserverblock.h \
+		../blocks/simulate3dblock.h \
+		../blocks/simulate3d.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
+		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCoreDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
@@ -7381,7 +7379,6 @@ simulate.o: ../simulate.cpp ../simulate.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
@@ -7419,89 +7416,6 @@ simulate.o: ../simulate.cpp ../simulate.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclass.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclasspropertyiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontextinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptstring.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptprogram.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengineagent.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensioninterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensionplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalueiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptversion.h \
-		../blocks/constantblock.h \
-		../blocks/expressionblock.h \
-		../gui/formulawidget.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QWidget \
-		../compiler/lexer.h \
-		../compiler/token.h \
-		../compiler/fsm.h \
-		../compiler/numberfsm.h \
-		../compiler/earleyparser.h \
-		../compiler/grammar.h \
-		../compiler/rule.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
-		../compiler/compiletoc.h \
-		../commonheader.h \
-		../gsltest.h \
-		../blocks/graph.h \
-		../gui/glwidget.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/QGLWidget \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qgl.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopengl.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qt_windows.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopengles2ext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qopenglext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpaintengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qglcolormap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtOpenGL/qtopenglglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QSurfaceFormat \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qsurfaceformat.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QMatrix4x4 \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qmatrix4x4.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qvector3d.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qvector4d.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qquaternion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qgenericmatrix.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtGlobal \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QBoxLayout \
-		../blocks/datasplitblock.h \
-		../blocks/adderblock.h \
-		../blocks/delayblock.h \
-		../blocks/accumulatorblock.h \
-		../blocks/readfileblock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QFile \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QTextStream \
-		../blocks/getmaxblock.h \
-		../blocks/linedisplayblock.h \
-		../blocks/ifblock.h \
-		../blocks/histfromarrblock.h \
-		../blocks/fillhist.h \
-		../blocks/readmultifilesblock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QPlainTextEdit \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qplaintextedit.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtextlayout.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qglyphrun.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qrawfont.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qfontdatabase.h \
-		../blocks/generategausblock.h \
-		../blocks/generatexyblock.h \
-		../blocks/mainblock.h \
-		../datapack.h \
-		../blocks/demux.h \
-		../blocks/localprocedureblock.h \
-		../blocks/networkclientblock.h \
-		../blocks/networkserverblock.h \
-		../blocks/simulate3dblock.h \
-		../blocks/simulate3d.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
-		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCoreDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGui \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGuiDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qaccessible.h \
@@ -9588,141 +9502,6 @@ expressionblock.o: ../blocks/expressionblock.cpp ../blocks/expressionblock.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGraphicsScene \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgraphicsscene.h \
 		../nodegencodes/packer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScript \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScriptDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmath.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclass.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclasspropertyiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontextinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptstring.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptprogram.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengineagent.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensioninterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensionplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalueiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptversion.h \
 		../gui/formulawidget.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QWidget \
 		../compiler/lexer.h \
@@ -9733,6 +9512,7 @@ expressionblock.o: ../blocks/expressionblock.cpp ../blocks/expressionblock.h \
 		../compiler/grammar.h \
 		../compiler/rule.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
 		../compiler/compiletoc.h \
 		../commonheader.h \
 		../gsltest.h
@@ -11375,142 +11155,7 @@ ifblock.o: ../blocks/ifblock.cpp ../blocks/ifblock.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgraphicssceneevent.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGraphicsScene \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgraphicsscene.h \
-		../nodegencodes/packer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScript \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScriptDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmath.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclass.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclasspropertyiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontextinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptstring.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptprogram.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengineagent.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensioninterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensionplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalueiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptversion.h
+		../nodegencodes/packer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ifblock.o ../blocks/ifblock.cpp
 
 linedisplayblock.o: ../blocks/linedisplayblock.cpp ../blocks/linedisplayblock.h \
@@ -11987,10 +11632,12 @@ mainblock.o: ../blocks/mainblock.cpp ../blocks/mainblock.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainblock.o ../blocks/mainblock.cpp
 
 manageblocks.o: ../blocks/manageblocks.cpp ../blocks/manageblocks.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScript \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScriptDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
+		../blocks/constantblock.h \
+		../blocks/blockio.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QComboBox \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qcombobox.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtguiglobal.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qglobal.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qconfig-bootstrapped.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qconfig.h \
@@ -12012,11 +11659,15 @@ manageblocks.o: ../blocks/manageblocks.cpp ../blocks/manageblocks.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmutex.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qnumeric.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversiontagging.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtgui-config.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qtwidgets-config.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qwidget.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qwindowdefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectdefs.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qnamespace.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectdefs_impl.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qwindowdefs_win.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobject.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstring.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qchar.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearray.h \
@@ -12041,187 +11692,32 @@ manageblocks.o: ../blocks/manageblocks.cpp ../blocks/manageblocks.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvarlengtharray.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcontainerfwd.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobject_impl.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractitemmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariant.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdebug.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhash.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qiodevice.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlocale.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qshareddata.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvector.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpoint.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qset.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcontiguouscache.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedpointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qregularexpression.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qurl.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qurlquery.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatastream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfiledevice.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qline.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmargins.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmath.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpaintdevice.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrect.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsize.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclass.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclasspropertyiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontextinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptstring.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptprogram.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengineagent.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensioninterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensionplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalueiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptversion.h \
-		../blocks/constantblock.h \
-		../blocks/blockio.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QComboBox \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qcombobox.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtguiglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtgui-config.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qtwidgets-config.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qwidget.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qwindowdefs.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qwindowdefs_win.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpaintdevice.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpoint.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpalette.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qcolor.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qrgb.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qrgba64.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qbrush.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvector.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qmatrix.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpolygon.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qregion.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatastream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qiodevice.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qline.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtransform.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpainterpath.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qimage.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpixelformat.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qpixmap.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedpointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qshareddata.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhash.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedpointer_impl.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qfont.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qfontmetrics.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qfontinfo.h \
@@ -12229,12 +11725,24 @@ manageblocks.o: ../blocks/manageblocks.cpp ../blocks/manageblocks.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qcursor.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qkeysequence.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qevent.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariant.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmap.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdebug.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlocale.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qset.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcontiguouscache.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qurl.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qurlquery.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfiledevice.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qvector2d.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qtouchdevice.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qabstractitemdelegate.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qstyleoption.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qabstractspinbox.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qvalidator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qregularexpression.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qicon.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qslider.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qabstractslider.h \
@@ -12243,6 +11751,7 @@ manageblocks.o: ../blocks/manageblocks.cpp ../blocks/manageblocks.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qtabwidget.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qrubberband.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qframe.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractitemmodel.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QTextEdit \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qtextedit.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qabstractscrollarea.h \
@@ -12263,6 +11772,7 @@ manageblocks.o: ../blocks/manageblocks.cpp ../blocks/manageblocks.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qboxlayout.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGroupBox \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgroupbox.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
 		../condition.h \
 		../gui/blockitem.h \
 		../gui/node.h \
@@ -12288,6 +11798,7 @@ manageblocks.o: ../blocks/manageblocks.cpp ../blocks/manageblocks.h \
 		../compiler/grammar.h \
 		../compiler/rule.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
 		../compiler/compiletoc.h \
 		../commonheader.h \
 		../gsltest.h \
@@ -12346,6 +11857,123 @@ manageblocks.o: ../blocks/manageblocks.cpp ../blocks/manageblocks.h \
 		../blocks/simulate3d.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmath.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGui \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGuiDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qaccessible.h \
@@ -15928,141 +15556,6 @@ blockscene.o: ../gui/blockscene.cpp ../gui/blockscene.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qlayoutitem.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgridlayout.h \
 		../blocks/manageblocks.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScript \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScriptDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclass.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclasspropertyiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontextinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptstring.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptprogram.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengineagent.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensioninterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensionplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalueiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptversion.h \
 		../blocks/constantblock.h \
 		../blocks/blockio.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QComboBox \
@@ -16082,6 +15575,7 @@ blockscene.o: ../gui/blockscene.cpp ../gui/blockscene.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGridLayout \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGroupBox \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgroupbox.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
 		../condition.h \
 		../nodegencodes/packer.h \
 		../blocks/expressionblock.h \
@@ -16095,6 +15589,7 @@ blockscene.o: ../gui/blockscene.cpp ../gui/blockscene.h \
 		../compiler/grammar.h \
 		../compiler/rule.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
 		../compiler/compiletoc.h \
 		../commonheader.h \
 		../gsltest.h \
@@ -16153,6 +15648,122 @@ blockscene.o: ../gui/blockscene.cpp ../gui/blockscene.h \
 		../blocks/simulate3d.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGui \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGuiDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qaccessible.h \
@@ -16994,141 +16605,6 @@ mainwindow.o: ../gui/mainwindow.cpp ../gui/mainwindow.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qlayoutitem.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgridlayout.h \
 		../blocks/manageblocks.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScript \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/QtScriptDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptglobal.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptable.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclass.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalue.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptclasspropertyiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontext.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptcontextinfo.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengine.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptstring.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptprogram.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptengineagent.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensioninterface.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptextensionplugin.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qscriptvalueiterator.h \
-		/media/newhd/Qt/5.12.1/gcc_64/include/QtScript/qtscriptversion.h \
 		../blocks/constantblock.h \
 		../blocks/blockio.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QComboBox \
@@ -17147,6 +16623,7 @@ mainwindow.o: ../gui/mainwindow.cpp ../gui/mainwindow.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGridLayout \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGroupBox \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/qgroupbox.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QObject \
 		../condition.h \
 		../nodegencodes/packer.h \
 		../blocks/expressionblock.h \
@@ -17160,6 +16637,7 @@ mainwindow.o: ../gui/mainwindow.cpp ../gui/mainwindow.h \
 		../compiler/grammar.h \
 		../compiler/rule.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QQueue \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qqueue.h \
 		../compiler/compiletoc.h \
 		../commonheader.h \
 		../gsltest.h \
@@ -17218,6 +16696,122 @@ mainwindow.o: ../gui/mainwindow.cpp ../gui/mainwindow.h \
 		../blocks/simulate3d.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCore \
 		/media/newhd/Qt/5.12.1/gcc_64/include/Qt3DCore/Qt3DCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCore \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QtCoreDepends \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracteventdispatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventloop.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstractstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qabstracttransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydataops.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qarraydatapointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbasictimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbitarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbuffer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qbytearraymatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcache.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdatetime.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborcommon.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/quuid.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcbormap.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcborstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfloat16.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcollator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineoption.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcommandlineparser.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcoreapplication.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qcryptographichash.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdeadlinetimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qelapsedtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qdiriterator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeasingcurve.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qendian.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qeventtransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qexception.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfactoryinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfileselector.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QStringList \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfilesystemwatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfinalstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuture.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfutureinterface.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrunnable.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresultstore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturesynchronizer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qfuturewatcher.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qhistorystate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qidentityproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qisenum.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qitemselectionmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonarray.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonvalue.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsondocument.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qjsonobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibrary.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlibraryinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qversionnumber.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlinkedlist.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qlockfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qloggingcategory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmessageauthenticationcode.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmetaobject.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedata.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimedatabase.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qmimetype.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qobjectcleanuphandler.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qoperatingsystemversion.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qparallelanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpauseanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qplugin.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpointer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpluginloader.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qprocess.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qpropertyanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qvariantanimation.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qrandom.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qreadwritelock.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qresource.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsavefile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopedvaluerollback.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qscopeguard.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsequentialanimationgroup.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsettings.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsharedmemory.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignalmapper.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsignaltransition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsocketnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsortfilterproxymodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstack.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstandardpaths.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstate.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstatemachine.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstorageinfo.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qstringlistmodel.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qsystemsemaphore.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporarydir.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtemporaryfile.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextboundaryfinder.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtextcodec.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthread.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadpool.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qthreadstorage.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimeline.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimer.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtimezone.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtranslator.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtypetraits.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwaitcondition.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qwineventnotifier.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qxmlstream.h \
+		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/qtcoreversion.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGui \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/QtGuiDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtGui/qaccessible.h \
@@ -18978,7 +18572,7 @@ QtGnuplotWidget.o: ../gnuplot/QtGnuplotWidget.cpp ../gnuplot/QtGnuplotWidget.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGraphicsScene \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGraphicsItemGroup \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QTime \
-		../../../../Downloads/gnuplot-5.2.7/src/mousecmn.h \
+		../gnuplot/mousecmn.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg/QSvgGenerator \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg/qsvggenerator.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtSvg/qtsvgglobal.h
@@ -19473,7 +19067,7 @@ QtGnuplotScene.o: ../gnuplot/QtGnuplotScene.cpp ../gnuplot/QtGnuplotWidget.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGraphicsScene \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtWidgets/QGraphicsItemGroup \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtCore/QTime \
-		../../../../Downloads/gnuplot-5.2.7/src/mousecmn.h
+		../gnuplot/mousecmn.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QtGnuplotScene.o ../gnuplot/QtGnuplotScene.cpp
 
 QtGnuplotItems.o: ../gnuplot/QtGnuplotItems.cpp ../gnuplot/QtGnuplotItems.h \
@@ -20770,7 +20364,7 @@ QtGnuplotEvent.o: ../gnuplot/QtGnuplotEvent.cpp ../gnuplot/QtGnuplotEvent.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport/QPrintDialog \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport/qprintdialog.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtPrintSupport/qabstractprintdialog.h \
-		../../../../Downloads/gnuplot-5.2.7/src/mousecmn.h \
+		../gnuplot/mousecmn.h \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork/QtNetwork \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork/QtNetworkDepends \
 		/media/newhd/Qt/5.12.1/gcc_64/include/QtNetwork/qtnetworkglobal.h \

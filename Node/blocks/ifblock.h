@@ -2,7 +2,7 @@
 #define IFBLOCK_H
 #include "blockio.h"
 
-#include <QtScript>
+//#include <QtScript>
 
 class BlockIO;
 

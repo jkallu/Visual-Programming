@@ -2,7 +2,7 @@
 #define EXPRESSIONBLOCK_H
 #include "blockio.h"
 
-#include <QtScript>
+//#include <QtScript>
 #include <QLineEdit>
 #include <QTextEdit>
 
