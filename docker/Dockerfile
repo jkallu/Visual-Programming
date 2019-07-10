@@ -65,9 +65,5 @@ RUN export QT_CFLAGS="-DQT_GUI_LIB -DQT_CORE_LIB -DQT_NETWORK_LIB -DQT_WIDGETS_L
 RUN wget https://downloads.sourceforge.net/project/gnuplot/gnuplot/5.2.7/gnuplot-5.2.7.tar.gz
 RUN tar -xzf gnuplot-5.2.7.tar.gz
 RUN rm gnuplot-5.2.7.tar.gz
-RUN cd gnuplot-5.2.7/
-RUN pwd
-RUN ./configure --with-qt=qt5
-RUN make
-RUN make install
+RUN cd gnuplot-5.2.7/ && ./configure --with-qt=qt5 && make && make install
 
