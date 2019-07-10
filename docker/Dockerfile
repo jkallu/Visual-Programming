@@ -32,12 +32,12 @@ RUN apt update &&                  \
         libudev-dev                \
         qt5-default                \
         qtbase5-private-dev        \
- 	      libqt5svg5-dev             \
-        qtcreator			             \
-        qt3d5*			               \
-        libgsl23 			             \
+        libqt5svg5-dev             \
+        qtcreator                  \
+        qt3d5*		           \
+        libgsl23 	           \
         libgslcblas0               \ 
-        libgsl-dbg 		        	   \
+        libgsl-dbg 	      	   \
         libgsl-dev               &&\
         apt clean
 
@@ -67,3 +67,6 @@ RUN tar -xzf gnuplot-5.2.7.tar.gz
 RUN rm gnuplot-5.2.7.tar.gz
 RUN cd gnuplot-5.2.7/ && ./configure --with-qt=qt5 && make && make install
 
+RUN git clone https://github.com/jkallu/Visual-Programming.git
+
+CMD ["qtcreator Visual-Programming/Node/Node.pro"]

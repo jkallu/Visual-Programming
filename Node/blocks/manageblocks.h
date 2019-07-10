@@ -29,11 +29,12 @@
 #include "gslblock.h"
 #include "gnuplotblock.h"
 
-#include "simulate.h"
+//#include "simulate.h"
 #include <vector>
 
 //#include "sumblock.h"
 #include <QString>
+#include "simulate.h"
 
 #define MAX_BLOCKS 10000
 

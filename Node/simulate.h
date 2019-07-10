@@ -22,22 +22,6 @@ typedef struct  Func {
     int arrayNum;
 } Func_t;
 
-
-//typedef struct PData{
-//    //char *funcName;
-//    size_t size;
-//    int nIns;
-//    int nInsFilled;
-//    char *in; // format: size_t total_size, int func_name_length, func name, int num_var, int var_index, int var size, var type, var_data
-//    struct PData *next;
-//} PData_t;
-
-//extern PData_t *simPData;
-//extern pthread_mutex_t simLock;
-//extern char flagSim;
-
-
-
 using namespace std;
 
 class ManageBlocks;

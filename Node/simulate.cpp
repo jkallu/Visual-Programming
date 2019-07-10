@@ -1,5 +1,5 @@
 #include "simulate.h"
-#include "/home/jin/qt_pgms/nodegencodes/packer.h"
+#include "./nodegencodes/packer.h"
 
 
 char flagSim = 1;
