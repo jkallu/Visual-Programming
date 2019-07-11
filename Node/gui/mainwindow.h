@@ -69,6 +69,8 @@ private:
 
     int vScrolInitVal, hScrolInitVal;
 
+     QTableWidget * tableWidget;
+
 
 
 public slots:

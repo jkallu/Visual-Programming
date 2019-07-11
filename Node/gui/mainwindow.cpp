@@ -85,7 +85,9 @@ void MainWindow::createToolBox(){
     connect(buttonGroup, SIGNAL(buttonClicked(int)),
             this, SLOT(buttonGroupClicked(int)));
 
+
     QGridLayout *layout = new QGridLayout;
+
     layout->addWidget(createCellWidget(tr("Constant"), BlockItem::Constant), 0, 0);
     layout->addWidget(createCellWidget(tr("Array"), BlockItem::Array),0, 1);
     layout->addWidget(createCellWidget(tr("Expression"), BlockItem::Expression), 1, 0);
@@ -263,13 +265,42 @@ QWidget *MainWindow::createCellWidget(const QString &text, BlockItem::BlockType 
 
     QToolButton *button = new QToolButton;
     button->setIcon(icon);
-    button->setIconSize(QSize(10, 10));
+    button->setIconSize(QSize(20, 20));
     button->setCheckable(true);
+
     buttonGroup->addButton(button, int(type));
 
     QGridLayout *layout = new QGridLayout;
     layout->addWidget(button, 0, 0, Qt::AlignHCenter);
     layout->addWidget(new QLabel(text), 1, 0, Qt::AlignCenter);
+
+    button->setStyleSheet("QToolButton:hover { background-color: red } QToolButton:checked { background-color: red }");
+
+    switch (type)
+    {
+        case BlockItem::Constant:
+        case BlockItem::Adder:
+        case BlockItem::Delay:
+        case BlockItem::Accumulator:
+        case BlockItem::ReadFile:
+        case BlockItem::GetMax:
+        case BlockItem::LineDisplay:
+        case BlockItem::IfBlock:
+        case BlockItem::HistFromArrayBlock:
+        case BlockItem::FillHist:
+        case BlockItem::ReadMultiFile:
+        case BlockItem::GenerateGaus:
+        case BlockItem::GenerateXY:
+        case BlockItem::DeMux:
+
+            button->setEnabled(false);
+
+        break;
+
+        default:
+            button->setEnabled(true);
+    }
+
 
     QWidget *widget = new QWidget;
     widget->setLayout(layout);
