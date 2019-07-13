@@ -9,8 +9,10 @@ class GenerateGausBlock : virtual public BlockIO
 public:
     GenerateGausBlock(int i);
     void generateArrayOutputs();
-    void init() override;
-    void generateCode(QString dir) override;
+
+    
+    static int getNumInputs(){return  1;}
+    static int getNumOutputs(){return 1;}
 
     QLineEdit *leCount;
     QLabel *lblCount;
