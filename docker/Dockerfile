@@ -69,4 +69,4 @@ RUN cd gnuplot-5.2.7/ && ./configure --with-qt=qt5 && make && make install
 
 RUN git clone https://github.com/jkallu/Visual-Programming.git
 
-CMD ["qtcreator Visual-Programming/Node/Node.pro"]
+CMD ["qtcreator"]
