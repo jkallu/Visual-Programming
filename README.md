@@ -55,7 +55,9 @@ To run the binar with X window
 xhost +local:docker   
 sudo docker run --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/project/source -v `pwd`/build:/project/build jinkallu/visual_programming:latest ./Node
 ```
-## Prerequisites
+### Windows
+
+## Libraries used
 [Qt 5 or later](https://www.qt.io/download)  
 Necessary modules
 ```
@@ -67,13 +69,5 @@ $ sudo apt-get install libgsl23 libgslcblas0 libgsl-dbg libgsl-dev
 ```
 [Gnuplot](http://www.gnuplot.info/)  
 
-## Get it
-```
-$ git clone https://github.com/jkallu/Visual-Programming.git
-$ cd Visual-Programming/Node/build
-$ qmake ../Node.pro
-$ make
-$ ./Node
-```
 
 [Documentation (under development)](https://visual-programming.readthedocs.io)
