@@ -49,7 +49,7 @@ The following command downloads the docker file from
 sudo docker run --rm -v `pwd`:/project/source -v `pwd`/build:/project/build jinkallu/visual_programming:latest
 ```
 The binary will be saved in build directory.
-To run the binar with X window
+To run the binary with X window, execute the following commands,
 ### Linux
 ```
 xhost +local:docker   
@@ -57,9 +57,9 @@ sudo docker run --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/proje
 ```
 ### Windows  
 Install X server for windows. For example, [VcXsrv Windows X Server](https://sourceforge.net/projects/vcxsrv/). Then launch Xlaunch from start and set it up with following,
-1. Multipple windows
-2. Start no client
-3. Check disable access control and 
+1. select 'Multipple windows'
+2. select 'Start no client'
+3. check also 'disable access control' and 
 4. finish   
 [More details on how to run docker image with gui apps...](https://dev.to/darksmile92/run-gui-app-in-linux-docker-container-on-windows-host-4kde) 
 
