@@ -419,7 +419,7 @@ void ManageBlocks::generateCodeIter(CTree_t *cTree, CTree_t *main)
 
 void ManageBlocks::generateCode()
 {
-    QString dir = "../nodegencodes/";
+    QString dir = "/project/source/nodegencodes/";
 
     for(size_t i = 0; i < blockIO.size(); i++){
         if(blockIO.at(i)->isBlockEnabled()){
