@@ -36,7 +36,22 @@
 ### Simulation with Gnuplot
 ![Alt text](https://github.com/jkallu/Visual-Programming/blob/master/docs/images/sine_gnuplot_sim.gif? "Title")
 
-
+## Run with Docker
+```
+git clone https://github.com/jkallu/Visual-Programming.git
+cd Visual-Programming/Node
+```
+The following command downloads the docker file from dockerhub, if not exists and build the source.
+```
+sudo docker run --rm -v `pwd`:/project/source -v `pwd`/build:/project/build jinkallu/visual_programming:latest
+```
+The binary will be saved in build directory.
+To run the binar with X window
+### Linux
+```
+xhost +local:docker   
+sudo docker run --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/project/source -v `pwd`/build:/project/build jinkallu/visual_programming:latest ./Node
+```
 ## Prerequisites
 [Qt 5 or later](https://www.qt.io/download)  
 Necessary modules
