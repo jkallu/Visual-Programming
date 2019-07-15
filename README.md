@@ -36,12 +36,15 @@
 ### Simulation with Gnuplot
 ![Alt text](https://github.com/jkallu/Visual-Programming/blob/master/docs/images/sine_gnuplot_sim.gif? "Title")
 
-## Run with Docker
+## Run with Docker image   
+First, clone the repository from github.
 ```
 git clone https://github.com/jkallu/Visual-Programming.git
 cd Visual-Programming/Node
 ```
-The following command downloads the docker file from dockerhub, if not exists and build the source.
+The following command downloads the docker file from dockerhub  
+![Alt text](https://hub.docker.com/r/jinkallu/visual_programming)
+(if not already exists) and build the source.
 ```
 sudo docker run --rm -v `pwd`:/project/source -v `pwd`/build:/project/build jinkallu/visual_programming:latest
 ```
