@@ -252,7 +252,7 @@ QGroupBox* ManageBlocks::addGenerateMainBlock(){
     {
         ab->lblOutData[0]->setText("MainBlock_" + QString::number(countgenerateMainBlock) + "_" + QString::number(i));
     }
-    ab->leDir->setText("../nodegencodes/");
+    ab->leDir->setText("/project/source/nodegencodes/");
     countgenerateMainBlock++;
 
     blockIO.push_back(ab);
