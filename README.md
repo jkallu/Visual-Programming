@@ -55,8 +55,23 @@ To run the binar with X window
 xhost +local:docker   
 sudo docker run --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/project/source -v `pwd`/build:/project/build jinkallu/visual_programming:latest ./Node
 ```
-### Windows
+### Windows  
+Install X server for windows. For example, [VcXsrv Windows X Server](https://sourceforge.net/projects/vcxsrv/). Then launch Xlaunch from start and set it up with following,
+1. Multipple windows
+2. Start no client
+3. Check disable access control and 
+4. finish   
+[More details on how to run docker image with gui apps...](https://dev.to/darksmile92/run-gui-app-in-linux-docker-container-on-windows-host-4kde) 
 
+In Windows powershell
+```
+ipconfig
+```
+Find the ip of the system and then
+```
+set-variable -name DISPLAY -value 192.168.0.5:0.0   
+sudo docker run --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/project/source -v `pwd`/build:/project/build jinkallu/visual_programming:latest ./Node
+```
 ## Libraries used
 [Qt 5 or later](https://www.qt.io/download)  
 Necessary modules
