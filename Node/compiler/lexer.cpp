@@ -1,4 +1,5 @@
 #include "lexer.h"
+#include <locale>
 
 Lexer::Lexer(string fname, bool flagFile)
 {
@@ -11,7 +12,7 @@ Lexer::Lexer(string fname, bool flagFile)
 
         if(!inFile.is_open())
         {
-            cout << "Error! " << fileName << " could not be opened" << endl;
+            cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error! " << fileName << " could not be opened" << endl;
             return;
         }
 
@@ -94,7 +95,7 @@ Token *Lexer::getNextToken()
 
     else
     {
-        cout << "No handler !! for " << c << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "No handler !! for " << c << endl;
     }
 }
 
@@ -253,8 +254,34 @@ Token *Lexer::recognizeIdentifier()
         identifier += c;
 
     }
+    Token *tId = recognizeTrigonometricFunctions(identifier);
+    if(tId != nullptr)
+    {
+        tId->setLine(line);
+        tId->setColumn(column);
+
+        return tId;
+    }
 
     return new Token(TokenType::Identifier, identifier, line, column);
+}
+
+Token *Lexer::recognizeTrigonometricFunctions(string ident)
+{
+    for(auto& c : ident)
+    {
+       c = std::tolower(c);
+    }
+
+    if(ident == "sin" ||
+       ident == "cos")
+    {
+        return new Token(TokenType::Trigonometric, ident, 0, 0);
+    }
+    else
+    {
+        return nullptr;
+    }
 }
 
 Token *Lexer::recognizeNumber()
@@ -458,7 +485,7 @@ void Lexer::test()
 
     for (size_t i = 0; i < tokens.size(); i++)
     {
-        cout << tokens.at(i)->value << " " << tokens.at(i)->tokenType << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << tokens.at(i)->value << " " << tokens.at(i)->tokenType << endl;
     }
 }
 
@@ -479,7 +506,7 @@ vector <Token *>Lexer::allTokens()
 
     for (size_t i = 0; i < tokens.size(); i++)
     {
-        cout << tokens.at(i)->value << " " << tokens.at(i)->tokenType << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << tokens.at(i)->value << " " << tokens.at(i)->tokenType << endl;
     }
 
     return tokens;

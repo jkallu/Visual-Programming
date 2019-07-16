@@ -41,7 +41,7 @@ void GSLTest::odeSolution()
     gsl_odeiv2_system ode_system;	/* structure with the dfunc function, etc. */
     myparams[0] = alpha;          /* problem parameters */
     myparams[1] = omega;
-    cout << "\nThis program solves a system with a single diff  equation\n\n";
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "\nThis program solves a system with a single diff  equation\n\n";
     /* load values into the ode_system structure */
     ode_system.function = dfunc;       /* the right-hand-side of equation */
     ode_system.dimension = dimension;  /* number of diffeq's */
@@ -52,24 +52,24 @@ void GSLTest::odeSolution()
     y[0] = 2.0;			/* initial value of x */
     gsl_odeiv2_driver * drv =
             gsl_odeiv2_driver_alloc_y_new (&ode_system, gsl_odeiv2_step_rkf45, h, eps_abs, eps_rel);
-    cout << "Input data: \n";
-    cout << " alpha = " <<  alpha << " omega = " << omega << "\n";
-    cout << " Starting step size (h): " << h << endl;
-    cout << " Time parameters: " <<  tmin << " " << tmax << " " << delta_t << endl;
-    cout << " Absolute and relative error requested: " << eps_abs << " " <<  eps_rel << endl;
-    cout << " Number of equations (dimension) " << dimension << endl;
-    cout << "    Time         x          \n";
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Input data: \n";
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << " alpha = " <<  alpha << " omega = " << omega << "\n";
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << " Starting step size (h): " << h << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << " Time parameters: " <<  tmin << " " << tmax << " " << delta_t << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << " Absolute and relative error requested: " << eps_abs << " " <<  eps_rel << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << " Number of equations (dimension) " << dimension << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "    Time         x          \n";
     t = tmin;             /* initialize t */
-    cout <<  t << " " << y[0] << endl;	/* initial values */
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " <<  t << " " << y[0] << endl;	/* initial values */
     /* step from tmin to tmax */
     for (t_next = tmin + delta_t; t_next <= tmax; t_next += delta_t)
     {
         status = gsl_odeiv2_driver_apply (drv, &t, t_next, y);
         if (status != GSL_SUCCESS) {
-            cout << "Error: status " <<  status << endl;
+            cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error: status " <<  status << endl;
             break;
         }
-        cout << t << " " << y[0] << endl; /* print at t=t_next */
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << t << " " << y[0] << endl; /* print at t=t_next */
     } // end for
     gsl_odeiv2_driver_free (drv);
 }

@@ -35,6 +35,7 @@ public:
     Token* recognizeVerticalBar();
     Token* recognizeDoubleDots();
     Token* recognizeSquareBracket();
+    Token* recognizeTrigonometricFunctions(string ident);
 
     void skipWhiteSpace();
 

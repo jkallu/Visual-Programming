@@ -432,7 +432,7 @@ BlockItem * BlockScene::getBlockItemWithName(string blockName)
                 if(manageBlocks->blockIO.at(j)->getType() == blockItem[i]->getType() &&
                         manageBlocks->blockIO.at(j)->getId() ==  blockItem[i]->getTypeId())
                 {
-                    cout << " ** ### " <<  manageBlocks->blockIO.at(j)->leName->text().toStdString() << endl;
+                    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << " ** ### " <<  manageBlocks->blockIO.at(j)->leName->text().toStdString() << endl;
                     return blockItem[i];
                 }
             }
@@ -457,7 +457,7 @@ void BlockScene::connectDesignToBackend(int i){
     QString varOut;
     qDebug() << int(edge[i]->sourceNode()->getIOType()) << int(edge[i]->destNode()->getIOType());
     // get right block's io number to the previus blocks out io
-    cout << "IO Nums " << edge[i]->sourceNode()->getNumber() << " " << edge[i]->destNode()->getNumber() << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "IO Nums " << edge[i]->sourceNode()->getNumber() << " " << edge[i]->destNode()->getNumber() << endl;
     //BlockIO *blockIo;
     //get outputs name
     for(size_t j = 0; j < manageBlocks->blockIO.size(); j++)
@@ -653,7 +653,7 @@ void BlockScene::connectDesignToBackend(int i){
 
 void BlockScene::printOpenIter(OTree_t *otr)
 {
-    cout << "name " << otr->name << " con From " << otr->conIOFrom << " child size " << otr->child.size()<< endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "name " << otr->name << " con From " << otr->conIOFrom << " child size " << otr->child.size()<< endl;
     for(size_t i = 0; i < otr->child.size(); i++)
     {
         printOpenIter(otr->child.at(i));
@@ -736,7 +736,7 @@ void BlockScene::openDesign(QString fileName)
 
 void BlockScene::createFromOpenIter(OTree_t *otr)
 {
-    cout << otr->name << " " << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << otr->name << " " << endl;
 
     if(!hasBlock(otr->name))
     {
@@ -753,7 +753,7 @@ void BlockScene::createFromOpenIter(OTree_t *otr)
         {
             return;
         }
-        cout << "***" << bItem->getType() << " " << bItem->getTypeId()<< endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "***" << bItem->getType() << " " << bItem->getTypeId()<< endl;
         emit bItem->nodeConnectionStarted(bItem->getOutputNode(otr->conIOFrom), nullptr);
 
         bItem = getBlockItemWithName(otr->name);
@@ -761,7 +761,7 @@ void BlockScene::createFromOpenIter(OTree_t *otr)
         {
             return;
         }
-        cout << "***" << bItem->getType() << " " << bItem->getId() << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "***" << bItem->getType() << " " << bItem->getId() << endl;
         emit bItem->nodeConnectionStarted(bItem->getInputNode(otr->conIOTo), nullptr);
 
     }
@@ -928,16 +928,16 @@ void BlockScene::iterateConnTree(CTree_t *cTree)
 {
     if(cTree->blockIO != nullptr)
     {
-        cout << " Block " << cTree->blockIO->leName->text().toStdString() << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << " Block " << cTree->blockIO->leName->text().toStdString() << endl;
         for(int i = 0; i < cTree->blockIO->numOfOutputs; i++)
         {
-            cout << "io " << cTree->blockIO->conToIONum[i] << endl;
+            cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "io " << cTree->blockIO->conToIONum[i] << endl;
         }
 
     }
     if(cTree->parent != nullptr && cTree->parent->blockIO != nullptr)
     {
-        cout << " Parent " << cTree->parent->blockIO->leName->text().toStdString() << endl << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << " Parent " << cTree->parent->blockIO->leName->text().toStdString() << endl << endl;
     }
 
     if(cTree->child.size() == 0)

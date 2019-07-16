@@ -46,7 +46,7 @@ Token * FSM::run(stringstream* input, int col)
 
         int next_state = nextState(currentState, c, next);
 
-        cout << next_state << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << next_state << endl;
 
         if(next_state == endState)
         {

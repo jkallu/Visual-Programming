@@ -29,7 +29,7 @@ string EarleyParser::parse(vector  <Token *> tokens, string typ)
 
         if(i >= stateList.size())
         {
-            cout << __FUNCTION__ << "Error in Parsing" << endl;
+            cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << __FUNCTION__ << "Error in Parsing" << endl;
             return "";
         }
 
@@ -61,13 +61,13 @@ string EarleyParser::parse(vector  <Token *> tokens, string typ)
             if(successfullSentence())
             {
                 printStates(&stateList);
-                cout << "SUCCESSFUL" << endl;
+                cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "SUCCESSFUL" << endl;
                 createPasrseTree();
                 return compileToC->start(parseTree, type);
             }
             else
             {
-                cout << "FAILURE" << endl;
+                cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "FAILURE" << endl;
             }
         }
     }
@@ -192,7 +192,7 @@ void EarleyParser::scan(Token *token, size_t st)
 {
     if(st >= stateList.size())
     {
-        cout << "Error in Parsing" << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error in Parsing" << endl;
         return;
     }
 
@@ -201,7 +201,8 @@ void EarleyParser::scan(Token *token, size_t st)
         Rule rule = stateList.at(st).at(i);
         if(!rule.isFinished())
         {
-            if(rule.nextElement() == token->value)
+            //if(rule.nextElement() == token->value)
+           if(rule.nextElementType() == token->tokenType)
             {
                 rule.dot_pos++;
                 addState(rule, st + 1, &stateList);
@@ -210,7 +211,7 @@ void EarleyParser::scan(Token *token, size_t st)
         }
     }
 
-    cout << __FUNCTION__ << " Unrecognized token " << token->value << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] "<< " Unrecognized token " << token->value << endl;
 }
 
 void EarleyParser::complete(Rule rl, size_t s)
@@ -233,7 +234,7 @@ void EarleyParser::addStateForReversed(Rule rule, size_t s, vector<States_t> *st
 {
     if(s > stList->size())
     {
-        cout << "Error in Parsing" << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error in Parsing" << endl;
         return;
     }
 
@@ -261,7 +262,7 @@ void EarleyParser::addState(Rule rule, size_t s, vector <States_t> *stList)
 {
     if(s > stList->size())
     {
-        cout << "Error in Parsing" << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error in Parsing" << endl;
         return;
     }
 
@@ -321,7 +322,7 @@ void EarleyParser::printStates(vector<States_t> *stList)
 {
     for (size_t i = 0; i < stList->size(); i++)
     {
-        cout << endl << "S(" << i << ")" << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << endl << "S(" << i << ")" << endl;
         printState(stList->at(i));
     }
 }
@@ -333,42 +334,42 @@ void EarleyParser::printState(States_t state)
         printRule(state.at(j));
     }
 
-    cout << "\n-------------------------------------------\n";
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "\n-------------------------------------------\n";
 }
 
 void EarleyParser::printRule(Rule rule)
 {
-    cout << rule.left << " -> ";
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << rule.left << " -> ";
     for(size_t i = 0; i < rule.right.size(); i++)
     {
         if(i == rule.dot_pos)
         {
-            cout << ".";
+            cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << ".";
         }
-        cout << rule.right.at(i) << " " ;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << rule.right.at(i) << " " ;
     }
     if(rule.right.size() == rule.dot_pos)
     {
-        cout << ".";
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << ".";
     }
-    cout << " " << rule.n;
-    cout << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << " " << rule.n;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << endl;
 }
 
 void EarleyParser::recurseParser(Rule rule, States_t state)
 {
 
-    cout << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << endl;
     for (int i = rule.right.size() - 1; i >= 0; i--)
     {
         if(grammar->symbolIsTerminal(rule.right.at(i)))
         {
-            cout << rule.right.at(i) << endl;
+            cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << rule.right.at(i) << endl;
         }
 
         else
         {
-            cout << rule.right.at(i) << endl;
+            cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << rule.right.at(i) << endl;
             vector <Rule> rules = grammar->getRulesForSymbol(rule.right.at(i));
 
             for (size_t j = 0; j < rules.size(); j++)
@@ -376,7 +377,7 @@ void EarleyParser::recurseParser(Rule rule, States_t state)
                 Rule * finished_rule = getFinishedRuleOfThisType(rules.at(j), state);
                 if(finished_rule != nullptr)
                 {
-                    cout << rule.right.at(i) << endl;
+                    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << rule.right.at(i) << endl;
                 }
             }
 
@@ -429,7 +430,7 @@ void EarleyParser::DFSRecurse(vector<States_t> *stList, size_t pos, ParseTree_t 
 {
     if(pos >= stList->size())
     {
-        cout << "Error!!" << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error!!" << endl;
         return;
     }
 
@@ -501,7 +502,7 @@ void EarleyParser::DFSRecurse(vector<States_t> *stList, size_t pos, ParseTree_t 
 void EarleyParser::printParseTree(ParseTree_t *pTree)
 {
 
-    cout << pTree->symbol << " ";
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << pTree->symbol << " ";
 
     treeLvlPos++;
 
@@ -523,10 +524,10 @@ void EarleyParser::printParseTree(ParseTree_t *pTree)
 
     treeLvlPos--;
 
-    cout  << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] "  << endl;
     for (int j = 0; j < treeLvlPos; j++)
     {
-        cout << "| ";
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "| ";
     }
 
 }
@@ -535,7 +536,7 @@ void EarleyParser::parseRecursively(ParseTree_t *pTree, size_t pos, vector<State
 {
     if(state_pos < 1)
     {
-        cout << "Error" << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error" << endl;
         return;
     }
 
@@ -568,7 +569,7 @@ void EarleyParser::parseRecursively(ParseTree_t *pTree, size_t pos, vector<State
     }
     else
     {
-        cout << state_pos << " " << pTree->symbol <<" Error! empty rule" << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << state_pos << " " << pTree->symbol <<" Error! empty rule" << endl;
         return;
     }
 
@@ -599,9 +600,9 @@ void EarleyParser::createPasrseTree()
 
     Rule *final_rule = getFinishedRuleOfThisType(grammar->getStartRule(), final_state);
 
-    cout << endl << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << endl << endl;
 
-    cout << final_rule->left << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << final_rule->left << endl;
 
     recurseParser(*final_rule, final_state);*/
 }
@@ -611,7 +612,7 @@ void EarleyParser::printParseTreeBFS()
     while(queue.size() > 0)
     {
         ParseTree_t *pTree = queue.dequeue();
-        cout << pTree->symbol << " ";
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << pTree->symbol << " ";
     }
 
 
@@ -687,7 +688,7 @@ Rule * EarleyParser::getFinishedRuleOfThisType(Rule rule, States_t state)
 Rule *EarleyParser::getFinishedRuleOfThisSymbol(string symbol, States_t *state)
 {
     Rule * rule_ret = nullptr;
-    //cout << rule_ret.right.size() << endl;
+    //cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << rule_ret.right.size() << endl;
     for (size_t i = 0; i < state->size(); i++)
     {
         Rule *rule_fin = &state->at(i);

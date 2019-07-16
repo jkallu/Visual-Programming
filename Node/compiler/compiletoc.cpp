@@ -46,7 +46,7 @@ string CompileToC::deSugar(ParseTree_t *pTree)
     //    if(pTree_chld->symbol == "Generator")
     //    {
 
-    cout << "GENERATOR " << pTree->child.at(1)->child.at(0)->symbol << " " << pTree->child.at(2)->child.at(0)->symbol << " " << pTree->child.at(4)->child.at(0)->symbol << endl;
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "GENERATOR " << pTree->child.at(1)->child.at(0)->symbol << " " << pTree->child.at(2)->child.at(0)->symbol << " " << pTree->child.at(4)->child.at(0)->symbol << endl;
     //    }
     //}
 }

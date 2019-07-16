@@ -44,69 +44,69 @@ void Simulate::addSource(QString src)
 
 void Simulate::createLib(QString dir, QString libName)
 {
-    cout << "CREATING LIBS\n";
+    cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "CREATING LIBS\n";
     QStringList list = sourceList.split(QRegExp("\\s+"), QString::SkipEmptyParts);
     QString path;
 
     path = "rm -f " + libName;
     if(system(path.toStdString().c_str()) == -1)
     {
-        cout << "No prev " + libName.toStdString() + " found\n";
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "No prev " + libName.toStdString() + " found\n";
     }
 
     path = "rm -f eventLoop.o";
     if(system(path.toStdString().c_str()) == -1)
     {
-        cout << "No prev eventLoop.o found\n";
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "No prev eventLoop.o found\n";
     }
 
     path = "gcc -fPIC -c " + dir + "eventLoop.c -L. -lpthread -lm -I " + dir;
     if(system(path.toStdString().c_str()) == -1)
     {
-        cout << "Error\n";
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error\n";
         return;
     }
 
     path = "rm -f linkedList.o";
     if(system(path.toStdString().c_str()) == -1)
     {
-        cout << "No prev linkedList.o found\n";
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "No prev linkedList.o found\n";
     }
 
     path = "gcc -fPIC -c " + dir + "linkedList.c -I " + dir;
     if(system(path.toStdString().c_str()) == -1)
     {
-        cout << "Error\n";
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error\n";
         return;
     }
 
     path = "rm -f packer.o";
     if(system(path.toStdString().c_str()) == -1)
     {
-        cout << "No prev packer.o found\n";
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "No prev packer.o found\n";
     }
 
     path = "gcc -fPIC -c " + dir + "packer.c -I " + dir;
     if(system(path.toStdString().c_str()) == -1)
     {
-        cout << "Error\n";
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error\n";
         return;
     }
 
 
     for(int i = 0; i < list.size(); i++)
     {
-        cout << list.at(i).toStdString() << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << list.at(i).toStdString() << endl;
         path = "rm -f " + list.at(i) + ".o";
         if(system(path.toStdString().c_str()) == -1)
         {
-            cout << "No prev " << list.at(i).toStdString() <<".o found\n";
+            cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "No prev " << list.at(i).toStdString() <<".o found\n";
         }
 
         path = "gcc -fPIC -c " + dir + list.at(i) + ".c" + " -I " + dir;
         if(system(path.toStdString().c_str()) == -1)
         {
-            cout << "Error " << path.toStdString() << endl;
+            cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error " << path.toStdString() << endl;
             return;
         }
     }
@@ -119,7 +119,7 @@ void Simulate::createLib(QString dir, QString libName)
     path += "linkedList.o packer.o -L. -lpthread -lm";
     if(system(path.toStdString().c_str()) == -1)
     {
-        cout << "Error " << path.toStdString() << endl;
+        cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error " << path.toStdString() << endl;
         return;
     }
 }
@@ -199,7 +199,7 @@ Func_t Simulate::getFunc(string funcName)
 
         if(i == func.size() - 1)
         {
-            cout << "Error! could not find the func name" << endl;
+            cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "Error! could not find the func name" << endl;
 
         }
     }
@@ -315,7 +315,7 @@ void * Simulate::simLoop(void *simLoopD)
 
                 }
 
-                cout << "FUNC NAME FROM SIM " << func.funcName << " " << func.type << " " << func.arrayNum << endl;
+                cout <<"["<<__FILE__ "]["<<__LINE__ <<"]["<< __FUNCTION__ <<"] " << "FUNC NAME FROM SIM " << func.funcName << " " << func.type << " " << func.arrayNum << endl;
             }
             if(data != nullptr)
             {
